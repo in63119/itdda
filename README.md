@@ -1,4 +1,4 @@
-# im25project9-server
+# datda-server
 
 1. typescript, eslint, prettier 초기설정 관련 참고자료
    'VSCode에서 ESLint와 Prettier (+ TypeScript) 사용하기'
