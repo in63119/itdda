@@ -6,15 +6,19 @@ module.exports = {
     return sign(data, process.env.ACCESS_SECRET, { expiresIn: '15s' });
   },
   generateRefreshToken: (data) => {
-    return sign(data, process.env.REFRESH_SECRET, { expiresIn: '30d' });
+    return sign(data, process.env.REFRESH_SECRET, { expiresIn: '3d' });
   },
   sendRefreshToken: (res, refreshToken) => {
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
     });
   },
-  sendAccessToken: (res, accessToken) => {
-    res.json({ data: { accessToken }, message: 'ok' });
+  sendAccessToken: (res, accessToken, permission) => {
+    res.status(200).json({
+      accessToken,
+      permission,
+      message: 'datda login succeeded',
+    });
   },
   resendAccessToken: (res, accessToken, data) => {
     res.json({ data: { accessToken, userInfo: data }, message: 'ok' });
