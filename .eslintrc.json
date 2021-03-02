@@ -1,7 +1,22 @@
 {
+  "parserOptions": {
+    "ecmaVersion": 2017
+  },
+
+  "env": {
+    "es6": true
+  },
   "plugins": ["prettier"],
   "extends": ["eslint:recommended", "plugin:prettier/recommended"],
   "rules": {
     "prettier/prettier": "error"
+  },
+  "globals": {
+    "require": true,
+    "process": true,
+    "module": true,
+    "console": true,
+    "__filename": true,
+    "__dirname": true
   }
 }
