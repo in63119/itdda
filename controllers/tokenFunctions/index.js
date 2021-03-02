@@ -9,9 +9,13 @@ module.exports = {
     return sign(data, process.env.REFRESH_SECRET, { expiresIn: '3d' });
   },
   sendRefreshToken: (res, refreshToken) => {
-    res.cookie('refreshToken', refreshToken, {
-      httpOnly: true,
-    });
+    res.cookie(
+      'refreshToken',
+      refreshToken,
+      //  {
+      //   httpOnly: true,
+      // }
+    );
   },
   sendAccessToken: (res, accessToken, permission) => {
     res.status(200).json({
