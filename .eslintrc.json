@@ -17,6 +17,7 @@
     "module": true,
     "console": true,
     "__filename": true,
-    "__dirname": true
+    "__dirname": true,
+    "exports": true
   }
 }

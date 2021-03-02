@@ -3,11 +3,9 @@ const express = require('express');
 const cors = require('cors');
 const logger = require('morgan');
 const { sequelize } = require('./models');
-// ! 추가 중 =======================================
-// https://www.npmjs.com/package/cookie-parser
 const cookieParser = require('cookie-parser');
+// ! 추가 중 =======================================
 
-const controllers = require('./controllers');
 // ================================================
 
 const app = express();
@@ -38,7 +36,7 @@ app.use(express.json());
 // ex2>
 app.use(
   cors({
-    origin: ['http://localhost:3000', 'https://datda.net'],
+    origin: ['https://localhost:3000', 'https://datda.net'],
     method: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // ! HEAD?
     credentials: true,
   }),
@@ -46,22 +44,26 @@ app.use(
 // ================================================
 
 // ! cookie Parser ================================
-// app.use(cookieParser());
+// https://www.npmjs.com/package/cookie-parser
+app.use(cookieParser());
 // ================================================
 
 // ! ★ sequelize sync =============================
 sequelize
-  .sync({ force: false, alter: false })
+  .sync({ force: true, alter: false })
   .then(() => console.log('DB 접속 성공'))
   .catch((err) => console.log(err));
 // ================================================
 
 // ! routing ======================================
+// (1) https://expressjs.com/ko/4x/api.html#express.router
+// (2) https://expressjs.com/ko/4x/api.html#router
+
 const indexRouter = require('./routes/index');
-const linksRouter = require('./routes/links');
+const authRouter = require('./routes/auth');
 
 app.use('/', indexRouter);
-app.use('/links', linksRouter);
+app.use('/auth', authRouter);
 
 // cf> 첫 배포용
 // app.use('/', (req, res) => {
