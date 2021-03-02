@@ -50,7 +50,7 @@ app.use(cookieParser());
 
 // ! ★ sequelize sync =============================
 sequelize
-  .sync({ force: true, alter: false })
+  .sync({ force: false, alter: false })
   .then(() => console.log('DB 접속 성공'))
   .catch((err) => console.log(err));
 // ================================================
