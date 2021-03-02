@@ -3,11 +3,12 @@ const express = require('express');
 const cors = require('cors');
 const logger = require('morgan');
 const { sequelize } = require('./models');
-// ! ===================================
-const cookieParser = require('cookie-parser');
+// ! 추가 중 =======================================
 // https://www.npmjs.com/package/cookie-parser
+const cookieParser = require('cookie-parser');
+
 const controllers = require('./controllers');
-// ! ===================================
+// ================================================
 
 const app = express();
 app.use(logger('dev'));
@@ -43,7 +44,10 @@ app.use(
   }),
 );
 // ================================================
-app.use(cookieParser());
+
+// ! cookie Parser ================================
+// app.use(cookieParser());
+// ================================================
 
 // ! ★ sequelize sync =============================
 sequelize
@@ -52,9 +56,18 @@ sequelize
   .catch((err) => console.log(err));
 // ================================================
 
-app.use('/', (req, res) => {
-  res.send('welcome to datda world!! hello!!');
-});
+// ! routing ======================================
+const indexRouter = require('./routes/index');
+const linksRouter = require('./routes/links');
+
+app.use('/', indexRouter);
+app.use('/links', linksRouter);
+
+// cf> 첫 배포용
+// app.use('/', (req, res) => {
+//   res.send('welcome to datda world!! hello!!');
+// });
+// ================================================
 
 app.listen(5000, () => {
   console.log('server on 5000');
