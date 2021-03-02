@@ -38,7 +38,7 @@ app.use(
   cors({
     origin: ['https://localhost:3000', 'https://datda.net'],
     method: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // ! HEAD?
-    credentials: true,
+    // credentials: true,
   }),
 );
 // ================================================
