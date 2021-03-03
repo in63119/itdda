@@ -1,4 +1,5 @@
 require('dotenv').config();
+// https://www.npmjs.com/package/jsonwebtoken
 const { sign, verify } = require('jsonwebtoken');
 
 module.exports = {
@@ -9,13 +10,11 @@ module.exports = {
     return sign(data, process.env.REFRESH_SECRET, { expiresIn: '3d' });
   },
   sendRefreshToken: (res, refreshToken) => {
-    res.cookie(
-      'refreshToken',
-      refreshToken,
-      //  {
-      //   httpOnly: true,
-      // }
-    );
+    res.cookie('refreshToken', refreshToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'None',
+    });
   },
   sendAccessToken: (res, accessToken, permission) => {
     res.status(200).json({
