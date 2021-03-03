@@ -1,13 +1,9 @@
 const { user } = require('../models');
-const {
-  generateAccessToken,
-  generateRefreshToken,
-  sendRefreshToken,
-  sendAccessToken,
-  isAuthorized,
-} = require('./tokenFunctions');
+const {} = require('./tokenFunctions');
 
 module.exports = {
+  index: async (req, res) => {},
+
   login: async (req, res) => {
     const { email, password } = req.body;
 
