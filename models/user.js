@@ -21,7 +21,6 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       password: DataTypes.STRING,
       mobile: DataTypes.INTEGER,
-      mainPhoto: DataTypes.STRING,
       role: DataTypes.STRING,
       salt: DataTypes.STRING,
       passwordChange: DataTypes.STRING,

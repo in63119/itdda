@@ -29,7 +29,11 @@ module.exports = {
   },
 
   resendAccessToken: (res, accessToken, data) => {
-    res.json({ data: { accessToken, userInfo: data }, message: 'ok' });
+    res.status(200).json({
+      accessToken,
+      userInfo: data,
+      message: 'access token resended(by refresh token)',
+    });
   },
 
   isAuthorized: (req) => {
