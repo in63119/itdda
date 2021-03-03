@@ -63,6 +63,54 @@ module.exports = {
   },
 
   signup: async (req, res) => {
-    res.send('signup ok');
+    const { password, permission, userName, email, mobile, role } = req.body;
+    const findEmail = await user
+      .findOne({
+        where: { email },
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    if (!findEmail) {
+      user
+        .create({
+          password,
+          permission,
+          name: userName,
+          email,
+          mobile,
+          role,
+        })
+        .then((data) => {
+          res.status(200).json({
+            message: 'signup succeeded',
+            data,
+          });
+        });
+    } else {
+      res.status(201).json({
+        message: 'existing email',
+      });
+    }
+  },
+
+  isEmail: async (req, res) => {
+    const { email } = req.body;
+    const findEmail = await user
+      .findOne({
+        where: { email },
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    if (!findEmail) {
+      res.status(200).json({
+        message: 'email available',
+      });
+    } else {
+      res.status(201).json({
+        message: 'existing email',
+      });
+    }
   },
 };

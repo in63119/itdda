@@ -36,7 +36,11 @@ app.use(express.json());
 // ex2>
 app.use(
   cors({
-    origin: ['https://localhost:3000', 'https://datda.net'],
+    origin: [
+      'http://localhost:3000',
+      'https://localhost:3000',
+      'https://datda.net',
+    ],
     method: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // ! HEAD?
     credentials: true,
   }),
