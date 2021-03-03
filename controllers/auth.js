@@ -44,6 +44,8 @@ module.exports = {
   },
 
   logout: async (req, res) => {
+    // ! aws 쿠키 관련 이슈 코드
+    // res.send({ asdf: req.cookies });
     res.send('logout ok');
   },
 
