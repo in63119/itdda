@@ -4,6 +4,7 @@ const {
   generateRefreshToken,
   sendRefreshToken,
   sendAccessToken,
+  isAuthorized,
 } = require('./tokenFunctions');
 
 module.exports = {
@@ -18,7 +19,7 @@ module.exports = {
         console.log(err);
       });
     if (!findEmail) {
-      return res.status(404).json({ message: 'email does not exist' });
+      return res.status(201).json({ message: 'email does not exist' });
     } else {
       user
         .findOne({
@@ -26,7 +27,7 @@ module.exports = {
         })
         .then((data) => {
           if (!data) {
-            return res.status(400).json({ message: 'wrong password' });
+            return res.status(202).json({ message: 'wrong password' });
           }
           delete data.dataValues.password;
           delete data.dataValues.salt;
@@ -44,9 +45,21 @@ module.exports = {
   },
 
   logout: async (req, res) => {
-    // ! aws 쿠키 관련 이슈 코드
-    res.send({ asdf: req.cookies });
-    // res.send('logout ok');
+    const accessTokenData = isAuthorized(req);
+    if (!accessTokenData) {
+      return res.status(201).json({
+        message: 'datda logout failed(no token in req.headers.authorization)',
+      });
+    } else if (accessTokenData === 'invalid token') {
+      return res.status(201).json({
+        message: 'datda logout failed(invalid token)',
+      });
+    }
+    res.status(200).json({ message: 'datda logout succeded' });
+
+    // ! aws 쿠키 관련 이슈 코드 ===========
+    // res.send({ asdf: req.cookies });
+    // =================================
   },
 
   signup: async (req, res) => {
