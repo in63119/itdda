@@ -70,14 +70,14 @@ const authRouter = require('./routes/auth');
 const kakaoRouter = require('./routes/kakao');
 const refreshTokenRouter = require('./routes/refreshToken');
 const directorRouter = require('./routes/director');
-const qazwsxRouter = require('./routes/qazwsx');
+const mainRouter = require('./routes/main');
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/kakao', kakaoRouter);
 app.use('/refreshtoken', refreshTokenRouter);
 app.use('/director', directorRouter);
-app.use('/qazwsx', qazwsxRouter);
+app.use('/main', mainRouter);
 
 // cf> 첫 배포용
 // app.use('/', (req, res) => {
