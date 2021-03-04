@@ -32,20 +32,15 @@ module.exports = {
           // delete data.dataValues.password;
           // delete data.dataValues.passwordChange;
           // delete data.dataValues.salt;
-          const { id, email } = data.dataValues;
-          const userInfo = { userId: id, email };
+          const { id, email, permission } = data.dataValues;
+          const userInfo = { userId: id, email, permission };
 
-          const permission = data.dataValues.permission;
           // const accessToken = generateAccessToken(data.dataValues);
           const accessToken = generateAccessToken(userInfo);
           const refreshToken = generateRefreshToken(data.dataValues);
-          // ! === asdfasdf
-          // const qw = await institution.findAll({where})
 
-          const qwer = {};
-          // ! ===
           sendRefreshToken(res, refreshToken);
-          sendAccessToken(res, accessToken, permission, qwer);
+          sendAccessToken(res, accessToken, permission);
         })
         .catch((err) => {
           console.log(err);

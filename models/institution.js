@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
       master: DataTypes.STRING,
       info: DataTypes.STRING,
       photo: DataTypes.STRING,
-      timetable: DataTypes.STRING(1000),
+      timetable: DataTypes.STRING,
+      // timetable: DataTypes.ARRAY(DataTypes.DECIMAL),
     },
     {
       sequelize,
