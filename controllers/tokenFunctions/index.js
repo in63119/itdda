@@ -19,12 +19,13 @@ module.exports = {
       sameSite: 'None',
     });
   },
-
-  sendAccessToken: (res, accessToken, permission) => {
+  // ! === asdfasdf
+  sendAccessToken: (res, accessToken, permission, qwer) => {
     res.status(200).json({
       accessToken,
       permission,
       message: 'datda login succeeded',
+      qwer,
     });
   },
 

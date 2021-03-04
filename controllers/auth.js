@@ -39,9 +39,13 @@ module.exports = {
           // const accessToken = generateAccessToken(data.dataValues);
           const accessToken = generateAccessToken(userInfo);
           const refreshToken = generateRefreshToken(data.dataValues);
+          // ! === asdfasdf
+          // const qw = await institution.findAll({where})
 
+          const qwer = {};
+          // ! ===
           sendRefreshToken(res, refreshToken);
-          sendAccessToken(res, accessToken, permission);
+          sendAccessToken(res, accessToken, permission, qwer);
         })
         .catch((err) => {
           console.log(err);

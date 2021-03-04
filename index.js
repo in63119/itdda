@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const logger = require('morgan');
-// const { sequelize } = require('./models');
+const { sequelize } = require('./models');
 const cookieParser = require('cookie-parser');
 // ! 추가 중 =======================================
 
@@ -37,9 +37,9 @@ app.use(express.json());
 app.use(
   cors({
     origin: [
-      'http://localhost:3001',
       'https://datda.net',
       'http://localhost:3000',
+      'http://localhost:3001',
       'https://localhost:3000',
     ],
     method: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // ! HEAD?
@@ -54,9 +54,9 @@ app.use(cookieParser());
 // ================================================
 
 // ! ★ sequelize sync =============================
-// asdfasdf 데이터 리셋
+// asdfasdf
 // sequelize
-//   .sync({ force: false, alter: false }) // 여기가 true 되면 지워짐
+//   .sync({ force: false, alter: false })
 //   .then(() => console.log('DB 접속 성공'))
 //   .catch((err) => console.log(err));
 // ================================================
@@ -68,15 +68,16 @@ app.use(cookieParser());
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const kakaoRouter = require('./routes/kakao');
-
 const refreshTokenRouter = require('./routes/refreshToken');
 const directorRouter = require('./routes/director');
+const qazwsxRouter = require('./routes/qazwsx');
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
+app.use('/kakao', kakaoRouter);
 app.use('/refreshtoken', refreshTokenRouter);
 app.use('/director', directorRouter);
-app.use('/kakao', kakaoRouter);
+app.use('/qazwsx', qazwsxRouter);
 
 // cf> 첫 배포용
 // app.use('/', (req, res) => {
