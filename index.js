@@ -40,6 +40,7 @@ app.use(
       'http://localhost:3001',
       'https://datda.net',
       'http://localhost:3000',
+      'https://localhost:3000',
     ],
     method: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // ! HEAD?
     credentials: true,
@@ -68,8 +69,13 @@ const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const kakaoRouter = require('./routes/kakao');
 
+const refreshTokenRouter = require('./routes/refreshToken');
+const directorRouter = require('./routes/director');
+
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
+app.use('/refreshtoken', refreshTokenRouter);
+app.use('/director', directorRouter);
 app.use('/kakao', kakaoRouter);
 
 // cf> 첫 배포용

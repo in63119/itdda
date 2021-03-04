@@ -19,7 +19,7 @@ module.exports = {
       return res.sendStatus(400);
     });
 
-    // console.log('access :   ' + access.data.access_token);
+    console.log('access :   ' + access.data.access_token);
 
     axios
       .get('https://kapi.kakao.com/v2/user/me', {
@@ -28,41 +28,25 @@ module.exports = {
           'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
         },
       })
-      .then(async (response) => {
+      .then((response) => {
         // const email = response.data.kakao_account.email;
         const email = 'parent5@datda.net';
         console.log('이메일은!!!!!!!!', email);
 
-        return await user
+        return user
           .findOne({ where: { email: email } })
           .then((data) => {
             if (!data) {
+              console.log('201!!!!');
               return res.status(201).json({ message: 'email does not exist' });
             } else {
+              console.log('200!!!!');
               return res.status(200).json({ message: 'kakao login succeeded' });
             }
           })
           .catch((err) => {
             console.log(err);
           });
-
-        // await user
-        //   .findOne({
-        //     where: { email: email },
-        //   })
-        //   .then((userEmail) => {
-        //     if (!userEmail) {
-        //       // 이메일이 없다면 201 상태 메세지를 보내주고 거부
-        //       res.status(201).json({ message: 'email does not exist' });
-        //     } else {
-        //       // 이메일이 있다면 200 상태 메세지를 보내주고 허용
-        //       res.status(200).json({ email: userEmail.email });
-        //       console.log('이메일이 있다!!!', userEmail.email);
-        //     }
-        //   })
-        //   .catch(() => {
-        //     // console.log(err);
-        //   });
       })
       .catch((err) => {
         console.log('에러다!!!!', err);
