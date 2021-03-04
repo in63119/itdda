@@ -37,9 +37,10 @@ app.use(express.json());
 app.use(
   cors({
     origin: [
-      'http://localhost:3000',
-      'https://localhost:3000',
       'https://datda.net',
+      'http://localhost:3000',
+      'http://localhost:3001',
+      'https://localhost:3000',
     ],
     method: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // ! HEAD?
     credentials: true,
@@ -66,12 +67,14 @@ app.use(cookieParser());
 
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
+const kakaoRouter = require('./routes/kakao');
 const refreshTokenRouter = require('./routes/refreshToken');
 const directorRouter = require('./routes/director');
 const qazwsxRouter = require('./routes/qazwsx');
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
+app.use('/kakao', kakaoRouter);
 app.use('/refreshtoken', refreshTokenRouter);
 app.use('/director', directorRouter);
 app.use('/qazwsx', qazwsxRouter);
@@ -85,3 +88,5 @@ app.use('/qazwsx', qazwsxRouter);
 app.listen(5000, () => {
   console.log('server on 5000');
 });
+
+// app.timeout = 600000;
