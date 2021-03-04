@@ -1,13 +1,56 @@
-const { user } = require('../models');
-const {
-  generateAccessToken,
-  generateRefreshToken,
-  sendRefreshToken,
-  sendAccessToken,
-  isAuthorized,
-} = require('./tokenFunctions');
+const { user, institution, album } = require('../models');
+const { checkAccessToken } = require('../modules/checkAccessToken');
 
 module.exports = {
+  index: async (req, res) => {
+    const accessTokenData = checkAccessToken(req, res);
+    if (!accessTokenData || accessTokenData === 'invalid token') {
+      return;
+    }
+
+    const { userId } = accessTokenData;
+    // ! asdfasdf 아래가 쓰일까? (permission에 따른 분기로 인해서 필요)
+    // req.body.permission
+    // const { userId, permission } = accessTokenData;
+
+    const userInfo = await user.findOne({
+      where: {
+        id: 9,
+      },
+      include: institution,
+      // include: [institution, album],
+    });
+    const timetable = userInfo.institutions[0].timetable;
+
+    const albumas = await album.findOne({
+      where: {
+        userId: userId,
+      },
+    });
+
+    res.json(userInfo);
+
+    // const mainPageData = { director: {} };
+
+    // const zxzx = await user.findAll({
+    //   limit: 3,
+    //   order: [
+    //     ['createdAt', 'DESC'],
+    //     ['id', 'DESC'],
+    //   ],
+    // });
+    // res.json({ zxzx });
+
+    // const zxzx = await user.findAll({
+    //   limit: 3,
+    //   order: [
+    //     ['createdAt', 'DESC'],
+    //     ['id', 'DESC'],
+    //   ],
+    // });
+    // res.json({ zxzx });
+  },
+
   login: async (req, res) => {
     const { email, password } = req.body;
 
@@ -39,13 +82,9 @@ module.exports = {
           // const accessToken = generateAccessToken(data.dataValues);
           const accessToken = generateAccessToken(userInfo);
           const refreshToken = generateRefreshToken(data.dataValues);
-          // ! === asdfasdf
-          // const qw = await institution.findAll({where})
 
-          const qwer = {};
-          // ! ===
           sendRefreshToken(res, refreshToken);
-          sendAccessToken(res, accessToken, permission, qwer);
+          sendAccessToken(res, accessToken, permission);
         })
         .catch((err) => {
           console.log(err);

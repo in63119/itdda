@@ -7,7 +7,6 @@ module.exports = (sequelize, DataTypes) => {
       models.user.belongsToMany(models.institution, {
         through: 'users_institutions',
       });
-      models.user.hasMany(models.album);
       models.user.hasMany(models.bugReport);
       models.user.hasMany(models.children);
       models.user.hasMany(models.indiNotice);

@@ -5,7 +5,6 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       models.children.belongsTo(models.user);
       models.children.belongsTo(models.classs);
-      models.children.hasMany(models.album);
       models.children.hasMany(models.indiNotice);
       models.children.hasMany(models.medicine);
     }

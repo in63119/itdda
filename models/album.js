@@ -3,8 +3,7 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class album extends Model {
     static associate(models) {
-      models.album.belongsTo(models.user);
-      models.album.belongsTo(models.children);
+      models.album.belongsTo(models.institution);
     }
   }
   album.init(

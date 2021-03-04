@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       models.institution.hasMany(models.food);
       models.institution.hasMany(models.notice);
       models.institution.hasMany(models.program);
+      models.institution.hasMany(models.album);
     }
   }
   institution.init(
