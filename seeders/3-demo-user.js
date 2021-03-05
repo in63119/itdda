@@ -15,6 +15,7 @@ module.exports = {
           salt: null,
           createdAt: new Date(),
           updatedAt: new Date(),
+          // ! user의 classsId 는 teacher만 값을 갖는다.
           classsId: null,
         },
         {
@@ -75,7 +76,7 @@ module.exports = {
           salt: null,
           createdAt: new Date(),
           updatedAt: new Date(),
-          classsId: 1, // 오류!
+          classsId: null,
         },
         {
           permission: 'parent',
@@ -87,7 +88,7 @@ module.exports = {
           salt: null,
           createdAt: new Date(),
           updatedAt: new Date(),
-          classsId: 1, // 오류!
+          classsId: null,
         },
         {
           permission: 'parent',
@@ -99,7 +100,7 @@ module.exports = {
           salt: null,
           createdAt: new Date(),
           updatedAt: new Date(),
-          classsId: 2, // 오류!
+          classsId: null,
         },
         {
           permission: 'parent',
@@ -111,7 +112,7 @@ module.exports = {
           salt: null,
           createdAt: new Date(),
           updatedAt: new Date(),
-          classsId: 2, // 오류!
+          classsId: null,
         },
         {
           permission: 'parent',
@@ -123,7 +124,7 @@ module.exports = {
           salt: null,
           createdAt: new Date(),
           updatedAt: new Date(),
-          classsId: 3, // 오류!
+          classsId: null,
         },
         {
           permission: 'guestTeacher',
@@ -147,7 +148,7 @@ module.exports = {
           salt: null,
           createdAt: new Date(),
           updatedAt: new Date(),
-          classsId: 1,
+          classsId: null,
         },
         {
           permission: 'guestParent',
@@ -171,7 +172,7 @@ module.exports = {
           salt: null,
           createdAt: new Date(),
           updatedAt: new Date(),
-          classsId: 1, // 오류!
+          classsId: null,
         },
       ],
       {},

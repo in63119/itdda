@@ -96,7 +96,7 @@ const teacher = {
     },
   ],
 };
-
+// res.data.children.notice
 const parent = {
   timetable: [
     {
@@ -117,6 +117,8 @@ const parent = {
       childrenImage: 'string',
       className: 'string',
       institution: 'string',
+      indiNotice: 배열,
+      notice: 배열,
     },
     {
       childrenId: 'number',
