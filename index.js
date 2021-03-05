@@ -55,10 +55,10 @@ app.use(cookieParser());
 
 // ! ★ sequelize sync =============================
 // asdfasdf
-sequelize
-  .sync({ force: true, alter: false })
-  .then(() => console.log('DB 접속 성공'))
-  .catch((err) => console.log(err));
+// sequelize
+//   .sync({ force: false, alter: false })
+//   .then(() => console.log('DB 접속 성공'))
+//   .catch((err) => console.log(err));
 // ================================================
 
 // ! routing ======================================
