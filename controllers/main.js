@@ -1,5 +1,6 @@
 const {
   user,
+  timetable,
   institution,
   notice,
   album,
@@ -16,7 +17,6 @@ module.exports = {
       return;
     }
 
-    const { childId, array } = req.body;
     const { userId, permission } = accessTokenData;
     // ! permission 에 따른 분기 (1) institution (2) teacher (3) parent
     // ! (1) institution
@@ -30,6 +30,16 @@ module.exports = {
       const institutionId = userInfo.institutions[0].id;
 
       const ElTimetable = userInfo.institutions[0].timetable;
+
+      // ! timetable table 하나 더 만들 시
+      // const ElTimetable = await timetable.findAll({
+      //   order: [['step', 'ASC']],
+      //   where: {
+      //     institutionId,
+      //   },
+      //   attributes: ['step', 'time', 'contents'],
+      // });
+
       const ElInstitution = {
         name: userInfo.institutions[0].name,
         image: userInfo.institutions[0].photo,
@@ -81,6 +91,16 @@ module.exports = {
       const institutionId = userInfo.institutions[0].id;
 
       const ElTimetable = userInfo.institutions[0].timetable;
+
+      // ! timetable table 하나 더 만들 시
+      // const ElTimetable = await timetable.findAll({
+      //   order: [['step', 'ASC']],
+      //   where: {
+      //     institutionId,
+      //   },
+      //   attributes: ['step', 'time', 'contents'],
+      // });
+
       const ElInstitution = {
         name: userInfo.institutions[0].name,
         image: userInfo.institutions[0].photo,
@@ -141,19 +161,17 @@ module.exports = {
     }
     // ! (3) parent
     else if (permission === 'parent') {
-      const userInfo = await user.findOne({
-        where: {
-          id: userId,
-        },
-        include: institution,
-      });
+      // const userInfo = await user.findOne({
+      //   where: {
+      //     id: userId,
+      //   },
+      //   include: institution,
+      // });
 
-      // ! asdfasdf
+      // ! asdfasdf 이거 부모는 ... => 아이의 class 로 연결 연결해서 ...
+      // const institutionId = userInfo.institutions[0].id;
+
       const ElChildren = await children.findAll({
-        // order: [
-        //   ['createdAt', 'DESC'],
-        //   ['id', 'DESC'],
-        // ],
         where: {
           userId,
         },
@@ -162,22 +180,106 @@ module.exports = {
           ['name', 'childrenName'],
           ['profileImg', 'childrenImage'],
           'classsId',
-          // 'className'
-          // 'institution'
         ],
       });
-      ElChildren.childrenId;
-      // const qweqwe = await classs.findOne({
-      //   where: { id: ElChildren.classsId },
+
+      // ! ElChildren에 추가하는 형태로 가겠다 (.dataValues 주의)
+      for (let i = 0; i < ElChildren.length; i++) {
+        // ! className
+        const classsInfo = await classs.findOne({
+          where: { id: ElChildren[i].classsId },
+          attributes: ['name', 'institutionId'],
+        });
+        ElChildren[i].dataValues['className'] = classsInfo.name;
+        ElChildren[i].dataValues['institutionId'] = classsInfo.institutionId;
+
+        // ! institution, timetable
+        const institutionInfo = await institution.findOne({
+          // ! 죽음의 .dataValues
+          where: { id: ElChildren[i].dataValues.institutionId },
+          attributes: ['name', 'timetable'],
+        });
+        ElChildren[i].dataValues['institution'] = institutionInfo.name;
+        ElChildren[i].dataValues['timetable'] = institutionInfo.timetable;
+
+        // ! timetable table 하나 더 만들 시
+        // const timetableInfo = await timetable.findAll({
+        //   order: [['step', 'ASC']],
+        //   where: { institutionId: ElChildren[i].dataValues.institutionId },
+        //   attributes: ['step', 'time', 'contents'],
+        // });
+        // ElChildren[i].dataValues['timetable'] = timetableInfo;
+
+        // ! notice
+        const noticeInfo = await notice.findAll({
+          limit: 5,
+          order: [
+            ['createdAt', 'DESC'],
+            ['id', 'DESC'],
+          ],
+          where: { institutionId: ElChildren[i].dataValues.institutionId },
+          attributes: [['id', 'noticeId'], 'title', ['createdAt', 'create_at']],
+        });
+        ElChildren[i].dataValues['notice'] = noticeInfo;
+
+        // ! indiNotice
+        const indiNoticeInfo = await indiNotice.findAll({
+          limit: 5,
+          order: [
+            ['createdAt', 'DESC'],
+            ['id', 'DESC'],
+          ],
+          // ! 죽음의 .dataValues
+          where: { childId: ElChildren[i].dataValues.childrenId },
+          attributes: [
+            ['id', 'noticeId'],
+            ['content', 'contents'],
+            ['createdAt', 'create_at'],
+          ],
+        });
+        ElChildren[i].dataValues['indiNotice'] = indiNoticeInfo;
+
+        // ! album
+        const albumInfo = await album.findAll({
+          limit: 6,
+          order: [
+            ['createdAt', 'DESC'],
+            ['id', 'DESC'],
+          ],
+          where: { institutionId: ElChildren[i].dataValues.institutionId },
+          attributes: [
+            ['id', 'imageId'],
+            ['photo', 'image_url'],
+          ],
+        });
+        ElChildren[i].dataValues['album'] = albumInfo;
+      }
+
+      res.status(200).json(ElChildren);
+
+      // const ElAlbum = await album.findAll({
+      //   limit: 6,
+      //   order: [
+      //     ['createdAt', 'DESC'],
+      //     ['id', 'DESC'],
+      //   ],
+      //   where: {
+      //     institutionId,
+      //   },
+      //   attributes: [
+      //     ['id', 'imageId'],
+      //     ['photo', 'image_url'],
+      //   ],
       // });
 
-      res.status(200).json({
-        // qweqwe,
-        children: ElChildren,
-        1: array[2],
-        // childId,
-      });
-      return;
+      // res.status(200).json({
+      //   timetable: ElTimetable,
+      //   institution: ElInstitution,
+      //   notice: ElNotice,
+      //   album: ElAlbum,
+      //   indiNotice: ElIndiNotice,
+      //   message: 'main page : teacher',
+      // });
     }
   },
 };

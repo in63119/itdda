@@ -11,7 +11,6 @@ module.exports = (sequelize, DataTypes) => {
       models.institution.hasMany(models.notice);
       models.institution.hasMany(models.program);
       models.institution.hasMany(models.album);
-      models.institution.hasMany(models.timetable);
     }
   }
   institution.init(
@@ -20,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       master: DataTypes.STRING,
       info: DataTypes.STRING,
       photo: DataTypes.STRING,
-      // timetable: DataTypes.STRING,
+      timetable: DataTypes.STRING(2000),
     },
     {
       sequelize,
