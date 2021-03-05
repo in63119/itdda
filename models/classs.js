@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
   classs.init(
     {
       name: DataTypes.STRING,
-      timetable: DataTypes.STRING(1000),
+      // timetable: DataTypes.STRING(1000),
     },
     {
       sequelize,
