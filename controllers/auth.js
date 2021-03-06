@@ -32,15 +32,15 @@ module.exports = {
           // delete data.dataValues.password;
           // delete data.dataValues.passwordChange;
           // delete data.dataValues.salt;
-          const { id, email, permission } = data.dataValues;
-          const userInfo = { userId: id, email, permission };
+          const { id, email, permission, guest } = data.dataValues;
+          const userInfo = { userId: id, email, permission, guest };
 
           // const accessToken = generateAccessToken(data.dataValues);
           const accessToken = generateAccessToken(userInfo);
-          const refreshToken = generateRefreshToken(data.dataValues);
+          const refreshToken = generateRefreshToken(userInfo);
 
           sendRefreshToken(res, refreshToken);
-          sendAccessToken(res, accessToken, permission);
+          sendAccessToken(res, accessToken, permission, guest);
         })
         .catch((err) => {
           console.log(err);

@@ -26,17 +26,17 @@ module.exports = {
         },
         include: institution,
       });
-      const institutionId = userInfo.institutions[0].id;
+      const institutionId = userInfo.institution.id;
 
       const ElUserId = userId;
 
-      const ElInstitutionName = userInfo.institutions[0].name;
+      const ElInstitutionName = userInfo.institution.name;
 
       const ElInstitutionId = institutionId;
 
-      const ElProfileImg = userInfo.institutions[0].profileImg;
+      const ElProfileImg = userInfo.institution.profileImg;
 
-      const ElTimetable = userInfo.institutions[0].timetable;
+      const ElTimetable = userInfo.institution.timetable;
 
       const ElNotice = await notice.findAll({
         limit: 10,
@@ -81,17 +81,17 @@ module.exports = {
         },
         include: institution,
       });
-      const institutionId = userInfo.institutions[0].id;
+      const institutionId = userInfo.institution.id;
 
       const ElUserId = userId;
 
-      const ElInstitutionName = userInfo.institutions[0].name;
+      const ElInstitutionName = userInfo.institution.name;
 
       const ElInstitutionId = institutionId;
 
-      const ElProfileImg = userInfo.institutions[0].profileImg;
+      const ElProfileImg = userInfo.institution.profileImg;
 
-      const ElTimetable = userInfo.institutions[0].timetable;
+      const ElTimetable = userInfo.institution.timetable;
 
       const ElNotice = await notice.findAll({
         limit: 5,

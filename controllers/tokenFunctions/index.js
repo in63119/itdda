@@ -19,10 +19,11 @@ module.exports = {
       sameSite: 'None',
     });
   },
-  sendAccessToken: (res, accessToken, permission) => {
+  sendAccessToken: (res, accessToken, permission, guest) => {
     res.status(200).json({
       accessToken,
       permission,
+      guest,
       message: 'datda login succeeded',
     });
   },
