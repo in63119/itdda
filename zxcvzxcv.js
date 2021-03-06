@@ -1,4 +1,4 @@
-const asdf = {
+const TeacherApprove = {
   data: {
     changedChildId: 'integer',
     approved: [
@@ -14,6 +14,8 @@ const asdf = {
         },
         createdAt: 'string',
       },
+    ],
+    unapproved: [
       {
         isMember: 'boolean',
         childId: 'integer',
@@ -25,17 +27,6 @@ const asdf = {
           parentName: 'string',
         },
         createdAt: 'string',
-      },
-    ],
-    unapproved: [
-      {
-        childId: 'integer',
-        childName: 'string',
-        institutionId: 'interger',
-        institutionName: 'string',
-        createdAt: 'string',
-        parentId: 'ingteger',
-        parentName: 'string',
       },
     ],
   },

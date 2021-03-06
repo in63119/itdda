@@ -57,7 +57,7 @@ app.use(cookieParser());
 // asdfasdf
 // sequelize
 //   .sync({ force: false, alter: false })
-//   .then(() => console.log('DB 접속 성공'))
+//   .then(() => console.log('DB 접속 성공'));
 //   .catch((err) => console.log(err));
 // ================================================
 

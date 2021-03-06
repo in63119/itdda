@@ -29,7 +29,7 @@ module.exports = {
           updatedAt: new Date(),
           userId: 7,
           institutionId: 1,
-          classsId: 1,
+          classsId: null,
         },
         {
           name: '김아이3',
@@ -55,7 +55,7 @@ module.exports = {
           updatedAt: new Date(),
           userId: 8,
           institutionId: 1,
-          classsId: 2,
+          classsId: null,
         },
         {
           name: '김아이5',
@@ -68,7 +68,7 @@ module.exports = {
           updatedAt: new Date(),
           userId: 8,
           institutionId: 1,
-          classsId: 3,
+          classsId: null,
         },
         {
           name: '김아이6',
@@ -81,7 +81,7 @@ module.exports = {
           updatedAt: new Date(),
           userId: 9,
           institutionId: 1,
-          classsId: 3,
+          classsId: null,
         },
         {
           name: '김아이7',
@@ -94,7 +94,7 @@ module.exports = {
           updatedAt: new Date(),
           userId: 9,
           institutionId: 1,
-          classsId: 3,
+          classsId: null,
         },
       ],
       {},
