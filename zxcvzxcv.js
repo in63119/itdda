@@ -1,31 +1,30 @@
 const asdf = {
   data: {
+    changedChildId: 'integer',
     approved: [
       {
+        isMember: 'boolean',
         childId: 'integer',
+        childName: 'string',
         childClassId: 'integer',
-        childClassName: 'string',
-        institutionId: 'interger', // !
-        parentId: 'ingteger',
-        parentName: 'string',
-        createdAt: 'string',
-        etc: {
-          childName: 'string',
-          institutionName: 'string',
+        institutionId: 'interger',
+        user: {
+          parentId: 'ingteger',
+          parentName: 'string',
         },
+        createdAt: 'string',
       },
       {
+        isMember: 'boolean',
         childId: 'integer',
+        childName: 'string',
         childClassId: 'integer',
-        childClassName: 'string',
         institutionId: 'interger',
-        parentId: 'ingteger',
-        parentName: 'string',
-        createdAt: 'string',
-        etc: {
-          childName: 'string',
-          institutionName: 'string',
+        user: {
+          parentId: 'ingteger',
+          parentName: 'string',
         },
+        createdAt: 'string',
       },
     ],
     unapproved: [
