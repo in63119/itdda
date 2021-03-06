@@ -3,6 +3,7 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class children extends Model {
     static associate(models) {
+      models.children.belongsTo(models.institution);
       models.children.belongsTo(models.user);
       models.children.belongsTo(models.classs);
       models.children.hasMany(models.indiNotice);

@@ -15,6 +15,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
           userId: 6,
+          institutionId: 1,
           classsId: 1,
         },
         {
@@ -27,6 +28,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
           userId: 7,
+          institutionId: 1,
           classsId: 1,
         },
         {
@@ -39,6 +41,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
           userId: 7,
+          institutionId: 1,
           classsId: 2,
         },
         {
@@ -51,6 +54,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
           userId: 8,
+          institutionId: 1,
           classsId: 2,
         },
         {
@@ -63,6 +67,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
           userId: 8,
+          institutionId: 1,
           classsId: 3,
         },
         {
@@ -75,6 +80,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
           userId: 9,
+          institutionId: 1,
           classsId: 3,
         },
         {
@@ -87,6 +93,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
           userId: 9,
+          institutionId: 1,
           classsId: 3,
         },
       ],

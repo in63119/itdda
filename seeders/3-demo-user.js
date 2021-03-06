@@ -148,6 +148,7 @@ module.exports = {
         },
         {
           permission: 'teacher',
+          guest: true,
           email: 'guestTeacher1@datda.net',
           name: '임선생',
           password: 'guestTeacher1',
@@ -161,6 +162,7 @@ module.exports = {
         },
         {
           permission: 'teacher',
+          guest: true,
           email: 'guestTeacher2@datda.net',
           name: '구선생',
           password: 'guestTeacher2',
@@ -174,6 +176,7 @@ module.exports = {
         },
         {
           permission: 'parent',
+          guest: true,
           email: 'guestParent1@datda.net',
           name: '신엄마',
           password: 'guestParent1',
@@ -187,6 +190,7 @@ module.exports = {
         },
         {
           permission: 'parent',
+          guest: true,
           email: 'guestParent2@datda.net',
           name: '소엄마',
           password: 'guestParent2',

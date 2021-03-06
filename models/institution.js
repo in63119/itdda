@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       //   through: 'users_institutions',
       // });
       models.institution.hasMany(models.user);
+      models.institution.hasMany(models.children);
       models.institution.hasMany(models.classs);
       models.institution.hasMany(models.food);
       models.institution.hasMany(models.notice);
