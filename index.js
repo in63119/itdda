@@ -71,6 +71,7 @@ const kakaoRouter = require('./routes/kakao');
 const refreshTokenRouter = require('./routes/refreshToken');
 const directorRouter = require('./routes/director');
 const mainRouter = require('./routes/main');
+const teacherRouter = require('./routes/teacher');
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
@@ -78,6 +79,7 @@ app.use('/kakao', kakaoRouter);
 app.use('/refreshtoken', refreshTokenRouter);
 app.use('/director', directorRouter);
 app.use('/main', mainRouter);
+app.use('/teacher', teacherRouter);
 
 // cf> 첫 배포용
 // app.use('/', (req, res) => {
