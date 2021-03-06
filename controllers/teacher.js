@@ -17,10 +17,11 @@ module.exports = {
       where: {
         id: userId,
       },
-      attributes: ['institutionId'],
+      attributes: ['institutionId', ['classsId', 'teacherClassId']],
     });
 
     const institutionId = userInfo.dataValues.institutionId;
+    const teacherClassId = userInfo.dataValues.teacherClassId;
 
     if (!clickedChildId) {
       const childrenInfo = await children.findAll({
@@ -46,7 +47,11 @@ module.exports = {
         ],
       });
 
-      const ElApproved = childrenInfo.filter((child) => child.isMember);
+      const approved = childrenInfo.filter((child) => child.isMember);
+      const ElApproved = approved.filter((child) => {
+        // ! dataValues 무간지옥
+        return child.dataValues.childClassId === teacherClassId;
+      });
       const ElUnapproved = childrenInfo.filter((child) => !child.isMember);
 
       res.status(200).json({
@@ -60,14 +65,31 @@ module.exports = {
         attributes: ['isMember'],
       });
 
-      await children.update(
-        { isMember: !childInfo.dataValues.isMember },
-        {
-          where: {
-            id: clickedChildId,
+      if (!childInfo.dataValues.isMember) {
+        await children.update(
+          {
+            isMember: !childInfo.dataValues.isMember,
+            classsId: teacherClassId,
           },
-        },
-      );
+          {
+            where: {
+              id: clickedChildId,
+            },
+          },
+        );
+      } else {
+        await children.update(
+          {
+            isMember: !childInfo.dataValues.isMember,
+            classsId: null,
+          },
+          {
+            where: {
+              id: clickedChildId,
+            },
+          },
+        );
+      }
 
       const childrenInfo = await children.findAll({
         where: {
@@ -92,7 +114,11 @@ module.exports = {
         ],
       });
 
-      const ElApproved = childrenInfo.filter((child) => child.isMember);
+      const approved = childrenInfo.filter((child) => child.isMember);
+      const ElApproved = approved.filter((child) => {
+        // ! dataValues 무간지옥
+        return child.dataValues.childClassId === teacherClassId;
+      });
       const ElUnapproved = childrenInfo.filter((child) => !child.isMember);
 
       res.status(200).json({
