@@ -3,9 +3,10 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class institution extends Model {
     static associate(models) {
-      models.institution.belongsToMany(models.user, {
-        through: 'users_institutions',
-      });
+      // models.institution.belongsToMany(models.user, {
+      //   through: 'users_institutions',
+      // });
+      models.institution.hasMany(models.user);
       models.institution.hasMany(models.classs);
       models.institution.hasMany(models.food);
       models.institution.hasMany(models.notice);

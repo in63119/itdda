@@ -2,17 +2,40 @@ const asdf = {
   data: {
     approved: [
       {
-        childName: 'userName',
-        userId: 'userId', // !
-        create_at: 'string', // !
+        childId: 'integer',
+        childClassId: 'integer',
+        childClassName: 'string',
+        institutionId: 'interger', // !
+        parentId: 'ingteger',
         parentName: 'string',
+        createdAt: 'string',
+        etc: {
+          childName: 'string',
+          institutionName: 'string',
+        },
+      },
+      {
+        childId: 'integer',
+        childClassId: 'integer',
+        childClassName: 'string',
+        institutionId: 'interger',
+        parentId: 'ingteger',
+        parentName: 'string',
+        createdAt: 'string',
+        etc: {
+          childName: 'string',
+          institutionName: 'string',
+        },
       },
     ],
     unapproved: [
       {
-        childName: 'userName',
-        userId: 'userId',
-        create_at: 'string',
+        childId: 'integer',
+        childName: 'string',
+        institutionId: 'interger',
+        institutionName: 'string',
+        createdAt: 'string',
+        parentId: 'ingteger',
         parentName: 'string',
       },
     ],
