@@ -120,7 +120,7 @@ module.exports = {
         },
         {
           permission: 'parent',
-          guest: false,
+          guest: true,
           email: 'parent4@datda.net',
           name: '최엄마',
           password: 'parent4',
@@ -134,7 +134,7 @@ module.exports = {
         },
         {
           permission: 'parent',
-          guest: false,
+          guest: true,
           email: 'parent5@datda.net',
           name: '경엄마',
           password: 'parent5',

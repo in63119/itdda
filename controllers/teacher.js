@@ -1,4 +1,4 @@
-const { user, children, classs, indiNotice } = require('../models');
+const { user, children } = require('../models');
 const { checkAccessToken } = require('../modules/checkAccessToken');
 
 module.exports = {
@@ -10,7 +10,7 @@ module.exports = {
       return;
     }
 
-    const { userId } = accessTokenData;
+    const { userId } = accessTokenData; // ! 선생님의 userId
     const clickedChildId = req.body.childId;
 
     const userInfo = await user.findOne({
@@ -42,6 +42,7 @@ module.exports = {
             attributes: [
               ['id', 'parentId'],
               ['name', 'parentName'],
+              ['guest', 'parentGuest'],
             ],
           },
         ],
@@ -63,7 +64,19 @@ module.exports = {
       const childInfo = await children.findOne({
         where: { id: clickedChildId },
         attributes: ['isMember'],
+        include: [
+          {
+            model: user,
+            attributes: [
+              ['id', 'parentId'],
+              ['guest', 'parentGuest'],
+            ],
+          },
+        ],
       });
+
+      // ! 클라이언트 측에서 선택된 child의 parentId
+      const parentId = childInfo.dataValues.user.dataValues.parentId;
 
       if (!childInfo.dataValues.isMember) {
         await children.update(
@@ -71,12 +84,9 @@ module.exports = {
             isMember: !childInfo.dataValues.isMember,
             classsId: teacherClassId,
           },
-          {
-            where: {
-              id: clickedChildId,
-            },
-          },
+          { where: { id: clickedChildId } },
         );
+        await user.update({ guest: false }, { where: { id: parentId } });
       } else {
         await children.update(
           {
@@ -89,6 +99,25 @@ module.exports = {
             },
           },
         );
+
+        // ! siblingInfo는 parent 에 종속된 모든 children
+        // ! => parent의 guest 여부를 바꿔주기 위해 사용한다.
+        const siblingInfo = await children.findAll({
+          where: { userId: parentId },
+          attributes: [['id', 'childId'], 'isMember'],
+        });
+
+        let someSiblingIsMember = false;
+        for (let i = 0; i < siblingInfo.length; i++) {
+          if (siblingInfo[i].dataValues.isMember) {
+            console.log(111);
+            someSiblingIsMember = true;
+            break;
+          }
+        }
+        if (!someSiblingIsMember) {
+          await user.update({ guest: true }, { where: { id: parentId } });
+        }
       }
 
       const childrenInfo = await children.findAll({
@@ -109,6 +138,7 @@ module.exports = {
             attributes: [
               ['id', 'parentId'],
               ['name', 'parentName'],
+              ['guest', 'parentGuest'],
             ],
           },
         ],

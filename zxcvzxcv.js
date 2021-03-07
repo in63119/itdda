@@ -1,3 +1,9 @@
+const Profile = {
+  data: {
+    institutionId: 'integer',
+    institutionName: 'integer',
+  },
+};
 const TeacherApprove = {
   data: {
     changedChildId: 'integer',
