@@ -57,7 +57,7 @@ app.use(cookieParser());
 // asdfasdf
 // sequelize
 //   .sync({ force: false, alter: false })
-//   .then(() => console.log('DB 접속 성공'));
+//   .then(() => console.log('DB 접속 성공'))
 //   .catch((err) => console.log(err));
 // ================================================
 
@@ -72,6 +72,7 @@ const refreshTokenRouter = require('./routes/refreshToken');
 const directorRouter = require('./routes/director');
 const mainRouter = require('./routes/main');
 const teacherRouter = require('./routes/teacher');
+const profileRouter = require('./routes/profile');
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
@@ -80,6 +81,7 @@ app.use('/refreshtoken', refreshTokenRouter);
 app.use('/director', directorRouter);
 app.use('/main', mainRouter);
 app.use('/teacher', teacherRouter);
+app.use('/profile', profileRouter);
 
 // cf> 첫 배포용
 // app.use('/', (req, res) => {
