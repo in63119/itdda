@@ -157,6 +157,8 @@ module.exports = {
             .then((data) => {
               res.status(200).json({
                 message: 'institution signup succeeded',
+                institutionId,
+                institutionName,
               });
             });
         } else {
