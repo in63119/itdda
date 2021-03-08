@@ -1,4 +1,4 @@
-const { user, classs, children } = require('../models');
+const { user, classs, children, institution } = require('../models');
 const { checkAccessToken } = require('../modules/checkAccessToken');
 
 module.exports = {
@@ -269,5 +269,31 @@ module.exports = {
           .json({ message: 'check className or clickedButton which you sent' });
       }
     }
+  },
+
+  timetable: async (req, res) => {
+    const accessTokenData = checkAccessToken(req, res);
+    if (!accessTokenData || accessTokenData === 'invalid token') {
+      return;
+    }
+
+    const { userId } = accessTokenData; // ! 원장님의 userId
+    const timetable = req.body.timetable;
+
+    // ! asdfasdf 오류 가능성에 대한 고찰을 좀 더 하길.
+    // ! ex> if (!timetable) {}
+    const userInfo = await user.findOne({
+      where: { id: userId },
+      attributes: ['institutionId'],
+    });
+
+    await institution.update(
+      {
+        timetable,
+      },
+      { where: { id: userInfo.dataValues.institutionId } },
+    );
+
+    res.status(200).json({ message: `time table changed to ${timetable}` });
   },
 };

@@ -8,5 +8,6 @@ router.post('/approve', institutionController.approve);
 router.get('/classlist', institutionController.classList);
 router.post('/changeteacherclass', institutionController.changeTeacherClass);
 router.post('/manageclass', institutionController.manageClass);
+router.post('/timetable', institutionController.timetable);
 
 module.exports = router;
