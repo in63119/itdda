@@ -13,7 +13,7 @@ const kakaoKey = process.env.KAKAO_KEY;
 
 module.exports = {
   login: async (req, res) => {
-    const redirect = 'http://localhost:3000/login';
+    const redirect = 'https://datda.net/login';
     const access = await axios({
       methos: 'POST',
       url: `https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id=${kakaoKey}&redirect_uri=${redirect}&code=${req.body.authorizationCode}`,
@@ -84,7 +84,7 @@ module.exports = {
   },
 
   signup: async (req, res) => {
-    const redirect = 'http://localhost:3000/signup';
+    const redirect = 'https://datda.net/signup';
     const access = await axios({
       methos: 'POST',
       url: `https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id=${kakaoKey}&redirect_uri=${redirect}&code=${req.body.authorizationCode}`,
