@@ -110,7 +110,6 @@ module.exports = {
         let someSiblingIsMember = false;
         for (let i = 0; i < siblingInfo.length; i++) {
           if (siblingInfo[i].dataValues.isMember) {
-            console.log(111);
             someSiblingIsMember = true;
             break;
           }
