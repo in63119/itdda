@@ -73,6 +73,7 @@ const mainRouter = require('./routes/main');
 const teacherRouter = require('./routes/teacher');
 const institutionRouter = require('./routes/institution');
 const profileRouter = require('./routes/profile');
+const guestRouter = require('./routes/guest');
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
@@ -83,6 +84,7 @@ app.use('/main', mainRouter);
 app.use('/teacher', teacherRouter);
 app.use('/institution', institutionRouter);
 app.use('/profile', profileRouter);
+app.use('/guest', guestRouter);
 
 // cf> 첫 배포용
 // app.use('/', (req, res) => {
