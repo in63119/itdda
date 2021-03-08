@@ -20,8 +20,8 @@ module.exports = {
       headers: {
         'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
       },
-    }).catch(() => {
-      // console.log(err);
+    }).catch((err) => {
+      console.log(err);
       return res.sendStatus(400);
     });
 
@@ -109,14 +109,14 @@ module.exports = {
         const email = response.data.kakao_account.email;
         console.log(email);
         return user
-          .findOrCreate({ where: { email: email } })
-          .then(([user, created]) => {
-            if (!created) {
-              // 생성되지 않았다면 이미 있다는 얘기. 201 상태와 메세지.
-              return res.status(201).json({ message: 'existing email' });
-            } else {
-              // 생성되었다면 200 상태 메세지를 보내주고 허용
+          .findOne({ where: { email: email } })
+          .then((data) => {
+            if (!data) {
+              // 데이터가 없다면 201 상태와 이메일
               return res.status(200).json({ email: email });
+            } else {
+              // 데이터가 있다면 200 상태 메세지를 보내주고 거부.
+              return res.status(201).json({ message: 'email does not exist' });
             }
           })
           .catch(() => res.sendStatus(400));
