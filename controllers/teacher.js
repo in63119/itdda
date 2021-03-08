@@ -1,4 +1,4 @@
-const { user, children } = require('../models');
+const { user, children, institution, classs } = require('../models');
 const { checkAccessToken } = require('../modules/checkAccessToken');
 
 module.exports = {
@@ -36,6 +36,7 @@ module.exports = {
           'institutionId',
           'createdAt',
         ],
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         include: [
           {
             model: user,
@@ -44,6 +45,15 @@ module.exports = {
               ['name', 'parentName'],
               ['guest', 'parentGuest'],
             ],
+          },
+          // !!!!! zxcvzxcv
+          {
+            model: institution,
+            attributes: [['name', 'institutionName']],
+          },
+          {
+            model: classs,
+            attributes: [['name', 'className']],
           },
         ],
       });
@@ -139,6 +149,14 @@ module.exports = {
               ['name', 'parentName'],
               ['guest', 'parentGuest'],
             ],
+          },
+          {
+            model: institution,
+            attributes: [['name', 'institutionName']],
+          },
+          {
+            model: classs,
+            attributes: [['name', 'className']],
           },
         ],
       });
