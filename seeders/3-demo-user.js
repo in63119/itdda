@@ -88,7 +88,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
           classsId: null,
-          institutionId: 1,
+          institutionId: null,
         },
         {
           permission: 'parent',
@@ -102,7 +102,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
           classsId: null,
-          institutionId: 1,
+          institutionId: null,
         },
         {
           permission: 'parent',
@@ -116,7 +116,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
           classsId: null,
-          institutionId: 1,
+          institutionId: null,
         },
         {
           permission: 'parent',
@@ -130,7 +130,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
           classsId: null,
-          institutionId: 1,
+          institutionId: null,
         },
         {
           permission: 'parent',
@@ -144,7 +144,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
           classsId: null,
-          institutionId: 1,
+          institutionId: null,
         },
         {
           permission: 'teacher',
@@ -158,7 +158,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
           classsId: null,
-          institutionId: null,
+          institutionId: 1,
         },
         {
           permission: 'teacher',
@@ -172,7 +172,7 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
           classsId: null,
-          institutionId: null,
+          institutionId: 1,
         },
         {
           permission: 'parent',

@@ -48,13 +48,12 @@ app.use(
 );
 // ================================================
 
-// ! cookie Parser ================================
+// ! ★ cookie Parser ================================
 // https://www.npmjs.com/package/cookie-parser
 app.use(cookieParser());
 // ================================================
 
 // ! ★ sequelize sync =============================
-// asdfasdf
 // sequelize
 //   .sync({ force: false, alter: false })
 //   .then(() => console.log('DB 접속 성공'))
@@ -72,6 +71,7 @@ const refreshTokenRouter = require('./routes/refreshToken');
 const directorRouter = require('./routes/director');
 const mainRouter = require('./routes/main');
 const teacherRouter = require('./routes/teacher');
+const institutionRouter = require('./routes/institution');
 const profileRouter = require('./routes/profile');
 
 app.use('/', indexRouter);
@@ -81,6 +81,7 @@ app.use('/refreshtoken', refreshTokenRouter);
 app.use('/director', directorRouter);
 app.use('/main', mainRouter);
 app.use('/teacher', teacherRouter);
+app.use('/institution', institutionRouter);
 app.use('/profile', profileRouter);
 
 // cf> 첫 배포용

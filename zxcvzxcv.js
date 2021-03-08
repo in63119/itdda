@@ -1,3 +1,49 @@
+const InstitutionClassList = {
+  data: [
+    {
+      classId: 'string',
+      className: 'string',
+      institutionId: 'integer',
+    },
+  ],
+};
+
+const InstitutionChangeTeacherClass = {};
+
+const InstitutionApprove = {
+  data: {
+    changedTeacherId: 'integer',
+    approved: [
+      {
+        teacherGuest: 'boolean',
+        teacherId: 'integer',
+        teacherName: 'string',
+        teacherClassId: 'integer',
+        classs: {
+          // ! classs에서 s 3개 주의
+          teacherClassName: 'string',
+        },
+        institutionId: 'integer',
+        createdAt: 'string',
+      },
+    ],
+    unapproved: [
+      {
+        teacherGuest: 'boolean',
+        teacherId: 'integer',
+        teacherName: 'string',
+        teacherClassId: 'integer',
+        classs: {
+          // ! classs에서 s 3개 주의
+          teacherClassName: 'string',
+        },
+        institutionId: 'integer',
+        createdAt: 'string',
+      },
+    ],
+  },
+};
+
 const Profile = {
   data: {
     institutionId: 'integer',
@@ -13,10 +59,11 @@ const TeacherApprove = {
         childId: 'integer',
         childName: 'string',
         childClassId: 'integer',
-        institutionId: 'interger',
+        institutionId: 'integer',
         user: {
           parentId: 'ingteger',
           parentName: 'string',
+          parentGuest: 'boolean',
         },
         createdAt: 'string',
       },
@@ -27,10 +74,11 @@ const TeacherApprove = {
         childId: 'integer',
         childName: 'string',
         childClassId: 'integer',
-        institutionId: 'interger',
+        institutionId: 'integer',
         user: {
           parentId: 'ingteger',
           parentName: 'string',
+          parentGuest: 'boolean',
         },
         createdAt: 'string',
       },

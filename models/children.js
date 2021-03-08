@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       age: DataTypes.INTEGER,
       address: DataTypes.STRING,
       isMember: DataTypes.BOOLEAN,
+      // ! isMember는 사실 없어도 됨 => classsId 가 null 이면 isMember를 false 인 상황이라고 생각하면 되거든.
       profileImg: DataTypes.STRING,
     },
     {
