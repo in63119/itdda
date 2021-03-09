@@ -22,15 +22,38 @@ module.exports = {
     // ! => guest에 따른 분기를 위한 것들
     const userGuestCheckInfo = await user.findOne({
       where: { id: userId },
-      attributes: ['guest'],
+      attributes: ['guest', 'institutionId'],
     });
+
     const isGuest = userGuestCheckInfo.dataValues.guest;
+    let isRegistered;
+    if (permission === 'teacher') {
+      isRegistered = userGuestCheckInfo.dataValues.institutionId;
+    } else if (permission === 'parent') {
+      isRegistered = await children.findOne({
+        where: { userId },
+      });
+    }
 
     // ! guest 일 경우,
     // ! 클라이언트 쪽에서 res.data.message에 따라 분기를 한다.
     // ! < 주의 > res.status 로 분기를 할 304로 인해 문제가 생길 수 있다.
-    if (isGuest) {
-      res.status(201).json({ message: 'guest' });
+    if (isGuest && !isRegistered) {
+      res.status(201).json({ message: 'guest', permission });
+    } else if (isGuest && isRegistered) {
+      if (permission === 'teacher') {
+        res.status(202).json({
+          message: 'waiting',
+          institutionId: isRegistered.dataValues.id,
+          permission,
+        });
+      } else if (permission === 'parent') {
+        res.status(202).json({
+          message: 'waiting',
+          childName: isRegistered.dataValues.name,
+          permission,
+        });
+      }
     } else {
       // ! permission 에 따른 분기 (1) institution (2) teacher (3) parent
       // ! (1) institution
