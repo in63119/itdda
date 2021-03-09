@@ -74,6 +74,7 @@ const profileRouter = require('./routes/profile');
 const guestRouter = require('./routes/guest');
 const imageRouter = require('./routes/image');
 const noticeRouter = require('./routes/notice');
+const indiNoticeRouter = require('./routes/indiNotice');
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
@@ -87,6 +88,7 @@ app.use('/profile', profileRouter);
 app.use('/guest', guestRouter);
 app.use('/image', imageRouter);
 app.use('/notice', noticeRouter);
+app.use('/indinotice', indiNoticeRouter);
 
 // cf> 첫 배포용
 // app.use('/', (req, res) => {

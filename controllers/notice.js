@@ -1,6 +1,8 @@
 const { user, children, notice } = require('../models');
 const { checkAccessToken } = require('../modules/checkAccessToken');
 
+// ! asdfasdf 굳이 status 설정을 안해줬는데, 나중에 에러처리 고민해볼 때 작성해 보는 것도 괜찮겠네.
+
 module.exports = {
   index: async (req, res) => {
     const accessTokenData = checkAccessToken(req, res);

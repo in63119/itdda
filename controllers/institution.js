@@ -1,6 +1,9 @@
 const { user, classs, children, institution } = require('../models');
 const { checkAccessToken } = require('../modules/checkAccessToken');
 
+// ! asdfasdf manageClass 는 나중에 실제 페이지에서 테스트 해보기로 나 혼자 정함.
+// ! 일단 내 머리 속 시뮬레이션에서는 문제 없었음^^^
+
 module.exports = {
   index: async (req, res) => {},
 
@@ -181,7 +184,7 @@ module.exports = {
         // ! classs와 연동되어 있는 아이들에 대한 작업이 필요함.
         // ! destroy 전에 isMember 를 바꿔주면 될텐데,
         // ! 그걸로 충분한가?
-        // ! 아님. sibling 에 대한 isMember 체크 후 parent 를 guest로 바꿔줘야.
+        // ! => NO. sibling 에 대한 isMember 체크 후 parent 를 guest로 바꿔줘야.
         // ! ===============
         const classIdInfo = await classs.findOne({
           where: { institutionId, name: className },
@@ -220,7 +223,6 @@ module.exports = {
             },
           );
 
-          // console.log(111, childrenInfo[i].dataValues.user.dataValues.parentId);
           const parentId = childrenInfo[i].dataValues.user.dataValues.parentId;
 
           // ! siblingInfo는 parent 에 종속된 모든 children
@@ -239,12 +241,9 @@ module.exports = {
           }
           if (!someSiblingIsMember) {
             await user.update({ guest: true }, { where: { id: parentId } });
-          } // ! 여기서부터 check!
+          }
         }
 
-        res.json(childrenInfo);
-
-        /* // !
         await classs.destroy({
           where: {
             institutionId,
@@ -262,8 +261,8 @@ module.exports = {
         });
 
         res.status(200).json({ message: `${className} deleted`, classInfo });
-// ! */
       } else {
+        // ! 이런 처리까지 해놨었네... 잘했네 JH!
         res
           .status(200)
           .json({ message: 'check className or clickedButton which you sent' });
