@@ -30,6 +30,8 @@ module.exports = {
     if (permission === 'teacher') {
       isRegistered = userGuestCheckInfo.dataValues.institutionId;
     } else if (permission === 'parent') {
+      // ! asdfasdf
+      // ! findOne VS findAll. 더 멀리까지 바라본다면 findAll에 대한 부분을 반드시 고려해야 함.
       isRegistered = await children.findOne({
         where: { userId },
       });
