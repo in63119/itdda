@@ -44,7 +44,7 @@ module.exports = {
       if (permission === 'teacher') {
         res.status(202).json({
           message: 'waiting',
-          institutionId: isRegistered.dataValues.id,
+          institutionId: isRegistered.dataValues.institutionId,
           permission,
         });
       } else if (permission === 'parent') {
