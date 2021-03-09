@@ -4,9 +4,6 @@ const cors = require('cors');
 const logger = require('morgan');
 const { sequelize } = require('./models');
 const cookieParser = require('cookie-parser');
-// ! 추가 중 =======================================
-
-// ================================================
 
 const app = express();
 app.use(logger('dev'));
@@ -75,6 +72,7 @@ const teacherRouter = require('./routes/teacher');
 const institutionRouter = require('./routes/institution');
 const profileRouter = require('./routes/profile');
 const guestRouter = require('./routes/guest');
+const imageRouter = require('./routes/image');
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
@@ -86,11 +84,16 @@ app.use('/teacher', teacherRouter);
 app.use('/institution', institutionRouter);
 app.use('/profile', profileRouter);
 app.use('/guest', guestRouter);
+app.use('/image', imageRouter);
 
 // cf> 첫 배포용
 // app.use('/', (req, res) => {
 //   res.send('welcome to datda world!! hello!!');
 // });
+// ================================================
+
+// ! 추가 중 =======================================
+
 // ================================================
 
 app.listen(5000, () => {

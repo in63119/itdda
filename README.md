@@ -10,3 +10,6 @@
 2. server https 배포 관련 참고자료
    '[AWS] HTTPS 통신을 위한 SSL 인증서 발급하기 (Route 53, Certificate Manager, Load Balancer)'
    출처 : https://wooono.tistory.com/159
+
+3. multer 관련 reference
+   https://gngsn.tistory.com/37
