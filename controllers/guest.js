@@ -40,6 +40,8 @@ module.exports = {
       return;
     }
 
+    // ! asdfasdf 클라이언트에서 permission 에 따라 화면 분기를 해줄테니, 여기서는 굳이 permission check는 하지 않는다.
+
     const { userId } = accessTokenData; // ! 선생님의 userId
     const institutionId = req.body.institutionId;
 
