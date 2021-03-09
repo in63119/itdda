@@ -294,6 +294,6 @@ module.exports = {
       { where: { id: userInfo.dataValues.institutionId } },
     );
 
-    res.status(200).json({ message: `time table changed to ${timetable}` });
+    res.status(200).json(timetable);
   },
 };

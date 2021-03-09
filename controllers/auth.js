@@ -76,7 +76,7 @@ module.exports = {
         console.log(err);
       });
     if (!findEmail) {
-      user
+      await user
         .create({
           password,
           permission,
