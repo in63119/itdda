@@ -68,6 +68,10 @@ module.exports = {
         });
         const institutionId = userInfo.institution.id;
 
+        // ! asdfasdf 추가된 부분 =====================
+        const ElUserName = userInfo.dataValues.name;
+        // ! =======================================
+
         const ElUserId = userId;
 
         const ElInstitutionName = userInfo.institution.name;
@@ -104,6 +108,7 @@ module.exports = {
 
         res.status(200).json({
           userId: ElUserId,
+          userName: ElUserName, // !
           institutionName: ElInstitutionName,
           institutionId: ElInstitutionId,
           profileImg: ElProfileImg,
@@ -122,6 +127,10 @@ module.exports = {
           include: institution,
         });
         const institutionId = userInfo.institution.id;
+
+        // ! asdfasdf 추가된 부분 =====================
+        const ElUserName = userInfo.dataValues.name;
+        // ! =======================================
 
         const ElUserId = userId;
 
@@ -176,6 +185,7 @@ module.exports = {
 
         res.status(200).json({
           userId: ElUserId,
+          userName: ElUserName, // !
           institutionName: ElInstitutionName,
           institutionId: ElInstitutionId,
           profileImg: ElProfileImg,
@@ -200,6 +210,14 @@ module.exports = {
           ],
         });
 
+        // ! asdfasdf 추가된 부분 =======================
+        const userInfo = await user.findOne({
+          where: { id: userId },
+          attributes: [['name', 'userName']],
+        });
+        const userName = userInfo.dataValues.userName;
+        // ! =========================================
+
         // ! child가 없으면 에러가 날까?
         // => (child가 없이 main data를 받을 일이 없음.)
         // (1) child 등록 전 parent는 guest
@@ -216,6 +234,10 @@ module.exports = {
         for (let i = 0; i < approvedChildrenInfo.length; i++) {
           // ! userId
           approvedChildrenInfo[i].dataValues['userId'] = userId;
+
+          // ! asdfasdf 추가된 부분 ==================================
+          approvedChildrenInfo[i].dataValues['userName'] = userName;
+          // ! =====================================================
 
           // ! className
           const classsInfo = await classs.findOne({
