@@ -137,9 +137,12 @@ module.exports = {
     const institutionId = req.body.institutionId;
     const childName = req.body.childName;
 
-    // ! 승인 대기 중에 부모가 2번 등록하는 일을 방지하자.
+    // ! 승인 대기 중에 부모가 같은 아이를 2번 이상 등록하는 일을 방지하자.
+    // ! => 같은 기관에 같은 아이를 2번 이상 등록할 수는 없으나,
+    // ! => 다른 기관에 같은 아이를 1번씩 등록할 수는 있다.
+    // ! 그의 한말씀 : 포부는 크다. 많은 유치원에서 datda를 사용하게 된다면, 한 아이가 다른 유치원으로 옮기게 될 경우, 다른 유치원에 승인요청을 보낼 수 있어야하지 않겠나? 이 어찌 좋지 아니한가?
     const childInfo = await children.findOne({
-      where: { name: childName, userId },
+      where: { name: childName, userId, institutionId },
     });
 
     if (childInfo) {
