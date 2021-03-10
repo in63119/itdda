@@ -1,5 +1,7 @@
 const { user, institution, children, classs } = require('../models');
 const { checkAccessToken } = require('../modules/checkAccessToken');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 module.exports = {
   index: async (req, res) => {
@@ -99,6 +101,64 @@ module.exports = {
       res.json({
         message: 'this do not happen in real cases. ask server for help!',
       });
+    }
+  },
+
+  searchInstitution: async (req, res) => {
+    const inputValue = req.body.inputValue;
+
+    const institutionInfo = await institution.findAll({
+      where: {
+        name: {
+          [Op.like]: `%${inputValue}%`,
+        },
+      },
+      attributes: [
+        ['id', 'institutionId'],
+        ['name', 'institutionName'],
+        'profileImg',
+      ],
+    });
+
+    if (institutionInfo.length === 0) {
+      res.status(201).json({ message: 'no such institution name' });
+    } else {
+      res.status(200).json(institutionInfo);
+    }
+  },
+
+  parentRegister: async (req, res) => {
+    const accessTokenData = checkAccessToken(req, res);
+    if (!accessTokenData || accessTokenData === 'invalid token') {
+      return;
+    }
+
+    const { userId } = accessTokenData; // ! 부모의 userId
+    const institutionId = req.body.institutionId;
+    const childName = req.body.childName;
+
+    // ! 승인 대기 중에 부모가 2번 등록하는 일을 방지하자.
+    const childInfo = await children.findOne({
+      where: { name: childName, userId },
+    });
+
+    if (childInfo) {
+      res
+        .status(201)
+        .json({ message: 'child already registered. must wait for approval' });
+    } else if (!childInfo) {
+      await children
+        .create({
+          name: childName,
+          userId,
+          institutionId,
+          isMember: false,
+        })
+        .then((data) => {
+          res.status(200).json({
+            message: 'child registered. must wait for approval',
+          });
+        });
     }
   },
 };
