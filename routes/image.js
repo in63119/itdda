@@ -36,7 +36,7 @@ const imageController = require('../controllers/image');
 
 router.post('/', upload.single('image'), imageController.index);
 router.post('/s3', upload.single('image'), imageController.S3);
-router.post('/album', upload.single('image'), imageController.album);
+router.post('/album', imageController.album);
 router.post('/albumpost', upload.single('image'), imageController.albumPost);
 router.post('/profileImg', upload.single('image'), imageController.profileImg);
 
