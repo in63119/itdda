@@ -14,6 +14,7 @@ const kakaoKey = process.env.KAKAO_KEY;
 module.exports = {
   login: async (req, res) => {
     const redirect = 'https://datda.net/login';
+    // const redirect = 'http://localhost:3000/login';
     const access = await axios({
       methos: 'POST',
       url: `https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id=${kakaoKey}&redirect_uri=${redirect}&code=${req.body.authorizationCode}`,
@@ -85,6 +86,7 @@ module.exports = {
 
   signup: async (req, res) => {
     const redirect = 'https://datda.net/signup';
+    // const redirect = 'http://localhost:3000/signup';
     const access = await axios({
       methos: 'POST',
       url: `https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id=${kakaoKey}&redirect_uri=${redirect}&code=${req.body.authorizationCode}`,
@@ -112,11 +114,9 @@ module.exports = {
           .findOne({ where: { email: email } })
           .then((data) => {
             if (!data) {
-              // 데이터가 없다면 201 상태와 이메일
               return res.status(200).json({ email: email });
             } else {
-              // 데이터가 있다면 200 상태 메세지를 보내주고 거부.
-              return res.status(201).json({ message: 'email does not exist' });
+              return res.status(201).json({ message: 'email does exist' });
             }
           })
           .catch(() => res.sendStatus(400));
