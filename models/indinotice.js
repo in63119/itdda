@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
   indiNotice.init(
     {
       content: DataTypes.STRING(2000),
+      teacherId: DataTypes.INTEGER,
     },
     {
       sequelize,
