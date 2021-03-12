@@ -38,6 +38,8 @@ router.post('/', upload.single('image'), imageController.index);
 router.post('/s3', upload.single('image'), imageController.S3);
 router.post('/album', imageController.album);
 router.post('/albumpost', upload.single('image'), imageController.albumPost);
+router.post('/food', imageController.food);
+router.post('/foodpost', upload.single('image'), imageController.foodPost);
 router.post('/profile', imageController.profile);
 router.post(
   '/profilepost',
