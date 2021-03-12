@@ -1,4 +1,4 @@
-const { user, album, children, institution } = require('../models');
+const { user, album, children, institution, food } = require('../models');
 const { checkAccessToken } = require('../modules/checkAccessToken');
 
 module.exports = {
@@ -232,6 +232,12 @@ module.exports = {
     });
     const institutionId = userInfo.dataValues.institutionId;
 
+    // ! asdfasdf ================
+    console.log(345345, req);
+    console.log(123123, req.file);
+    console.log(234234, req.file.location);
+    // ! ==========================
+
     const image = req.file;
     if (!image) {
       res.status(201).json({ message: 'image not sent' });
@@ -266,6 +272,155 @@ module.exports = {
       });
 
       res.status(200).json({ message: 'image uploaded', albumInfo });
+    }
+  },
+
+  food: async (req, res) => {
+    const accessTokenData = checkAccessToken(req, res);
+    if (!accessTokenData || accessTokenData === 'invalid token') {
+      return;
+    }
+
+    const { userId, permission } = accessTokenData;
+
+    const { childId, title, content } = req.body;
+    // ! permission 이 parent
+    if (permission === 'parent') {
+      // ! 열람 시
+      if (!title) {
+        const childInfo = await children.findOne({
+          where: { id: childId },
+          attributes: ['institutionId'],
+        });
+
+        const institutionId = childInfo.dataValues.institutionId;
+
+        const foodInfo = await food.findAll({
+          where: { institutionId },
+          order: [
+            ['createdAt', 'DESC'],
+            ['id', 'DESC'],
+          ],
+          attributes: [
+            ['id', 'foodId'],
+            'photo',
+            'title',
+            'content',
+            'institutionId',
+            'createdAt',
+          ],
+        });
+        res.json({ message: 'food read only', foodInfo });
+      }
+      // ! 작성 시 => 부모는 food에 작성을 하지 못한다.
+      else {
+        res.json({
+          message:
+            'parents are not supposed to write new food! this does not happen in real cases',
+        });
+      }
+    }
+    // ! permission 이 institution/teacher
+    else {
+      // ! 열람 시
+      if (!title) {
+        const userInfo = await user.findOne({
+          where: { id: userId },
+          attributes: ['institutionId'],
+        });
+
+        const institutionId = userInfo.dataValues.institutionId;
+
+        const foodInfo = await food.findAll({
+          where: { institutionId },
+          order: [
+            ['createdAt', 'DESC'],
+            ['id', 'DESC'],
+          ],
+          attributes: [
+            ['id', 'foodId'],
+            'photo',
+            'title',
+            'content',
+            'institutionId',
+            'createdAt',
+          ],
+        });
+        res.json({ message: 'food read only', foodInfo });
+      }
+      // ! 작성 시
+      else {
+        const userInfo = await user.findOne({
+          where: { id: userId },
+          attributes: ['institutionId'],
+        });
+
+        const institutionId = userInfo.dataValues.institutionId;
+
+        const newFood = await food.create({
+          title,
+          content,
+          institutionId,
+          userId,
+        });
+
+        const newFoodId = newFood.dataValues.id;
+
+        res.json({ message: 'write new food', foodId: newFoodId });
+      }
+    }
+  },
+
+  foodPost: async (req, res) => {
+    const accessTokenData = checkAccessToken(req, res);
+    if (!accessTokenData || accessTokenData === 'invalid token') {
+      return;
+    }
+
+    const { userId } = accessTokenData;
+    // ! for postman
+    // const userId = asdf
+
+    const userInfo = await user.findOne({
+      where: { id: userId },
+      attributes: ['institutionId'],
+    });
+    const institutionId = userInfo.dataValues.institutionId;
+
+    const image = req.file;
+    if (!image) {
+      res.status(201).json({ message: 'image not sent' });
+    } else {
+      const imageURL = req.file.location;
+      if (imageURL === undefined) {
+        return res.status(400).json({ message: '서버에 문의해주세요' });
+      }
+
+      // ! asdfasdf
+      // ! (1) udate 관련하여, 에러 상황에서도 가장 최신에 작성된 record만 update 될 수 있게 하는 쿼리문이 분명 있을터이니, 후에 찾아보도록.
+      // ! (2) 다른 대안이 하나 더 있다. photoCheck라는 record를 추가하는 것. /image/profile 과 /image/profilepost 에서 그러한 방법을 사용하고 있으니, 추후에 (1), (2) 중 하나를 선택하여 보완하도록.
+      await food.update(
+        { photo: imageURL },
+        { where: { userId, photo: null } },
+      );
+
+      const foodInfo = await food.findAll({
+        where: { institutionId },
+        order: [
+          ['createdAt', 'DESC'],
+          ['id', 'DESC'],
+        ],
+        attributes: [
+          ['id', 'foodId'],
+          'photo',
+          'title',
+          'content',
+          'institutionId',
+          'createdAt',
+        ],
+      });
+
+      res.status(200).json({ message: 'image uploaded', foodInfo });
     }
   },
 };
