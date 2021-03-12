@@ -33,6 +33,7 @@ module.exports = {
           ['id', 'childId'],
           ['name', 'childName'],
           ['classsId', 'childClassId'],
+          'profileImg',
           'institutionId',
           'createdAt',
         ],
