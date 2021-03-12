@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
       isMember: DataTypes.BOOLEAN,
       // ! isMember는 사실 없어도 됨 => classsId 가 null 이면 isMember를 false 인 상황이라고 생각하면 되거든.
       profileImg: DataTypes.STRING,
+      profileImgCheck: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+      },
     },
     {
       sequelize,
