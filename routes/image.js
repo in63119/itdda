@@ -25,7 +25,7 @@ const upload = multer({
       cb(null, Date.now().toString());
     },
   }),
-  limits: { fileSize: 5 * 1024 * 1024 }, // ! 용량과 관련
+  // limits: { fileSize: 5 * 1024 * 1024 }, // ! 용량과 관련
 });
 // ! cf> 서버에 폴더 하나 만들어서 사진을 업로드 하고 싶다면 아래와 같이 하면 됨.
 // const upload = multer({
