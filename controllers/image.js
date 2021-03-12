@@ -233,7 +233,6 @@ module.exports = {
     const institutionId = userInfo.dataValues.institutionId;
 
     // ! asdfasdf ================
-    console.log(345345, req);
     console.log(123123, req.file);
     console.log(234234, req.file.location);
     // ! ==========================
