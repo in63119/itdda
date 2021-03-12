@@ -224,7 +224,7 @@ module.exports = {
 
     const { userId } = accessTokenData;
     // ! for postman
-    // const userId = asdf
+    // const userId = asdf;
 
     const userInfo = await user.findOne({
       where: { id: userId },

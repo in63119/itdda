@@ -8,9 +8,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   food.init(
     {
+      photo: DataTypes.STRING,
       title: DataTypes.STRING,
-      monthfood: DataTypes.STRING,
-      dailyfood: DataTypes.STRING,
+      content: DataTypes.STRING(2000),
+      userId: DataTypes.INTEGER, // ! user table 과 연결되어 있지는 않다.
     },
     {
       sequelize,
