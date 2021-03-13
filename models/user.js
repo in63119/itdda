@@ -28,8 +28,6 @@ module.exports = (sequelize, DataTypes) => {
       password: DataTypes.STRING,
       mobile: DataTypes.INTEGER,
       role: DataTypes.STRING,
-      salt: DataTypes.STRING,
-      passwordChange: DataTypes.STRING,
     },
     {
       sequelize,

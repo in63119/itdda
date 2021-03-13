@@ -6,10 +6,24 @@ const {
   sendAccessToken,
   isAuthorized,
 } = require('./tokenFunctions');
+const { SHA256 } = require('../modules/SHA256');
 
 module.exports = {
+  hashTest: async (req, res) => {
+    const asdf = req.body.asdf;
+    const zxcv = req.body.zxcv;
+    const qwer = asdf + zxcv;
+    const qaz = SHA256(qwer);
+    res.json({ message: 'near', asdf, zxcv, qwer, qaz });
+  },
+
   login: async (req, res) => {
     const { email, password } = req.body;
+
+    // ! changed ======================================
+    const saltedPassword = email + password;
+    const hashedPassword = SHA256(saltedPassword);
+    // ! ==============================================
 
     const findEmail = await user
       .findOne({
@@ -23,7 +37,10 @@ module.exports = {
     } else {
       user
         .findOne({
-          where: { email, password },
+          where: {
+            email,
+            password: hashedPassword,
+          },
         })
         .then((data) => {
           if (!data) {
@@ -32,15 +49,20 @@ module.exports = {
           // delete data.dataValues.password;
           // delete data.dataValues.passwordChange;
           // delete data.dataValues.salt;
-          const { id, email, permission, guest } = data.dataValues;
-          const userInfo = { userId: id, email, permission, guest };
+          // ! before change =======================================
+          // const { id, email, permission, guest } = data.dataValues;
+          // const userInfo = { userId: id, email, permission, guest };
+          // ! after change =======================================
+          const { id, permission, guest } = data.dataValues;
+          const userInfo = { userId: id, permission, guest };
+          // ! =====================================================
 
           // const accessToken = generateAccessToken(data.dataValues);
           const accessToken = generateAccessToken(userInfo);
           const refreshToken = generateRefreshToken(userInfo);
 
           sendRefreshToken(res, refreshToken);
-          sendAccessToken(res, accessToken, permission, guest);
+          sendAccessToken(res, accessToken, permission);
         })
         .catch((err) => {
           console.log(err);
@@ -68,6 +90,10 @@ module.exports = {
 
   signup: async (req, res) => {
     const { password, permission, userName, email, mobile, role } = req.body;
+    // ! changed ======================================
+    const saltedPassword = email + password;
+    const hashedPassword = SHA256(saltedPassword);
+    // ! ==============================================
     const findEmail = await user
       .findOne({
         where: { email },
@@ -78,7 +104,7 @@ module.exports = {
     if (!findEmail) {
       await user
         .create({
-          password,
+          password: hashedPassword,
           permission,
           name: userName,
           email,
@@ -121,6 +147,11 @@ module.exports = {
     const { institutionName, master, info } = req.body;
     const { password, permission, userName, email, mobile, role } = req.body;
 
+    // ! changed ======================================
+    const saltedPassword = email + password;
+    const hashedPassword = SHA256(saltedPassword);
+    // ! ==============================================
+
     institution
       .create({
         name: institutionName,
@@ -145,7 +176,7 @@ module.exports = {
         if (!findEmail) {
           user
             .create({
-              password,
+              password: hashedPassword,
               permission,
               name: userName,
               email,
