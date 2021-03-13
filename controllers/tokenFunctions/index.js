@@ -5,11 +5,11 @@ const { sign, verify } = require('jsonwebtoken');
 module.exports = {
   generateAccessToken: (data) => {
     // asdfasdf
-    return sign(data, process.env.ACCESS_SECRET, { expiresIn: '3d' });
+    return sign(data, process.env.ACCESS_SECRET, { expiresIn: '1d' });
   },
 
   generateRefreshToken: (data) => {
-    return sign(data, process.env.REFRESH_SECRET, { expiresIn: '3d' });
+    return sign(data, process.env.REFRESH_SECRET, { expiresIn: '2d' });
   },
 
   sendRefreshToken: (res, refreshToken) => {
@@ -19,11 +19,10 @@ module.exports = {
       sameSite: 'None',
     });
   },
-  sendAccessToken: (res, accessToken, permission, guest) => {
+  sendAccessToken: (res, accessToken, permission) => {
     res.status(200).json({
       accessToken,
       permission,
-      guest,
       message: 'datda login succeeded',
     });
   },
