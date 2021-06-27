@@ -8,8 +8,8 @@ assignees: ''
 ---
 
 ### Position :
-[] Front-End
-[] Back-End
+- [ ] Front-End
+- [ ] Back-End
 
 ### Issue :
 
