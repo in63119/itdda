@@ -7,8 +7,9 @@ assignees: ''
 
 ---
 
-### 구현하고자 하는 기능 :
-
+### Position :
+[] Front-End
+[] Back-End
 
 ### Issue :
 
