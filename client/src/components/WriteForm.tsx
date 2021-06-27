@@ -75,7 +75,8 @@ function WriteForm({
       return;
     }
     if (type === "notice") {
-      await requestNotice(title, content, category);
+      const childId = undefined;
+      await requestNotice(childId, title, content, category);
       history.go(PREVIOUS_PAGE);
     }
     if (type === "album") {

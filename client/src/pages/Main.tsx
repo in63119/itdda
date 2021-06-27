@@ -166,6 +166,7 @@ export default function Main({
       setList({
         ...list,
         currentList: list.indiNotice.teacherRead,
+        currentCategory: "receive",
       });
       return;
     }
@@ -173,6 +174,7 @@ export default function Main({
       setList({
         ...list,
         currentList: list.indiNotice.teacherWrite,
+        currentCategory: "send",
       });
       return;
     }
@@ -273,12 +275,13 @@ export default function Main({
                 <>
                   <State
                     type="현재상태"
-                    childInfo={userInfo}
+                    userInfo={userInfo}
                     isCheck={isCheck}
                     isOk={isOk}
                     isSleep={isSleep}
                     isEat={isEat}
                     please={please}
+                    isTeacher={false}
                   ></State>
                 </>
               ) : null}
@@ -305,26 +308,7 @@ export default function Main({
                     handleChangeChild={handleChangeChild}
                   ></Contents>
                 </Route>
-                <Route
-                  exact
-                  path={`/main/notice/:no`}
-                  render={() => (
-                    <ReadForm
-                      contents={list.mainMiniNotice}
-                      title="공지사항"
-                    ></ReadForm>
-                  )}
-                ></Route>
-                <Route
-                  exact
-                  path={`/main/mainIndiNotice/:no`}
-                  render={() => (
-                    <ReadForm
-                      contents={list.mainMiniIndiNotice}
-                      title="알림장"
-                    ></ReadForm>
-                  )}
-                ></Route>
+
                 <Route
                   path={`/main/notice`}
                   render={() => (
@@ -337,6 +321,26 @@ export default function Main({
                     />
                   )}
                 />
+                {/* <Route
+                  exact
+                  path={`/main/notice/:no`}
+                  render={() => (
+                    <ReadForm
+                      contents={list.mainMiniNotice}
+                      title="공지사항"
+                    ></ReadForm>
+                  )}
+                ></Route> */}
+                {/* <Route
+                  exact
+                  path={`/main/mainIndiNotice/:no`}
+                  render={() => (
+                    <ReadForm
+                      contents={list.mainMiniIndiNotice}
+                      title="알림장"
+                    ></ReadForm>
+                  )}
+                ></Route> */}
                 <Route
                   path={`/main/medicine`}
                   render={() => (
@@ -351,7 +355,7 @@ export default function Main({
                   render={() => <Meal userInfo={userInfo} />}
                 />
                 <Route
-                  path={`/main/indi_notice`}
+                  path={`/main/message`}
                   render={() => (
                     <IndiNotice
                       handleChangeNotice={handleChangeNotice}
@@ -506,7 +510,7 @@ const Aside = styled.div`
 `;
 const Section = styled.div`
   width: 75%;
-  height: 1300px;
+  height: 1000px;
   float: left;
   padding: 1%;
 `;

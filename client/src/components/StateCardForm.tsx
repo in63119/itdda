@@ -12,7 +12,9 @@ export default function StateCardForm({ childInfo }: propsType) {
         <Wrapper>
           <Avatar>
             {/* <AvatarImage src="../images/profile.png"></AvatarImage> */}
-            <AvatarImage src={childInfo.profileImg}></AvatarImage>
+            <AvatarImage
+              src={childInfo.profileImg || "../images/defaultAvatar.png"}
+            ></AvatarImage>
           </Avatar>
           <StateWrapper>
             <NameWrapper>
@@ -28,6 +30,7 @@ export default function StateCardForm({ childInfo }: propsType) {
               isSleep={childInfo.state.isSleep}
               isEat={childInfo.state.isEat}
               please={childInfo.state.please}
+              isTeacher={true}
             ></State>
           </StateWrapper>
         </Wrapper>
@@ -53,7 +56,7 @@ const Avatar = styled.div`
 `;
 const AvatarImage = styled.img`
 	width: 100%;
-	height: auto;
+	height: 100%;
 	object-fit : cover;
 }`;
 const Wrapper = styled.div`
@@ -88,4 +91,5 @@ const Name = styled.span`
 const NameWrapper = styled.div`
   width: 100%;
   heitht: 100%;
+  margin-bottom: 2%;
 `;
