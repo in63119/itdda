@@ -1,46 +1,47 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { Link, Route, Switch, useRouteMatch } from 'react-router-dom';
-import { ListForm, TextAreaForm, WriteForm } from '../components/Index';
-
+import React, { useState } from "react";
+import styled from "styled-components";
+import { Link, Route, Switch, useRouteMatch } from "react-router-dom";
+import { ListForm, TextAreaForm, WriteForm } from "../components/Index";
+import { useHistory } from "react-router-dom";
 interface propsType {
   userInfo: any;
   handleUpdateList: any;
 }
 export default function Medicine({ userInfo, handleUpdateList }: propsType) {
+  const history = useHistory();
   const urlMatch = useRouteMatch();
   //투약 의뢰서, 보고서 상태
   const [medicineList, setMedicinList] = useState({
     request: [
       {
-        createdAt: '2021년2월2일',
-        writer: '김엄마',
-        title: '투약의뢰서',
+        createdAt: "2021년2월2일",
+        writer: "김엄마",
+        title: "투약의뢰서",
         contents: {
-          symtom: '',
-          typeOf: '',
-          quantity: '',
-          takeTime: '',
-          management: '',
+          symtom: "",
+          typeOf: "",
+          quantity: "",
+          takeTime: "",
+          management: "",
         },
       },
     ],
     report: [
       {
-        createdAt: '2021년2월2일',
-        writer: '김선생',
-        title: '',
+        createdAt: "2021년2월2일",
+        writer: "김선생",
+        title: "",
       },
     ],
   });
   // 투약의뢰서 작성에 대한 입력값 상태
   const [inputVlaue, setInputValue] = useState({
     requestor: {
-      symtom: '',
-      typeOf: '',
-      quantity: '',
-      takeTime: '',
-      management: '',
+      symtom: "",
+      typeOf: "",
+      quantity: "",
+      takeTime: "",
+      management: "",
     },
   });
   // 사용자 입력 값 핸들러

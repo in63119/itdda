@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Link, useParams } from 'react-router-dom';
+import React from "react";
+import styled from "styled-components";
+import { Link, useParams, useHistory } from "react-router-dom";
 
 interface propsType {
   title: string;
@@ -8,15 +8,16 @@ interface propsType {
 }
 export default function ReadForm({ title, contents }: propsType) {
   const { no }: any = useParams();
+  const history = useHistory();
   let clickedArticle = [];
-  if (title === '알림장') {
+  if (title === "알림장") {
     clickedArticle = contents.filter((element: any, index: number) => {
       if (element.indiNoticeId === Number(no)) {
         return element;
       }
     });
   }
-  if (title === '공지사항') {
+  if (title === "공지사항") {
     clickedArticle = contents.filter((element: any, index: number) => {
       if (element.noticeId === Number(no)) {
         return element;
@@ -27,7 +28,7 @@ export default function ReadForm({ title, contents }: propsType) {
     <Wrap>
       <ContentCard>
         <Title>{title}</Title>
-        {title === '알림장' ? (
+        {title === "알림장" ? (
           <Container>
             <TitleWrapper>
               <SubTitle>제목 : {clickedArticle[0].content}</SubTitle>
@@ -54,7 +55,7 @@ export default function ReadForm({ title, contents }: propsType) {
       <ButtonWrapper>
         <PostButton to="/main/notice">수정</PostButton>
         <PostButton to="/main/notice">삭제</PostButton>
-        <GoListButton onClick={() => history.back()}>목록</GoListButton>
+        <GoListButton onClick={() => history.goBack()}>목록</GoListButton>
       </ButtonWrapper>
     </Wrap>
   );

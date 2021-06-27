@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import styled from "styled-components";
 interface Props {
   inputs: Record<string, unknown>;
   handleSignup: any;
@@ -7,7 +8,6 @@ interface Props {
   onChange: any;
   handleIsEmail: any;
 }
-import styled from 'styled-components';
 
 function Signup({
   signup,
@@ -27,7 +27,7 @@ function Signup({
               className="signupEl"
               type="text"
               placeholder="이메일 설정"
-              onChange={(e) => onChange('email', e)}
+              onChange={(e) => onChange("email", e)}
             ></input>
             <div className="checkFrame">
               <Button
@@ -45,7 +45,7 @@ function Signup({
               className="signupEl"
               type="password"
               placeholder="비밀번호 설정"
-              onChange={(e) => onChange('password', e)}
+              onChange={(e) => onChange("password", e)}
             ></input>
           </div>
           <div className="signupFrame">
@@ -53,7 +53,7 @@ function Signup({
               className="signupEl"
               type="password"
               placeholder="비밀번호 확인"
-              onChange={(e) => onChange('passwordCheck', e)}
+              onChange={(e) => onChange("passwordCheck", e)}
             ></input>
           </div>
           <div className="error">{errormessage}</div>
@@ -64,7 +64,7 @@ function Signup({
                 handleSignup(
                   inputs.email,
                   inputs.password,
-                  inputs.passwordCheck,
+                  inputs.passwordCheck
                 );
               }}
             >
@@ -122,10 +122,10 @@ const Setemail = styled.label`
     margin-bottom: 30px;
   }
   @font-face {
-    font-family: 'NanumSquareWeb';
-    src: url('../fonts/NanumSquareOTFLight.otf');
+    font-family: "NanumSquareWeb";
+    src: url("../fonts/NanumSquareOTFLight.otf");
   }
-  font-family: 'NanumSquareWeb';
+  font-family: "NanumSquareWeb";
   .nextFrame {
     display: flex;
     justify-content: center;

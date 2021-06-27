@@ -1,9 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import { TimeTableCard, TimtableListForm } from '../components/Index';
-import { requestUploadTimetable } from '../common/axios';
-import { ChangeToArray } from '../common/utils/findCurrentEducation';
-import { Route, Switch, useRouteMatch, Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import { TimeTableCard, TimtableListForm } from "../components/Index";
+import { requestUploadTimetable } from "../common/axios";
+import { ChangeToArray } from "../common/utils/findCurrentEducation";
+import {
+  Route,
+  Switch,
+  useRouteMatch,
+  Link,
+  useHistory,
+} from "react-router-dom";
 interface propType {
   userInfo: any;
   handleTimetableChange: any;
@@ -12,6 +18,7 @@ export default function Timetable({
   userInfo,
   handleTimetableChange,
 }: propType) {
+  const history = useHistory();
   const PREVIOUS_PAGE = -1;
   const urlMatch = useRouteMatch();
   // 시간표 상태
@@ -31,8 +38,8 @@ export default function Timetable({
         ...timetable.list,
         {
           step: timetable.list.length + 1,
-          time: '',
-          contents: '',
+          time: "",
+          contents: "",
         },
       ],
     });
@@ -72,10 +79,10 @@ export default function Timetable({
   useEffect(() => {
     handleAddTimetable(
       ChangeToArray(
-        userInfo.permission === 'parent'
+        userInfo.permission === "parent"
           ? userInfo.mainData[userInfo.currentChild].timetable!
-          : userInfo.mainData.timetable,
-      ),
+          : userInfo.mainData.timetable
+      )
     );
   }, []);
   // useEffect(() => {
