@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 interface Props {
   instiInputs: Record<string, unknown>;
@@ -23,7 +23,7 @@ function Institution({
             type="text"
             className="institutionEl"
             placeholder="기관 이름"
-            onChange={(e) => onChangeInsti('institutionName', e)}
+            onChange={(e) => onChangeInsti("institutionName", e)}
           ></input>
         </div>
         <div className="institutionFrame">
@@ -31,7 +31,7 @@ function Institution({
             type="text"
             className="institutionEl"
             placeholder="기관장 이름"
-            onChange={(e) => onChangeInsti('master', e)}
+            onChange={(e) => onChangeInsti("master", e)}
           ></input>
         </div>
         <div className="error">{errormessage}</div>

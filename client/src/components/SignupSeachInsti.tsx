@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 interface Props {
   searchInsti: boolean;
   handleSearchInsti: any;
@@ -8,16 +8,16 @@ function SignupSearchInsti({ searchInsti, handleSearchInsti }: Props) {
   const [instiInfo, setInstiInfo] = useState([
     {
       institutionId: 1,
-      institutionName: '우리유치원',
-      institutionPhoto: 'sadf',
+      institutionName: "우리유치원",
+      institutionPhoto: "sadf",
     },
     {
       institutionId: 2,
-      institutionName: '원암유치원',
-      institutionPhoto: 'sadf',
+      institutionName: "원암유치원",
+      institutionPhoto: "sadf",
     },
   ]);
-  const [inputText, setInputText] = useState<string>('');
+  const [inputText, setInputText] = useState<string>("");
 
   return searchInsti ? (
     <div>

@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link, useRouteMatch, withRouter } from 'react-router-dom';
-import styled from 'styled-components';
-import { changeTimeStamp } from '../common/utils/changeTimeStamp';
+import React from "react";
+import { Link, useRouteMatch, withRouter } from "react-router-dom";
+import styled from "styled-components";
+import { changeTimeStamp } from "../common/utils/changeTimeStamp";
 interface propsType {
   title?: string;
   imageTitle?: string;
@@ -21,14 +21,14 @@ function CardList({
     <>
       <Wrap>
         <Title>{title}</Title>
-        {title === '급식표' ? (
+        {title === "급식표" ? (
           <SubMenu>
-            <FristMenu>{'월별'}</FristMenu>
-            <SecondMenu>{'일별'}</SecondMenu>
+            <FristMenu>{"월별"}</FristMenu>
+            <SecondMenu>{"일별"}</SecondMenu>
           </SubMenu>
         ) : (
           <SubMenu>
-            <FristMenu>{'전체앨범'}</FristMenu>
+            <FristMenu>{"전체앨범"}</FristMenu>
           </SubMenu>
         )}
         <CardWrapper>
@@ -51,7 +51,7 @@ function CardList({
         </CardWrapper>
 
         {(() => {
-          if (userInfo.permission === 'parent') {
+          if (userInfo.permission === "parent") {
             return null;
           }
           return (

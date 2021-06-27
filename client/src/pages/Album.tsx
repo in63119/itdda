@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import { Route, Switch, useRouteMatch, withRouter } from 'react-router-dom';
-import { CardList, WriteForm } from '../components/Index';
-import { requestImageAlbum } from '../common/axios';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import { Route, Switch, useRouteMatch, withRouter } from "react-router-dom";
+import { CardList, WriteForm } from "../components/Index";
+import { requestImageAlbum } from "../common/axios";
 
 interface propsType {
   userInfo: any;
@@ -11,24 +11,24 @@ export default function Album({ userInfo }: propsType) {
   const urlMatch = useRouteMatch();
   const PREVIOUS_PAGE = -1;
   const [inputVlaue, setInputValue] = useState({
-    title: '',
+    title: "",
     childId: null,
-    formData: '',
-    category: '',
+    formData: "",
+    category: "",
   });
   // 앨범에대한 상태
   const [album, setAlbum] = useState({
     albumInfo: [],
   });
   // 카테고리에 대한 상태
-  const [radioButton, setRadioButton] = useState('');
+  const [radioButton, setRadioButton] = useState("");
   //카테고리 상태변환
   const handleClickRadioButton = (category: string) => {
     setRadioButton(category);
   };
   // 사용자 입력 값 핸들러
   const handleInputValue = (name: string, content: string) => {
-    console.log(name, ' 제목은?', content, '내용은?');
+    console.log(name, " 제목은?", content, "내용은?");
     setInputValue({
       ...inputVlaue,
       [name]: content,
@@ -61,7 +61,7 @@ export default function Album({ userInfo }: propsType) {
   // }, [album.albumInfo]);
   // 화면 랜더링 시 앨범 초기화
   useEffect(() => {
-    if (userInfo.permission === 'parent') {
+    if (userInfo.permission === "parent") {
       const childId = userInfo.mainData[userInfo.currentChild].childId;
       handleInitailzeAlbum(childId);
     } else {

@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 interface Props {
   searchClass: boolean;
   handleSearchClass: any;
 }
 function SignupSearchClass({ searchClass, handleSearchClass }: Props) {
   const [classInfo, setClassInfo] = useState([
-    { classId: '', className: '새싹반' },
-    { classId: '', className: '햇님반' },
+    { classId: "", className: "새싹반" },
+    { classId: "", className: "햇님반" },
   ]);
 
   return searchClass ? (

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import { changeTimeStamp } from '../common/utils/changeTimeStamp';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import { changeTimeStamp } from "../common/utils/changeTimeStamp";
 
 interface Props {
   classInfo: any;
@@ -20,9 +20,9 @@ function TeacherManage({
   approveButton,
   changeClassButton,
 }: Props) {
-  const [checkedClass, setCheckedClass] = useState({ classId: '' });
+  const [checkedClass, setCheckedClass] = useState({ classId: "" });
 
-  const [checkedTeacher, setCheckedTeacher] = useState({ teacherId: '' });
+  const [checkedTeacher, setCheckedTeacher] = useState({ teacherId: "" });
 
   const onModal = (value: any) => {
     setModalVisible(true);
@@ -98,7 +98,7 @@ function TeacherManage({
                   <span className="manageTeacher">{teacher.teacherName}</span>
                   <span className="manageClass">
                     {!teacher.classs
-                      ? '미지정'
+                      ? "미지정"
                       : teacher.classs.teacherClassName}
                   </span>
                   <UnclickedButton

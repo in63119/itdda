@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { Route, Switch, useRouteMatch } from 'react-router-dom';
-import { ReadForm, ListForm, WriteForm } from '../components/Index';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
+import { ReadForm, ListForm, WriteForm } from "../components/Index";
 interface propsType {
   list: any;
   setList: ({}: any) => void;
@@ -23,13 +23,13 @@ function Notice({
 }: propsType) {
   const urlMatch = useRouteMatch();
   const [inputVlaue, setInputValue] = useState({
-    title: '',
-    content: '',
-    type: '',
-    category: '',
+    title: "",
+    content: "",
+    type: "",
+    category: "",
   });
   // 카테고리에 대한 상태
-  const [radioButton, setRadioButton] = useState('');
+  const [radioButton, setRadioButton] = useState("");
   //카테고리 상태변환
   const handleClickRadioButton = (category: string) => {
     setInputValue({

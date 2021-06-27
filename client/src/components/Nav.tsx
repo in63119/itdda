@@ -1,10 +1,10 @@
-import React from 'react';
-import { withRouter, Link, RouteComponentProps } from 'react-router-dom';
-import styled from 'styled-components';
+import React from "react";
+import { withRouter, Link, RouteComponentProps } from "react-router-dom";
+import styled from "styled-components";
 interface propsType {
-  location: RouteComponentProps['location'];
-  history: RouteComponentProps['history'];
-  match: RouteComponentProps['match'];
+  location: RouteComponentProps["location"];
+  history: RouteComponentProps["history"];
+  match: RouteComponentProps["match"];
   handleLogout: any;
 }
 function Nav({ history, handleLogout }: propsType) {
@@ -33,10 +33,10 @@ const Wrap = styled.div`
   background: white;
   box-shadow: 0 4px 4px -1px #c8c8c8;
   @font-face {
-    font-family: 'NanumSquareWeb';
-    src: url('../fonts/NanumSquareOTFRegular.otf');
+    font-family: "NanumSquareWeb";
+    src: url("../fonts/NanumSquareOTFRegular.otf");
   }
-  font-family: 'NanumSquareWeb';
+  font-family: "NanumSquareWeb";
 `;
 const Links = styled(Link)`
   color: black;

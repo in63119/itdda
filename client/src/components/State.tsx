@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import styled, { css } from 'styled-components';
-import { JsxEmit } from 'typescript';
-import { updateChildState } from '../common/utils/firebaseFunction';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import styled, { css } from "styled-components";
+import { JsxEmit } from "typescript";
+import { updateChildState } from "../common/utils/firebaseFunction";
 interface propsType {
   type: string;
   isCheck: boolean;
@@ -44,7 +44,7 @@ export default function State({
               id={childInfo.childId}
               isTeacher={true}
               onClick={(e: any) =>
-                handelUpdataChildState(e, 'isCheck', isCheck)
+                handelUpdataChildState(e, "isCheck", isCheck)
               }
             >
               출석
@@ -54,7 +54,7 @@ export default function State({
           )}
           <StateIcons
             src={
-              isCheck ? '../images/check-white.png' : '../images/check-gray.png'
+              isCheck ? "../images/check-white.png" : "../images/check-gray.png"
             }
             alt="출석"
           ></StateIcons>
@@ -64,7 +64,7 @@ export default function State({
             <StateText
               id={childInfo.childId}
               isTeacher={true}
-              onClick={(e: any) => handelUpdataChildState(e, 'isOk', isOk)}
+              onClick={(e: any) => handelUpdataChildState(e, "isOk", isOk)}
             >
               투약
             </StateText>
@@ -74,8 +74,8 @@ export default function State({
           <StateIcons
             src={
               isOk
-                ? '../images/medicine-gray.png'
-                : '../images/medicine-white.png'
+                ? "../images/medicine-gray.png"
+                : "../images/medicine-white.png"
             }
             alt="투약"
           ></StateIcons>
@@ -93,7 +93,7 @@ export default function State({
               id={childInfo.childId}
               isTeacher={true}
               onClick={(e: any) =>
-                handelUpdataChildState(e, 'isSleep', isSleep)
+                handelUpdataChildState(e, "isSleep", isSleep)
               }
             >
               낮잠
@@ -103,7 +103,7 @@ export default function State({
           )}
           <StateIcons
             src={
-              isSleep ? '../images/nap-white.png' : '../images/sleep-gray.png'
+              isSleep ? "../images/nap-white.png" : "../images/sleep-gray.png"
             }
             alt="낮잠"
           ></StateIcons>
@@ -113,7 +113,7 @@ export default function State({
             <StateText
               id={childInfo.childId}
               isTeacher={true}
-              onClick={(e: any) => handelUpdataChildState(e, 'isEat', isEat)}
+              onClick={(e: any) => handelUpdataChildState(e, "isEat", isEat)}
             >
               식사
             </StateText>
@@ -121,7 +121,7 @@ export default function State({
             <StateText>식사</StateText>
           )}
           <StateIcons
-            src={isEat ? '../images/meal-white.png' : '../images/meal-gray.png'}
+            src={isEat ? "../images/meal-white.png" : "../images/meal-gray.png"}
             alt="식사"
           ></StateIcons>
         </StateWrap>
@@ -141,7 +141,7 @@ const Container = styled.div<any>`
   grid-gap: 10px;
   align-self: center;
   ${(props) =>
-    props.type === '원아 상태관리' &&
+    props.type === "원아 상태관리" &&
     css`
       display: flex;
       padding: 0;

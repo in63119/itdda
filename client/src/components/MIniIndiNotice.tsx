@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { ListInnerCard } from './Index';
-import { changeTimeStamp } from '../common/utils/changeTimeStamp';
+import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { ListInnerCard } from "./Index";
+import { changeTimeStamp } from "../common/utils/changeTimeStamp";
 interface propsType {
   userInfo: any;
   list: any;
@@ -13,14 +13,14 @@ export default function MiniIndiNotice({ userInfo, list }: propsType) {
       <Title>알림장</Title>
       {list ? (
         <NoticeContainar>
-          {userInfo.permission === 'parent'
+          {userInfo.permission === "parent"
             ? list.map((element: any, index: number) => {
                 return (
                   <ListInnerCard
                     content={element}
                     key={element.indiNoticeId}
-                    title={'알림장'}
-                    type={'mainIndiNotice'}
+                    title={"알림장"}
+                    type={"mainIndiNotice"}
                   ></ListInnerCard>
                 );
               })
@@ -29,8 +29,8 @@ export default function MiniIndiNotice({ userInfo, list }: propsType) {
                   <ListInnerCard
                     content={element}
                     key={element.indiNoticeId}
-                    title={'알림장'}
-                    type={'mainIndiNotice'}
+                    title={"알림장"}
+                    type={"mainIndiNotice"}
                   ></ListInnerCard>
                 );
               })}
@@ -51,10 +51,10 @@ const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   @font-face {
-    font-family: 'NanumSquareWeb';
-    src: url('../fonts/NanumSquareOTFLight.otf');
+    font-family: "NanumSquareWeb";
+    src: url("../fonts/NanumSquareOTFLight.otf");
   }
-  font-family: 'NanumSquareWeb';
+  font-family: "NanumSquareWeb";
 `;
 const Title = styled.label`
   width: 100%;

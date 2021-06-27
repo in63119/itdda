@@ -1,7 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
-import { ImagePostForm, TextAreaForm, WriteMedicineForm } from './Index';
-import { requestNotice } from '../common/axios';
+import React from "react";
+import styled from "styled-components";
+import { ImagePostForm, TextAreaForm, WriteMedicineForm } from "./Index";
+import { requestNotice } from "../common/axios";
 interface propsType {
   title: string;
   type: string;
@@ -71,20 +71,20 @@ function WriteForm({
     const { title, content } = inputVlaue;
 
     if (title.length === 0) {
-      alert('제목을 입력해주세요');
+      alert("제목을 입력해주세요");
       return;
     }
-    if (type === 'notice') {
+    if (type === "notice") {
       await requestNotice(title, content, category);
       history.go(PREVIOUS_PAGE);
     }
-    if (type === 'album') {
+    if (type === "album") {
       handleRequestUpload();
     }
   };
   return (
     <Wrap>
-      {type === 'medicine' ? (
+      {type === "medicine" ? (
         <TitleWrapper>
           <SubTitle>
             <TitleInput
@@ -115,7 +115,7 @@ function WriteForm({
                 </select>
               )} */}
               {(() => {
-                if (title === '알림장 작성' || title === '앨범 등록') {
+                if (title === "알림장 작성" || title === "앨범 등록") {
                   return null;
                 }
                 <>

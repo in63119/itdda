@@ -1,6 +1,6 @@
-import react from 'react';
-import styled from 'styled-components';
-import { State } from './Index';
+import react from "react";
+import styled from "styled-components";
+import { State } from "./Index";
 interface propsType {
   childInfo: any;
 }
@@ -21,7 +21,7 @@ export default function StateCardForm({ childInfo }: propsType) {
               <Name>{childInfo.childName}</Name>
             </NameWrapper>
             <State
-              type={'원아 상태관리'}
+              type={"원아 상태관리"}
               childInfo={childInfo}
               isCheck={childInfo.state.isCheck}
               isOk={childInfo.state.isOk}
