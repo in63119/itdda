@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { Link, useHistory } from 'react-router-dom';
-import { requestSearchInsti } from '../common/axios';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { Link, useHistory } from "react-router-dom";
+import { requestSearchInsti } from "../common/axios";
 
 interface Props {
   instiInfo: any;
@@ -22,7 +22,7 @@ function SelectionInstitution({
 }: Props) {
   const history = useHistory();
   //검색
-  const [instiInput, setInstiInput] = useState<string>('');
+  const [instiInput, setInstiInput] = useState<string>("");
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -43,10 +43,10 @@ function SelectionInstitution({
 
   const nextStep = (institutinId: string) => {
     if (institutinId.length === 0) {
-      setErrorMessage('기관을 선택해주세요');
+      setErrorMessage("기관을 선택해주세요");
     } else {
-      history.push('/main/profile/children');
-      setErrorMessage('');
+      history.push("/main/profile/children");
+      setErrorMessage("");
     }
   };
   return (
@@ -82,8 +82,8 @@ function SelectionInstitution({
           </div>
         ))}
         <div>
-          {JSON.parse(localStorage.getItem('loginInfo')!).permission ===
-          'teacher' ? (
+          {JSON.parse(localStorage.getItem("loginInfo")!).permission ===
+          "teacher" ? (
             <Link to="/main/profile">
               <Button>선택 완료</Button>
             </Link>

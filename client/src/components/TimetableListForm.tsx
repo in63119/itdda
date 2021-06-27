@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import { TimeTableCard } from '../components/Index';
-import { requestUploadTimetable } from '../common/axios';
-import { ChangeToArray } from '../common/utils/findCurrentEducation';
-import { Route, Switch, useRouteMatch, Link } from 'react-router-dom';
-import { time } from 'console';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import { TimeTableCard } from "../components/Index";
+import { requestUploadTimetable } from "../common/axios";
+import { ChangeToArray } from "../common/utils/findCurrentEducation";
+import { Route, Switch, useRouteMatch, Link } from "react-router-dom";
+import { time } from "console";
 interface propType {
   userInfo: any;
   timetable: any;
@@ -48,7 +48,7 @@ export default function TimtableListForm({
             : null
           // <div className="emptyTime">등록된 시간표가 없습니다.</div>
         }
-        {urlMatch.path === '/main/timetable/write' ? (
+        {urlMatch.path === "/main/timetable/write" ? (
           <>
             <AddText>
               <AddButton onClick={handledAddCard}>시간표 추가</AddButton>
@@ -58,8 +58,8 @@ export default function TimtableListForm({
         ) : null}
       </ContentCard>
       {(() => {
-        if (userInfo.permission === 'institution') {
-          if (type === 'write') {
+        if (userInfo.permission === "institution") {
+          if (type === "write") {
             return (
               <ButtonWrapper>
                 <Button onClick={() => history.go(PREVIOUS_PAGE)}>취소</Button>
@@ -86,10 +86,10 @@ const ContentCard = styled.div`
   overflow: auto;
   .emptyTime {
     @font-face {
-      font-family: 'NanumSquareWeb';
-      src: url('../fonts/NanumSquareOTFLight.otf');
+      font-family: "NanumSquareWeb";
+      src: url("../fonts/NanumSquareOTFLight.otf");
     }
-    font-family: 'NanumSquareWeb';
+    font-family: "NanumSquareWeb";
     text-align: center;
     margin-top: 100px;
   }

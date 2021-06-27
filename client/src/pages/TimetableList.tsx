@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import { TimeTableCard, TimtableListForm } from '../components/Index';
-import { requestUploadTimetable } from '../common/axios';
-import { ChangeToArray } from '../common/utils/findCurrentEducation';
-import { Route, Switch, useRouteMatch, Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import { TimeTableCard, TimtableListForm } from "../components/Index";
+import { requestUploadTimetable } from "../common/axios";
+import { ChangeToArray } from "../common/utils/findCurrentEducation";
+import { Route, Switch, useRouteMatch, Link } from "react-router-dom";
 interface propType {
   userInfo: any;
   handleTimetableChange: any;
@@ -31,8 +31,8 @@ export default function Timetable({
         ...timetable.list,
         {
           step: timetable.list.length + 1,
-          time: '',
-          contents: '',
+          time: "",
+          contents: "",
         },
       ],
     });
@@ -72,7 +72,7 @@ export default function Timetable({
   useEffect(() => {
     handleAddTimetable(
       ChangeToArray(
-        userInfo.permission === 'parent'
+        userInfo.permission === "parent"
           ? userInfo.mainData[userInfo.currentChild].timetable!
           : userInfo.mainData.timetable,
       ),

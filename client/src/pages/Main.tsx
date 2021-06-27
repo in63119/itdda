@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import React, { useState, useEffect } from "react";
+import { Route, Switch, Link } from "react-router-dom";
+import styled, { css } from "styled-components";
 import {
   ApproveChildren,
   TimetableList,
@@ -15,7 +15,7 @@ import {
   CreateClass,
   Management,
   Bus,
-} from './Index';
+} from "./Index";
 import {
   ReadForm,
   Nav,
@@ -26,13 +26,13 @@ import {
   FooterContents,
   SecondSubMenu,
   Timetable,
-} from '../components/Index';
-import { firestore } from '../common/utils/firebase';
+} from "../components/Index";
+import { firestore } from "../common/utils/firebase";
 import {
   requestMainData,
   requestNotice,
   requestIndiNotice,
-} from '../common/axios';
+} from "../common/axios";
 
 interface Props {
   setModalMessage: any;
@@ -72,15 +72,15 @@ export default function Main({
   //부모는 여러 아이들을 등록 시킬 수 있다.
   //부모가 로그인 할 경우 main 화면에 출력되는 정보는 아이를 기준으로 한다.
   const [childId, setChildId] = useState({
-    institutionId: '0',
-    id: '0',
+    institutionId: "0",
+    id: "0",
   });
   //List 상태 업데이트
   const [list, setList] = useState({
     event: [],
     notice: [],
     all: [],
-    currentCategory: '',
+    currentCategory: "",
     currentList: [],
     mainMiniNotice: [],
     mainMiniIndiNotice: [],
@@ -92,10 +92,10 @@ export default function Main({
   // 메인에서 관리하는 list 목록들을 선택적으로 업데이트
   const handleUpdateList = async (title: string) => {
     const childId =
-      userInfo.permission === 'parent'
+      userInfo.permission === "parent"
         ? userInfo.mainData[userInfo.currentChild].childId
         : null;
-    if (title === '공지사항') {
+    if (title === "공지사항") {
       const result = await requestNotice(childId);
       if (result) {
         setList({
@@ -103,13 +103,13 @@ export default function Main({
           event: result.ElEvent,
           notice: result.ElNotice,
           all: result.noticeInfo,
-          currentCategory: 'notice',
+          currentCategory: "notice",
           currentList: result.ElNotice,
         });
       }
       return;
     }
-    if (title === '알림장') {
+    if (title === "알림장") {
       const result = await requestIndiNotice();
       if (result) {
         setList({
@@ -122,7 +122,7 @@ export default function Main({
   };
   const handleInitializeList = async () => {
     const childId =
-      userInfo.permission === 'parent'
+      userInfo.permission === "parent"
         ? userInfo.mainData[userInfo.currentChild].childId
         : null;
     const notice = await requestNotice(childId);
@@ -145,48 +145,48 @@ export default function Main({
   }, []);
   const handleChangeNotice = (category?: string) => {
     //공지사항
-    if (category === '공지사항') {
+    if (category === "공지사항") {
       setList({
         ...list,
         currentList: list.notice,
-        currentCategory: 'notice',
+        currentCategory: "notice",
       });
       return;
     }
-    if (category === '행사') {
+    if (category === "행사") {
       setList({
         ...list,
         currentList: list.event,
-        currentCategory: 'event',
+        currentCategory: "event",
       });
       return;
     }
     //알림장
-    if (category === '수신') {
+    if (category === "수신") {
       setList({
         ...list,
         currentList: list.indiNotice.teacherRead,
       });
       return;
     }
-    if (category === '발송') {
+    if (category === "발송") {
       setList({
         ...list,
         currentList: list.indiNotice.teacherWrite,
       });
       return;
     }
-    if (category === '투약의뢰서') {
+    if (category === "투약의뢰서") {
     }
-    if (category === '투약보고서') {
+    if (category === "투약보고서") {
     }
   };
   // 기관에 소속되어 승인이 완료된 원아는 실시간 상태 확인을 할 수있다.
   function handleCheckData(institutionId: string, childId: string) {
     firestore
-      .collection('institution')
+      .collection("institution")
       .doc(String(institutionId))
-      .collection('children')
+      .collection("children")
       .doc(String(childId))
       .get()
       .then((doc) => {
@@ -196,15 +196,15 @@ export default function Main({
           return;
         }
         //아이가 승인이 되지 않았을때
-        alert('원아의 정보가 없습니다');
+        alert("원아의 정보가 없습니다");
       });
   }
   // 실시간 데이터베이스에 등록되어 있는 원아일경우 실시간을 현재 상태를 추적 monitoring 한다.
   function handleRealTimeState(institutionId: string, childId: string) {
     firestore
-      .collection('institution')
+      .collection("institution")
       .doc(String(institutionId))
-      .collection('children')
+      .collection("children")
       .doc(String(childId))
       .onSnapshot((doc) => {
         setIsOk(doc.data()?.isOk);
@@ -217,13 +217,13 @@ export default function Main({
 
   //메인 화면에서 사용될 data 요청
   const setMainData = async () => {
-    const token = JSON.parse(localStorage.getItem('loginInfo')!).accessToken;
+    const token = JSON.parse(localStorage.getItem("loginInfo")!).accessToken;
     const mainData = await requestMainData(token);
     await hadleSetMainData(mainData);
   };
 
   useEffect(() => {
-    if (userInfo.permission === 'parent') {
+    if (userInfo.permission === "parent") {
       handleCheckData(
         userInfo.mainData[userInfo.currentChild].institutionId,
         userInfo.mainData[userInfo.currentChild].childId,
@@ -243,7 +243,7 @@ export default function Main({
 
   useEffect(() => {
     // 부모가 로그인을 했을때 아이의 실시간 데이터를 업데이트
-    if (userInfo.permission === 'parent') {
+    if (userInfo.permission === "parent") {
       setChildId({
         institutionId: String(
           userInfo.mainData[userInfo.currentChild].institutionId,
@@ -269,7 +269,7 @@ export default function Main({
               <Avatar userInfo={userInfo}></Avatar>
             </FristPart>
             <SecondPart id="state" permission={userInfo.permission}>
-              {userInfo.permission === 'parent' ? (
+              {userInfo.permission === "parent" ? (
                 <>
                   <State
                     type="현재상태"
@@ -376,7 +376,7 @@ export default function Main({
                 <Route path={`/main/education`} component={EducationList} />
                 <Route exact path={`/main/report`} component={Report} />
                 <Route
-                  path={'/main/timetable'}
+                  path={"/main/timetable"}
                   render={() => (
                     <TimetableList
                       userInfo={userInfo}
@@ -384,11 +384,11 @@ export default function Main({
                     />
                   )}
                 />
-                <Route path={'/main/education'} component={EducationList} />
-                <Route path={'/main/report'} component={Report} />
+                <Route path={"/main/education"} component={EducationList} />
+                <Route path={"/main/report"} component={Report} />
                 <Route
                   exact
-                  path={'/main/director'}
+                  path={"/main/director"}
                   render={() => (
                     <CreateClass
                       setModalMessage={setModalMessage}
@@ -398,10 +398,10 @@ export default function Main({
                 />
                 <Route
                   exact
-                  path={'/main/management'}
+                  path={"/main/management"}
                   render={() => <Management userInfo={userInfo} />}
                 />
-                <Route path={'/main/bus'} component={Bus} />
+                <Route path={"/main/bus"} component={Bus} />
               </Switch>
             </ContentCard>
           </Section>
@@ -537,7 +537,7 @@ const SecondPart = styled.div<any>`
   display: flex;
   padding: 2%;
   ${(props) =>
-    props.permission !== 'parent' &&
+    props.permission !== "parent" &&
     css`
       display: none;
     `}

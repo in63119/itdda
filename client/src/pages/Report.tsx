@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
 
 function Report() {
-  const [report, setReport] = useState({ title: '', content: '' });
+  const [report, setReport] = useState({ title: "", content: "" });
 
   const onChange = (key: string, e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -20,7 +20,7 @@ function Report() {
                 className="title inputTitle"
                 type="text"
                 onChange={(e) => {
-                  onChange('title', e);
+                  onChange("title", e);
                 }}
               ></input>
             </div>
@@ -33,7 +33,7 @@ function Report() {
               className="content"
               type="text"
               onChange={(e) => {
-                onChange('content', e);
+                onChange("content", e);
               }}
             ></input>
           </div>
@@ -51,10 +51,10 @@ const Wrap = styled.div`
   width: 100%;
   height: 100%;
   @font-face {
-    font-family: 'NanumSquareWeb';
-    src: url('../fonts/NanumSquareOTFLight.otf');
+    font-family: "NanumSquareWeb";
+    src: url("../fonts/NanumSquareOTFLight.otf");
   }
-  font-family: 'NanumSquareWeb';
+  font-family: "NanumSquareWeb";
 `;
 const ContentCard = styled.div`
   ${({ theme }) => theme.common.contentCardDiv}

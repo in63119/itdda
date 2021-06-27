@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 interface Props {
   signupDetail: boolean;
@@ -20,22 +20,22 @@ function Signup2({
       <div className="signupDetail">
         <div>
           <span>이름</span>
-          <input type="text" onChange={(e) => onChange('name', e)}></input>
+          <input type="text" onChange={(e) => onChange("name", e)}></input>
         </div>
         <div>
           <span>role</span>
-          <input type="email" onChange={(e) => onChange('role', e)}></input>
+          <input type="email" onChange={(e) => onChange("role", e)}></input>
         </div>
         <div>
           <span>전화번호</span>
-          <input type="text" onChange={(e) => onChange('mobile', e)}></input>
+          <input type="text" onChange={(e) => onChange("mobile", e)}></input>
         </div>
         <button
           onClick={() => {
             handleSignupDetail(inputs.name, inputs.role, inputs.mobile);
           }}
         >
-          {inputs.permission === 'institution' ? '다음' : '완료'}
+          {inputs.permission === "institution" ? "다음" : "완료"}
         </button>
         <div>{errormessage}</div>
       </div>

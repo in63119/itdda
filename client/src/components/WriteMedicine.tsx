@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import styled, { css } from "styled-components";
+import { Link } from "react-router-dom";
 interface propsType {
   isSelectedImage: string;
 }
@@ -11,7 +11,7 @@ export default function WriteMedicine() {
         <Title>투약의뢰서 작성</Title>
         <Container>
           <TitleWrapper>
-            <Writer>{'작성자'}</Writer>
+            <Writer>{"작성자"}</Writer>
           </TitleWrapper>
         </Container>
       </ContentCard>

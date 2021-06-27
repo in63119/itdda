@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
   requestApproveTeacher,
   requestGetClassList,
   requestChangeTeacherClass,
-} from '../common/axios';
-import styled from 'styled-components';
-import { ClassManage, TeacherManage, StudentManage } from '../components/Index';
+} from "../common/axios";
+import styled from "styled-components";
+import { ClassManage, TeacherManage, StudentManage } from "../components/Index";
 interface Props {
   setModalMessage: any;
   setModalVisible: any;
@@ -18,13 +18,13 @@ function CreateClass({ setModalMessage, setModalVisible }: Props) {
 
   const [message, setMessage] = useState<number>();
   //useEffect를 위한 인자
-  const [classCheck, setClassCheck] = useState<string>('');
+  const [classCheck, setClassCheck] = useState<string>("");
 
   const [classInfo, setClassInfo] = useState([]);
 
   const [teachers, setTeachers] = useState({
     approved: [],
-    changedTeacherId: '',
+    changedTeacherId: "",
     unapproved: [],
   });
 
@@ -95,7 +95,7 @@ function CreateClass({ setModalMessage, setModalVisible }: Props) {
   };
   return (
     <Wrap>
-      <h3>{isClass ? '반 구성' : isTeacher ? '선생님 관리' : '원아 관리'}</h3>
+      <h3>{isClass ? "반 구성" : isTeacher ? "선생님 관리" : "원아 관리"}</h3>
       <div>
         <Button
           className="manageType manageTeacher"

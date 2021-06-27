@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -6,7 +6,7 @@ import {
   useHistory,
   withRouter,
   RouteComponentProps,
-} from 'react-router-dom';
+} from "react-router-dom";
 import {
   Main,
   Login,
@@ -16,26 +16,26 @@ import {
   SignupCommon,
   GuestWaiting,
   GuestApproving,
-} from './pages/Index';
-import { Modal } from './components/Index';
+} from "./pages/Index";
+import { Modal } from "./components/Index";
 import styled, {
   GlobalStyleComponent,
   ThemeProvider,
   createGlobalStyle,
-} from 'styled-components';
-import theme from './assets/theme';
+} from "styled-components";
+import theme from "./assets/theme";
 
 function App() {
   const history = useHistory();
   // modal 상태
-  const [modalMessage, setModalMessage] = useState('^___^  << 한솔님');
+  const [modalMessage, setModalMessage] = useState("^___^  << 한솔님");
   const [modalVisible, setModalVisible] = useState(false);
   // loading 상태
   const [isLoading, setIsLoading] = useState<boolean>(false);
   //로그인 한 유저정보
   const [userInfo, setUserInfo] = useState({
     isLogin: false,
-    permission: '',
+    permission: "",
     currentChild: 0,
     mainData: {},
   });
@@ -52,7 +52,7 @@ function App() {
   };
   // 회원이 로그인 하고 유저 상태를 변경!
   const hadleSetMainData = (data: any) => {
-    const loginInfo = JSON.parse(localStorage.getItem('loginInfo')!);
+    const loginInfo = JSON.parse(localStorage.getItem("loginInfo")!);
     setUserInfo({
       ...userInfo,
       isLogin: true,
@@ -75,7 +75,7 @@ function App() {
   };
   useEffect(() => {
     if (Object.keys(userInfo.mainData).length !== 0) {
-      history.push('/main');
+      history.push("/main");
     }
   }, [userInfo.mainData]);
 

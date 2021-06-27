@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import styled, { css } from "styled-components";
+import { Link } from "react-router-dom";
 interface propsType {
   isSelectedImage: string;
 }
 export default function WirteMeal() {
   const [image, setImage] = useState({
-    file: '',
-    previewURL: '',
+    file: "",
+    previewURL: "",
   });
   //공지사항 이미지 등록 함수
   //!reader.result의 리턴값 타입이 세가지 형태 (string, array, null )
@@ -30,8 +30,8 @@ export default function WirteMeal() {
   //이미지 제거
   const handleRemoveImage = () => {
     setImage({
-      file: '',
-      previewURL: '',
+      file: "",
+      previewURL: "",
     });
   };
   return (
@@ -43,7 +43,7 @@ export default function WirteMeal() {
             <SubTitle>
               <TitleInput required placeholder="제목"></TitleInput>
             </SubTitle>
-            <Writer>{'작성자'}</Writer>
+            <Writer>{"작성자"}</Writer>
           </TitleWrapper>
           <ImageWrapper isSelectedImage={image.previewURL}>
             <ImageContainer htmlFor="input_file">
@@ -58,7 +58,7 @@ export default function WirteMeal() {
                 src={
                   image.previewURL
                     ? image.previewURL
-                    : '../../images/addImage.png'
+                    : "../../images/addImage.png"
                 }
                 alt="프로필사진"
               ></Image>

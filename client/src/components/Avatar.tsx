@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import React from "react";
+import { Link } from "react-router-dom";
+import styled, { css } from "styled-components";
 interface propsType {
   userInfo: any;
 }
@@ -10,7 +10,7 @@ export default function Avatar({ userInfo }: propsType) {
     <WrapFrame>
       <Wrap>
         {(() => {
-          if (userInfo.permission === 'parent') {
+          if (userInfo.permission === "parent") {
             if (userInfo.mainData[userInfo.currentChild].profileImg) {
               return (
                 <AvatarFrame>
@@ -51,7 +51,7 @@ export default function Avatar({ userInfo }: propsType) {
         })()}
         <NameTagWrap>
           {(() => {
-            if (userInfo.permission === 'parent') {
+            if (userInfo.permission === "parent") {
               return (
                 <>
                   <ClassWrap>
@@ -119,10 +119,10 @@ const NameTagWrap = styled.div`
   box-shadow: 0px 0px 5px #c8c8c8;
   top: -69px;
   @font-face {
-    font-family: 'NanumSquareWeb';
-    src: url('../fonts/NanumSquareOTFLight.otf');
+    font-family: "NanumSquareWeb";
+    src: url("../fonts/NanumSquareOTFLight.otf");
   }
-  font-family: 'NanumSquareWeb';
+  font-family: "NanumSquareWeb";
   #institution {
     font-size: 1.3rem;
     align-self: center;

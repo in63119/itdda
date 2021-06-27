@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { requestApproveChild } from '../common/axios';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { requestApproveChild } from "../common/axios";
 import {
   handleAddChild,
   handleDeleteChild,
   handleGetAllChildByInstitution,
-} from '../common/utils/firebaseFunction';
-import { changeTimeStamp } from '../common/utils/changeTimeStamp';
+} from "../common/utils/firebaseFunction";
+import { changeTimeStamp } from "../common/utils/changeTimeStamp";
 interface propType {
   userInfo: any;
 }
@@ -51,7 +51,7 @@ export default function ApproveChildren({ userInfo }: propType) {
   return (
     <>
       <Wrap>
-        <Title>{'원아승인'}</Title>
+        <Title>{"원아승인"}</Title>
         <Container>
           <SubTitle>승인대기중</SubTitle>
           <ContentWrapper>

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import { Switch, Route, useRouteMatch } from 'react-router-dom';
-import { ListForm, WriteForm, ReadForm } from '../components/Index';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import { Switch, Route, useRouteMatch } from "react-router-dom";
+import { ListForm, WriteForm, ReadForm } from "../components/Index";
 interface propsType {
   userInfo: any;
   handleUpdateList: any;
@@ -18,13 +18,13 @@ export default function IndiNotice({
 }: propsType) {
   const urlMatch = useRouteMatch();
   const [inputVlaue, setInputValue] = useState({
-    title: '',
-    content: '',
-    type: '',
-    category: '',
+    title: "",
+    content: "",
+    type: "",
+    category: "",
   });
   // 카테고리에 대한 상태
-  const [radioButton, setRadioButton] = useState('');
+  const [radioButton, setRadioButton] = useState("");
   //카테고리 상태변환
   const handleClickRadioButton = (category: string) => {
     setRadioButton(category);
