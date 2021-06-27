@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { requestManageClass } from '../common/axios';
-import { useHistory } from 'react-router-dom';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { requestManageClass } from "../common/axios";
+import { useHistory } from "react-router-dom";
 
 interface Props {
   isClass: boolean;
@@ -22,7 +22,7 @@ function ClassManage({
   //클래스 추가 창
 
   const history = useHistory();
-  const [classInputs, setClassInputs] = useState({ className: '' });
+  const [classInputs, setClassInputs] = useState({ className: "" });
 
   //모달창 열기
   const onModalClass = (value: any) => {
@@ -41,10 +41,10 @@ function ClassManage({
       if (classCheck !== classInputs.className) {
         setClassCheck(classInputs.className);
       } else {
-        setClassCheck('반복된 작업 실시');
+        setClassCheck("반복된 작업 실시");
       }
     } else {
-      alert('요청이 되지 않았습니다');
+      alert("요청이 되지 않았습니다");
     }
   };
 
@@ -86,14 +86,14 @@ function ClassManage({
         </UnclickedButton>
         <Button
           onClick={() => {
-            manageClass(classInputs.className, 'add');
+            manageClass(classInputs.className, "add");
           }}
         >
           반 추가
         </Button>
         <Button
           onClick={() => {
-            manageClass(classInputs.className, 'delete');
+            manageClass(classInputs.className, "delete");
           }}
         >
           삭제

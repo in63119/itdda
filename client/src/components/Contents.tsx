@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 import {
   AlbumCarousel,
   Timetable,
@@ -8,7 +8,7 @@ import {
   MiniNotice,
   MIniIndiNotice,
   MainMenu,
-} from './Index';
+} from "./Index";
 interface propsType {
   list: any;
   userInfo: any;
@@ -28,7 +28,7 @@ export default function Contents({
   };
   return (
     <Wrap>
-      {userInfo.permission === 'parent' ? (
+      {userInfo.permission === "parent" ? (
         <BookMarkWrap>
           {userInfo.mainData.map((element: any, index: number) => {
             return (
@@ -37,7 +37,7 @@ export default function Contents({
                 childId={element.childId}
                 checked={clickedMenu}
                 order={`${userInfo.mainData.length}0`}
-                className={clickedMenu === index ? 'active' : ''}
+                className={clickedMenu === index ? "active" : ""}
                 onClick={() => handleChangeMenu(index)}
               >
                 <Name>{element.childName}</Name>
@@ -51,15 +51,15 @@ export default function Contents({
       <MiniNotice userInfo={userInfo} list={list.mainMiniNotice}></MiniNotice>
       {(() => {
         if (
-          userInfo.permission === 'teacher' ||
-          userInfo.permission === 'parent'
+          userInfo.permission === "teacher" ||
+          userInfo.permission === "parent"
         ) {
           return (
             <>
               <MIniIndiNotice
                 userInfo={userInfo}
                 list={
-                  userInfo.permission === 'teacher'
+                  userInfo.permission === "teacher"
                     ? list.mainMiniIndiNotice
                     : userInfo.mainData[userInfo.currentChild].indiNotice
                 }

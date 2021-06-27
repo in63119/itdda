@@ -1,5 +1,5 @@
-import react from 'react';
-import styled from 'styled-components';
+import react from "react";
+import styled from "styled-components";
 export default function Bus() {
   const PREVIOUS_PAGE = -1;
   return (

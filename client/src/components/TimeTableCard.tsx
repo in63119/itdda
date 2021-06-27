@@ -1,5 +1,5 @@
-import react from 'react';
-import styled from 'styled-components';
+import react from "react";
+import styled from "styled-components";
 interface propType {
   timetable: any;
   type: string;
@@ -24,7 +24,7 @@ export default function TimetableCard({
           </NumberWrapper>
           <TimeWrapper id={timetable.step}>
             <Time>시간 :</Time>
-            {type === 'read' ? (
+            {type === "read" ? (
               <span>{timetable.time}</span>
             ) : (
               <>
@@ -40,7 +40,7 @@ export default function TimetableCard({
           </TimeWrapper>
           <ContentsWrapper>
             <Contents>내용 :</Contents>
-            {type === 'read' ? (
+            {type === "read" ? (
               <ContentsText>{timetable.contents}</ContentsText>
             ) : (
               <InputContents
@@ -75,10 +75,10 @@ const ContentsWrapper = styled.span`
   display: flex;
   flex: 2 auto;
   @font-face {
-    font-family: 'NanumSquareWeb';
-    src: url('../fonts/NanumSquareOTFLight.otf');
+    font-family: "NanumSquareWeb";
+    src: url("../fonts/NanumSquareOTFLight.otf");
   }
-  font-family: 'NanumSquareWeb';
+  font-family: "NanumSquareWeb";
 `;
 const Number = styled.span`
   font-size: 10px;

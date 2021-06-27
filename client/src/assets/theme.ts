@@ -13,11 +13,11 @@ const fontSizes = {
 
 //디바이스 사이즈
 const deviceSizes = {
-  mobileS: '320px',
-  mobileM: '375px',
-  mobileL: '700px',
-  tablet: '820px',
-  tabletL: '1024px',
+  mobileS: "320px",
+  mobileM: "375px",
+  mobileL: "700px",
+  tablet: "820px",
+  tabletL: "1024px",
 };
 
 // 디바이스별 미디어쿼리
@@ -31,10 +31,10 @@ const device = {
 
 // 자주 사용하는 색
 const colors = {
-  black: '#000000',
-  gray: '#bcbcbc',
-  green: '#3cb46e',
-  blue: '#8c80ff',
+  black: "#000000",
+  gray: "#bcbcbc",
+  green: "#3cb46e",
+  blue: "#8c80ff",
 };
 
 // element의 base 디자인

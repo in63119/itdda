@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { requestGetProfile } from '../common/axios';
-import { GuestWaiting } from '../pages/Index';
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { requestGetProfile } from "../common/axios";
+import { GuestWaiting } from "../pages/Index";
 
 interface Props {
   userInfo: {
@@ -14,16 +14,16 @@ interface Props {
 }
 
 export default function ProfileList({ userInfo }: Props) {
-  const permission = JSON.parse(localStorage.getItem('loginInfo')!).permission;
+  const permission = JSON.parse(localStorage.getItem("loginInfo")!).permission;
 
   const [profileInfo, setProfileInfo] = useState<any>({
-    basicInfo: '',
-    approved: '',
-    unapproved: '',
+    basicInfo: "",
+    approved: "",
+    unapproved: "",
   });
 
   useEffect(() => {
-    if (permission === 'teacher' || permission === 'institution') {
+    if (permission === "teacher" || permission === "institution") {
       getProfile();
     } else {
       getProfile(userInfo.mainData[userInfo.currentChild].childId);
@@ -64,17 +64,17 @@ export default function ProfileList({ userInfo }: Props) {
             <div id="flexLeft">
               <AvatarCard
                 src={
-                  permission !== 'parent'
+                  permission !== "parent"
                     ? userInfo.mainData.profileImg
                     : userInfo.mainData[userInfo.currentChild].profileImg
                 }
                 alt="avatar"
               ></AvatarCard>
-              {JSON.parse(localStorage.getItem('loginInfo')!).permission ===
-              'teacher' ? (
+              {JSON.parse(localStorage.getItem("loginInfo")!).permission ===
+              "teacher" ? (
                 <div id="profileButton"></div>
-              ) : JSON.parse(localStorage.getItem('loginInfo')!).permission ===
-                'parent' ? (
+              ) : JSON.parse(localStorage.getItem("loginInfo")!).permission ===
+                "parent" ? (
                 <div id="profileButton">
                   <Link to="/main/profile/institution">
                     <Button>아이등록</Button>
@@ -85,19 +85,19 @@ export default function ProfileList({ userInfo }: Props) {
               )}
             </div>
             <div id="contentsWrap">
-              {JSON.parse(localStorage.getItem('loginInfo')!).permission !==
-              'institution' ? (
+              {JSON.parse(localStorage.getItem("loginInfo")!).permission !==
+              "institution" ? (
                 <>
                   <div className="profile name">
                     <span className="blue">
-                      {permission === 'teacher' ? '이름' : '이름'}
+                      {permission === "teacher" ? "이름" : "이름"}
                     </span>
                     <input
                       className="textBox username"
                       type="text"
                       placeholder={profileInfo.basicInfo.name}
                       onChange={(e) => {
-                        onChange('name', e);
+                        onChange("name", e);
                       }}
                     ></input>
                   </div>
@@ -114,7 +114,7 @@ export default function ProfileList({ userInfo }: Props) {
                       type="text"
                       placeholder={profileInfo.basicInfo.mobile}
                       onChange={(e) => {
-                        onChange('mobile', e);
+                        onChange("mobile", e);
                       }}
                     ></input>
                   </div>
@@ -128,7 +128,7 @@ export default function ProfileList({ userInfo }: Props) {
                       type="text"
                       placeholder={profileInfo.basicInfo.name}
                       onChange={(e) => {
-                        onChange('institution', e);
+                        onChange("institution", e);
                       }}
                     ></input>
                   </div>
@@ -145,7 +145,7 @@ export default function ProfileList({ userInfo }: Props) {
                       type="text"
                       placeholder={profileInfo.basicInfo.mobile}
                       onChange={(e) => {
-                        onChange('mobile', e);
+                        onChange("mobile", e);
                       }}
                     ></input>
                   </div>
@@ -154,8 +154,8 @@ export default function ProfileList({ userInfo }: Props) {
             </div>
           </div>
 
-          {JSON.parse(localStorage.getItem('loginInfo')!).permission ===
-          'parent' ? (
+          {JSON.parse(localStorage.getItem("loginInfo")!).permission ===
+          "parent" ? (
             <>
               <ProfileApprovedWrap>
                 <div className="blue bigText">승인된 내 아이들</div>

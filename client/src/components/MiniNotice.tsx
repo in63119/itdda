@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled, { css } from 'styled-components';
-import { ListInnerCard } from './Index';
+import React from "react";
+import { Link } from "react-router-dom";
+import styled, { css } from "styled-components";
+import { ListInnerCard } from "./Index";
 interface propsType {
   userInfo: any;
   list: any;
@@ -12,14 +12,14 @@ export default function MiniNotice({ userInfo, list }: propsType) {
       <Title>공지사항</Title>
       {list ? (
         <NoticeContainar permission={userInfo.permission}>
-          {userInfo.permission === 'parent'
+          {userInfo.permission === "parent"
             ? list.map((element: any, index: number) => {
                 return (
                   <ListInnerCard
                     content={element}
                     key={element.noticeId}
                     title={element.title}
-                    type={'notice'}
+                    type={"notice"}
                   ></ListInnerCard>
                 );
               })
@@ -29,7 +29,7 @@ export default function MiniNotice({ userInfo, list }: propsType) {
                     content={element}
                     key={element.noticeId}
                     title={element.title}
-                    type={'notice'}
+                    type={"notice"}
                   ></ListInnerCard>
                 );
               })}
@@ -48,16 +48,16 @@ const Wrap = styled.div<any>`
   margin-bottom: 2%;
   //원장님이 로그인 했을경우
   ${(props) =>
-    props.permission === 'institution' &&
+    props.permission === "institution" &&
     css`
       height: 43%;
     `}
   border: solid 1px #eeeeee;
   @font-face {
-    font-family: 'NanumSquareWeb';
-    src: url('../fonts/NanumSquareOTFLight.otf');
+    font-family: "NanumSquareWeb";
+    src: url("../fonts/NanumSquareOTFLight.otf");
   }
-  font-family: 'NanumSquareWeb';
+  font-family: "NanumSquareWeb";
   display: flex;
   flex-direction: column;
   border-radius: 15px 15px 15px 15px;
@@ -75,7 +75,7 @@ const NoticeContainar = styled.div<any>`
   overflow: auto;
   //원장님이 로그인 했을경우
   ${(props) =>
-    props.permission === 'institution' &&
+    props.permission === "institution" &&
     css`
       height: 85%;
     `}

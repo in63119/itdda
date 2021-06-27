@@ -1,16 +1,16 @@
-import React, { useState, useEffect, Children } from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect, Children } from "react";
+import styled from "styled-components";
 import {
   Route,
   Switch,
   RouteComponentProps,
   useRouteMatch,
-} from 'react-router-dom';
-import { CardList, StateListForm, WriteForm } from '../components/Index';
-import { requestApproveChild } from '../common/axios';
-import { addState } from '../common/utils/addState';
-import { handleGetAllChildByInstitution } from '../common/utils/firebaseFunction';
-import { firestore } from '../common/utils/firebase';
+} from "react-router-dom";
+import { CardList, StateListForm, WriteForm } from "../components/Index";
+import { requestApproveChild } from "../common/axios";
+import { addState } from "../common/utils/addState";
+import { handleGetAllChildByInstitution } from "../common/utils/firebaseFunction";
+import { firestore } from "../common/utils/firebase";
 interface propsType {
   userInfo: any;
 }
@@ -18,9 +18,9 @@ export default function Management({ userInfo }: propsType) {
   const urlMatch = useRouteMatch();
   handleGetAllChildByInstitution(userInfo.mainData.institutionId);
   const [inputVlaue, setInputValue] = useState({
-    title: '',
-    content: '',
-    category: '',
+    title: "",
+    content: "",
+    category: "",
   });
   //승인된 원아의 상태관리
   const [childInfo, setChildInfo] = useState<any>({
@@ -36,9 +36,9 @@ export default function Management({ userInfo }: propsType) {
   };
   const handleRealTimeChildrenState = (institutionId: string) => {
     firestore
-      .collection('institution')
+      .collection("institution")
       .doc(String(institutionId))
-      .collection('children')
+      .collection("children")
       .onSnapshot((doc) => {
         // querySnapshot.forEach((doc) => {
         //   console.log(`${doc.id} => ${doc.data()}`);

@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link, RouteComponentProps } from 'react-router-dom';
-import styled from 'styled-components';
-import { ListInnerCard } from './Index';
+import React from "react";
+import { Link, RouteComponentProps } from "react-router-dom";
+import styled from "styled-components";
+import { ListInnerCard } from "./Index";
 interface propsType {
   NoticeInnerCard: JSX.Element;
 }

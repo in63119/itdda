@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
-import styled from 'styled-components';
+import React, { useEffect, useState } from "react";
+import { Link, Redirect } from "react-router-dom";
+import styled from "styled-components";
 
 export default function GuestApproving() {
   // const permission = JSON.parse(localStorage.getItem('loginInfo')!).permission;
@@ -22,15 +22,15 @@ export default function GuestApproving() {
   );
 }
 const ApprovingWrap = styled.div`
-  background-image: url('../images/signbackground.png');
+  background-image: url("../images/signbackground.png");
 
   background-size: 100% 100%;
   background-repeat: no-repeat;
   @font-face {
-    font-family: 'NanumSquareWeb';
-    src: url('../fonts/NanumSquareOTFLight.otf');
+    font-family: "NanumSquareWeb";
+    src: url("../fonts/NanumSquareOTFLight.otf");
   }
-  font-family: 'NanumSquareWeb';
+  font-family: "NanumSquareWeb";
   display: flex;
   flex-direction: column;
   justify-content: center;

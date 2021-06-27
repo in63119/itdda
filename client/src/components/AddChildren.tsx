@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { Link, useHistory } from 'react-router-dom';
-import { requestProfileParentRegister } from '../common/axios';
-import { isNameCHeck } from '../common/utils/validation';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { Link, useHistory } from "react-router-dom";
+import { requestProfileParentRegister } from "../common/axios";
+import { isNameCHeck } from "../common/utils/validation";
 
 interface Props {
   children: string;
@@ -28,19 +28,19 @@ function AddChildren({
   //axios 요청
   const profileRegister = async (institutionId: string, childName: string) => {
     if (childName.length === 0) {
-      setErrorMessage('이름을 입력해주세요');
+      setErrorMessage("이름을 입력해주세요");
     } else if (!isNameCHeck) {
-      setErrorMessage('이름을 올바르게 입력하였는지 확인해주세요');
+      setErrorMessage("이름을 올바르게 입력하였는지 확인해주세요");
     } else {
       const results = await requestProfileParentRegister(
         institutionId,
         childName,
       );
       if (results) {
-        history.push('/main/profile');
-        setErrorMessage('');
+        history.push("/main/profile");
+        setErrorMessage("");
       } else {
-        setErrorMessage('올바른 요청을 보내지 못했습니다.');
+        setErrorMessage("올바른 요청을 보내지 못했습니다.");
       }
     }
   };
