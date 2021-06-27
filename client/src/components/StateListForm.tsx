@@ -1,15 +1,15 @@
-import React from 'react';
-import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
-import styled from 'styled-components';
-import { ListInnerCard, StateCardForm } from './Index';
+import React from "react";
+import { Link, withRouter, RouteComponentProps } from "react-router-dom";
+import styled from "styled-components";
+import { ListInnerCard, StateCardForm } from "./Index";
 interface propsType {
   title: string;
   childInfo: any;
   fristCategory?: string;
   secondCategory?: string;
-  location: RouteComponentProps['location'];
-  history: RouteComponentProps['history'];
-  match: RouteComponentProps['match'];
+  location: RouteComponentProps["location"];
+  history: RouteComponentProps["history"];
+  match: RouteComponentProps["match"];
 }
 function StateListForm({
   title,

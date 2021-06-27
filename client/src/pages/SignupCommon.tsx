@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { Redirect } from 'react-router-dom';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { Redirect } from "react-router-dom";
 
 interface Props {
   handleSignupDetail: any;
@@ -32,7 +32,7 @@ function SignupCommon({
                 id="selectPermission"
                 className="frameEl"
                 onChange={(e) => {
-                  onChange('permission', e);
+                  onChange("permission", e);
                 }}
               >
                 <option className="frameEl" value=""></option>
@@ -53,7 +53,7 @@ function SignupCommon({
               className="frameEl"
               type="text"
               placeholder="이름"
-              onChange={(e) => onChange('name', e)}
+              onChange={(e) => onChange("name", e)}
             ></input>
           </div>
           <div className="signupFrame">
@@ -61,7 +61,7 @@ function SignupCommon({
               className="frameEl"
               type="text"
               placeholder="관계 ex.엄마, 아빠, 선생님"
-              onChange={(e) => onChange('role', e)}
+              onChange={(e) => onChange("role", e)}
             ></input>
           </div>
           <div className="signupFrame">
@@ -69,7 +69,7 @@ function SignupCommon({
               className="frameEl"
               type="text"
               placeholder="전화번호"
-              onChange={(e) => onChange('mobile', e)}
+              onChange={(e) => onChange("mobile", e)}
             ></input>
           </div>
           <div className="error">{errormessage}</div>
@@ -87,7 +87,7 @@ function SignupCommon({
                 );
               }}
             >
-              {inputs.permission === 'institution' ? '다음' : '완료'}
+              {inputs.permission === "institution" ? "다음" : "완료"}
             </Button>
           </div>
         </div>
@@ -104,10 +104,10 @@ const Common = styled.div`
   justify-content: center;
   width: 100%;
   @font-face {
-    font-family: 'NanumSquareWeb';
-    src: url('../fonts/NanumSquareOTFLight.otf');
+    font-family: "NanumSquareWeb";
+    src: url("../fonts/NanumSquareOTFLight.otf");
   }
-  font-family: 'NanumSquareWeb';
+  font-family: "NanumSquareWeb";
   .nextFrame {
     display: flex;
     justify-content: center;

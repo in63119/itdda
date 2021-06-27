@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import styled, { css } from 'styled-components';
+import React, { useState } from "react";
+import styled, { css } from "styled-components";
 interface propsType {
   handleInsertImageFileInfo: any;
   userInfo: {
@@ -14,8 +14,8 @@ export default function ImagePostForm({
   handleInsertImageFileInfo,
 }: propsType) {
   const [image, setImage] = useState({
-    file: '',
-    previewURL: '',
+    file: "",
+    previewURL: "",
   });
   //공지사항 이미지 등록 함수
   //!reader.result의 리턴값 타입이 세가지 형태 (string, array, null )
@@ -39,8 +39,8 @@ export default function ImagePostForm({
   //이미지 제거
   const handleRemoveImage = () => {
     setImage({
-      file: '',
-      previewURL: '',
+      file: "",
+      previewURL: "",
     });
   };
   return (
@@ -56,7 +56,7 @@ export default function ImagePostForm({
           />
           <Image
             src={
-              image.previewURL ? image.previewURL : '../../images/add-image.png'
+              image.previewURL ? image.previewURL : "../../images/add-image.png"
             }
             alt="프로필사진"
           ></Image>

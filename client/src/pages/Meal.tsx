@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import { Route, Switch, useRouteMatch } from 'react-router-dom';
-import { CardList, WriteMeal, WriteForm } from '../components/Index';
-import { requestMealListAndUpload } from '../common/axios';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
+import { CardList, WriteMeal, WriteForm } from "../components/Index";
+import { requestMealListAndUpload } from "../common/axios";
 interface propsType {
   userInfo: any;
 }
 export default function Meal({ userInfo }: propsType) {
   const urlMatch = useRouteMatch();
   const [inputVlaue, setInputValue] = useState({
-    title: '',
-    content: '',
-    type: '',
-    category: '',
+    title: "",
+    content: "",
+    type: "",
+    category: "",
   });
   const [mealList, setMealList] = useState({
     mealList: [],
   });
   // 카테고리에 대한 상태
-  const [radioButton, setRadioButton] = useState('');
+  const [radioButton, setRadioButton] = useState("");
   //카테고리 상태변환
   const handleClickRadioButton = (category: string) => {
     setRadioButton(category);
@@ -44,7 +44,7 @@ export default function Meal({ userInfo }: propsType) {
   };
   // 화면 랜더링 시 급식 초기화
   useEffect(() => {
-    if (userInfo.permission === 'parent') {
+    if (userInfo.permission === "parent") {
       const childId = userInfo.mainData[userInfo.currentChild].childId;
       handleInitailzeMealList(childId);
     } else {

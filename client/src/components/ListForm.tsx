@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   useHistory,
   Link,
   withRouter,
   RouteComponentProps,
-} from 'react-router-dom';
-import styled from 'styled-components';
-import { ListInnerCard } from './Index';
+} from "react-router-dom";
+import styled from "styled-components";
+import { ListInnerCard } from "./Index";
 interface propsType {
   title: string;
   list: any;
@@ -17,9 +17,9 @@ interface propsType {
   handleUpdateList: any;
   handleChangeNotice?: any;
   permission: string;
-  location: RouteComponentProps['location'];
-  history: RouteComponentProps['history'];
-  match: RouteComponentProps['match'];
+  location: RouteComponentProps["location"];
+  history: RouteComponentProps["history"];
+  match: RouteComponentProps["match"];
 }
 function ListForm({
   contents,
@@ -64,7 +64,7 @@ function ListForm({
           <Text
             checked={clickedMenu}
             name={fristCategory}
-            className={clickedMenu === 0 ? 'active' : ''}
+            className={clickedMenu === 0 ? "active" : ""}
             onClick={() => handleChangeMenu(0, category.fristCategory)}
           >
             {category.fristCategory}
@@ -73,7 +73,7 @@ function ListForm({
         <Category>
           <Text
             checked={clickedMenu}
-            className={clickedMenu === 1 ? 'active' : ''}
+            className={clickedMenu === 1 ? "active" : ""}
             onClick={() => handleChangeMenu(1, category.secondCategory)}
           >
             {category.secondCategory}
@@ -89,10 +89,10 @@ function ListForm({
                 <ListInnerCard
                   key={index}
                   content={element}
-                  title={title === '알림장' ? title : element.title}
+                  title={title === "알림장" ? title : element.title}
                   // category={notice.category}
                   // createAt={notice.created_at}
-                  type={''}
+                  type={""}
                 ></ListInnerCard>
               );
             })}
@@ -100,23 +100,23 @@ function ListForm({
           <>
             {(() => {
               // console.log(title, ' = 타이틀 ', permission, '= 권한');
-              if (title === '알림장' && permission === 'institution') {
+              if (title === "알림장" && permission === "institution") {
                 return null;
               }
               if (
-                title === '투약의뢰서' &&
-                (permission === 'institution' || permission === 'teacher')
+                title === "투약의뢰서" &&
+                (permission === "institution" || permission === "teacher")
               ) {
                 return null;
               }
-              if (title === '공지사항' && permission === 'parent') {
+              if (title === "공지사항" && permission === "parent") {
                 return null;
               }
               return (
                 <ButtonWrapper>
                   <WireButton to={`${match.path}/write`}>작성</WireButton>
-                  <GoListButton onClick={() => history.replace('/main')}>
-                    {' '}
+                  <GoListButton onClick={() => history.replace("/main")}>
+                    {" "}
                     홈
                   </GoListButton>
                 </ButtonWrapper>
@@ -139,10 +139,10 @@ const Wrap = styled.div`
   height: 100%;
   .emptyData {
     @font-face {
-      font-family: 'NanumSquareWeb';
-      src: url('../fonts/NanumSquareOTFLight.otf');
+      font-family: "NanumSquareWeb";
+      src: url("../fonts/NanumSquareOTFLight.otf");
     }
-    font-family: 'NanumSquareWeb';
+    font-family: "NanumSquareWeb";
     text-align: center;
     margin-top: 100px;
   }

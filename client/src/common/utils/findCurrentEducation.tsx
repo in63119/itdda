@@ -1,4 +1,4 @@
-import { time } from 'console';
+import { time } from "console";
 
 //시간표의 시간과 현재 시간을 비교해서 시간표 progess bar의 %를 반환
 export const findStepEducation = (currentTime: string, totalTimetable: any) => {
@@ -7,23 +7,23 @@ export const findStepEducation = (currentTime: string, totalTimetable: any) => {
   if (
     totalTimetable === null ||
     totalTimetable === undefined ||
-    totalTimetable === 'undefinded'
+    totalTimetable === "undefinded"
   ) {
     return;
   }
   const data = totalTimetable
-    .replace(/\s/g, '')
-    .replace(/\[/g, '')
-    .replace(/\]/g, '')
-    .replace(/\{/g, '')
-    .replace(/\}/g, '')
-    .replace(/\"/g, '')
-    .replace(/\'/g, '')
-    .replace(/\},{/g, '}|{')
-    .replace(/step:/g, '')
-    .replace(/time:/g, '')
-    .replace(/contents:/g, '')
-    .split(',');
+    .replace(/\s/g, "")
+    .replace(/\[/g, "")
+    .replace(/\]/g, "")
+    .replace(/\{/g, "")
+    .replace(/\}/g, "")
+    .replace(/\"/g, "")
+    .replace(/\'/g, "")
+    .replace(/\},{/g, "}|{")
+    .replace(/step:/g, "")
+    .replace(/time:/g, "")
+    .replace(/contents:/g, "")
+    .split(",");
 
   const newArr = [];
   for (let i = 0; i < data.length; i += 3) {
@@ -36,10 +36,10 @@ export const findStepEducation = (currentTime: string, totalTimetable: any) => {
   }
   const calculatedCurrentTime = Number(currentTime);
   for (const element of newArr) {
-    const fristTime = element.time.split('~')[0];
-    const secondTime = element.time.split('~')[1];
-    const startTime = Number(fristTime.replace(':', ''));
-    const endTime = Number(secondTime.replace(':', ''));
+    const fristTime = element.time.split("~")[0];
+    const secondTime = element.time.split("~")[1];
+    const startTime = Number(fristTime.replace(":", ""));
+    const endTime = Number(secondTime.replace(":", ""));
 
     // console.log(startTime, ' 시작', endTime, '끝');
     // console.log(calculatedCurrentTime, '현재');
@@ -66,18 +66,18 @@ export function ChangeToArray(timetable: string) {
   }
   // console.log(timetable, '타임테이블 ');
   const data = timetable
-    .replace(/\s/g, '')
-    .replace(/\[/g, '')
-    .replace(/\]/g, '')
-    .replace(/\{/g, '')
-    .replace(/\"/g, '')
-    .replace(/\'/g, '')
-    .replace(/\}/g, '')
-    .replace(/\},{/g, '}|{')
-    .replace(/step:/g, '')
-    .replace(/time:/g, '')
-    .replace(/contents:/g, '')
-    .split(',');
+    .replace(/\s/g, "")
+    .replace(/\[/g, "")
+    .replace(/\]/g, "")
+    .replace(/\{/g, "")
+    .replace(/\"/g, "")
+    .replace(/\'/g, "")
+    .replace(/\}/g, "")
+    .replace(/\},{/g, "}|{")
+    .replace(/step:/g, "")
+    .replace(/time:/g, "")
+    .replace(/contents:/g, "")
+    .split(",");
   const arr = [];
   for (let i = 0; i < data.length; i += 3) {
     arr.push(

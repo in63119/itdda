@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import styled, { keyframes } from 'styled-components';
-import { isConstructorDeclaration } from 'typescript';
-import { findStepEducation } from '../common/utils/findCurrentEducation';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import styled, { keyframes } from "styled-components";
+import { isConstructorDeclaration } from "typescript";
+import { findStepEducation } from "../common/utils/findCurrentEducation";
 
 interface propsType {
   step: number;
@@ -13,15 +13,15 @@ interface props {
 }
 export default function Timetable({ userInfo }: props) {
   // 현재 시간 상태
-  const [time, setTime] = useState('');
+  const [time, setTime] = useState("");
   // timetable 상태
   const [currentTimeTable, setCurrentTimeTable] = useState({
     step: 0,
     previousStep: 0,
-    currentTime: '',
-    currentEducation: '',
+    currentTime: "",
+    currentEducation: "",
     totalTimetable:
-      userInfo.permission === 'parent'
+      userInfo.permission === "parent"
         ? userInfo.mainData[userInfo.currentChild].timetable!
         : userInfo.mainData.timetable,
   });
@@ -50,7 +50,7 @@ export default function Timetable({ userInfo }: props) {
     let minute: string = date.getMinutes().toString();
     // let minute: string = date.getMinutes().toString();
     if (minute.length === 1) {
-      minute = '0' + minute;
+      minute = "0" + minute;
     }
     setTime(`${hour}${minute}`);
   };
@@ -89,7 +89,7 @@ export default function Timetable({ userInfo }: props) {
                               return currentTimeTable.currentTime;
                             }
                             if (currentTimeTable.totalTimetable === null) {
-                              return '시간표를 등록하세요';
+                              return "시간표를 등록하세요";
                             }
                           })()}
                         </TimeText>
@@ -97,7 +97,7 @@ export default function Timetable({ userInfo }: props) {
                       <Education>
                         <label>
                           {currentTimeTable.currentEducation ||
-                            '시간표를 확인해주세요'}
+                            "시간표를 확인해주세요"}
                         </label>
                       </Education>
                     </CurrentState>
@@ -130,10 +130,10 @@ const Wrap = styled.div`
   margin: 0 auto;
   width: 85%;
   @font-face {
-    font-family: 'NanumSquareWeb';
-    src: url('../fonts/NanumSquareOTFLight.otf');
+    font-family: "NanumSquareWeb";
+    src: url("../fonts/NanumSquareOTFLight.otf");
   }
-  font-family: 'NanumSquareWeb';
+  font-family: "NanumSquareWeb";
 `;
 const TimeText = styled.label`
   font-size: 10px;

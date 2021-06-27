@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
-import { SignupCommon, SignupInstitution } from '../pages/Index';
+import React, { useEffect, useState } from "react";
+import { Switch, Route, Link } from "react-router-dom";
+import { SignupCommon, SignupInstitution } from "../pages/Index";
 import {
   Signup,
   SignupDetail,
@@ -10,23 +10,23 @@ import {
   SignupSearchClass,
   InstiSelection,
   SocialSelection,
-} from '../components/Index';
+} from "../components/Index";
 import {
   isPasswordCheck,
   isIdCheck,
   isPasswordCorrect,
   isNameCHeck,
   isPhoneCheck,
-} from '../common/utils/validation';
-import { useHistory } from 'react-router-dom';
-import 'dotenv/config';
-import axios from 'axios';
+} from "../common/utils/validation";
+import { useHistory } from "react-router-dom";
+import "dotenv/config";
+import axios from "axios";
 
-import { isEmailExist } from '../common/axios';
+import { isEmailExist } from "../common/axios";
 
-import styled from 'styled-components';
-import { userInfo } from 'os';
-import { AnyMxRecord } from 'dns';
+import styled from "styled-components";
+import { userInfo } from "os";
+import { AnyMxRecord } from "dns";
 
 interface Props {
   setModalMessage: any;
@@ -38,8 +38,8 @@ axios.defaults.withCredentials = true;
 //!카카오톡 REST api key 리액트는 환경변수(.env)에서 'REACT_APP_'을 붙여줘야 함
 const kakaoKey = process.env.REACT_APP_KAKAO_RESTAPI_KEY;
 //!카카오 로그인&회원가입 관련 url
-const serverSignupUrl = 'https://datda.link/kakao/signup'; //! datda 카카오회원가입 주소
-const redirectUri = 'https://datda.net/signup'; //! 후에 datda 주소로 변경
+const serverSignupUrl = "https://datda.link/kakao/signup"; //! datda 카카오회원가입 주소
+const redirectUri = "https://datda.net/signup"; //! 후에 datda 주소로 변경
 //!테스트용 서버 url
 // const serverSignupUrl = 'http://localhost:5000/kakao/signup'; //! 서버 카카오회원가입 주소
 // const redirectUri = 'http://localhost:3000/signup'; //! 후에 datda 주소로 변경
@@ -54,17 +54,17 @@ function Signin({ setModalMessage, setModalVisible }: Props) {
     passwordCheck: null,
     name: null,
     mobile: null,
-    permission: '',
+    permission: "",
     role: null,
   });
   const [instiInputs, setInstiInputs] = useState({
     institutionName: null,
     master: null,
-    info: '',
+    info: "",
   });
 
   //에러메세지
-  const [errormessage, setErrormessage] = useState<string>('');
+  const [errormessage, setErrormessage] = useState<string>("");
   //첫 페이지(회원 유형 선택)
   const [selection, setSelection] = useState<boolean>(true);
 
@@ -105,7 +105,7 @@ function Signin({ setModalMessage, setModalVisible }: Props) {
       setIsLoading(true);
       const url = new URL(window.location.href);
       // console.log(url);
-      const authorizationCode = url.searchParams.get('code');
+      const authorizationCode = url.searchParams.get("code");
       if (authorizationCode) {
         setSelection(false);
         handleKakaoSignup(authorizationCode);
@@ -114,7 +114,7 @@ function Signin({ setModalMessage, setModalVisible }: Props) {
     } else if (userEmail) {
       setSelection(false);
       setInputs({ ...inputs, email: userEmail });
-      history.push('/signup/common');
+      history.push("/signup/common");
     }
   }, [isKakao, userEmail]);
 
@@ -122,11 +122,11 @@ function Signin({ setModalMessage, setModalVisible }: Props) {
     const results = await isEmailExist(email);
     if (results === false) {
       setModalVisible(true);
-      setModalMessage('이미 가입된 아이디입니다');
+      setModalMessage("이미 가입된 아이디입니다");
       setIsEmail(false);
     } else if (results === true) {
       setModalVisible(true);
-      setModalMessage('이 이메일은 사용가능합니다');
+      setModalMessage("이 이메일은 사용가능합니다");
       setIsEmail(true);
     }
   };
@@ -147,14 +147,14 @@ function Signin({ setModalMessage, setModalVisible }: Props) {
         // 만약 회원가입이 되었으면 res = 이메일 + 200상태
         // 만약 기존 이메일이 있어 회원가입이 안되었으면 res = 200상태
         if (res.status === 200) {
-          alert('카카오 회원가입이 되었습니다. 세부항목을 입력해주세요.');
+          alert("카카오 회원가입이 되었습니다. 세부항목을 입력해주세요.");
           setUserEmail(res.data.email);
           setIsLoading(false);
         } else if (res.status === 201) {
-          alert('이미 계정이 있습니다. 로그인 하시기 바랍니다.');
+          alert("이미 계정이 있습니다. 로그인 하시기 바랍니다.");
           // setUserEmail(res.data.email);
           setIsLoading(false);
-          history.push('/');
+          history.push("/");
         }
       })
       .catch((error) => {
@@ -169,21 +169,21 @@ function Signin({ setModalMessage, setModalVisible }: Props) {
     passwordCheck: string,
   ) => {
     if (email === null) {
-      setErrormessage('정보를 입력하서야 합니다');
+      setErrormessage("정보를 입력하서야 합니다");
     } else if (!isIdCheck(email)) {
-      setErrormessage('올바르지 못한 이메일입니다');
+      setErrormessage("올바르지 못한 이메일입니다");
     } else if (isEmail === false) {
-      setErrormessage('이메일 중복을 확인해주세요');
+      setErrormessage("이메일 중복을 확인해주세요");
     } else if (!isPasswordCheck(password)) {
       setErrormessage(
-        '최소 8자 이상의, 특수문자와 숫자, 문자를 포함한 비밀번호를 입력하셔야 합니다',
+        "최소 8자 이상의, 특수문자와 숫자, 문자를 포함한 비밀번호를 입력하셔야 합니다",
       );
     } else if (!isPasswordCorrect(password, passwordCheck)) {
-      setErrormessage('비밀번호가 일치하지 않습니다.');
+      setErrormessage("비밀번호가 일치하지 않습니다.");
     } else {
       setSignup(false);
-      history.push('/signup/common');
-      setErrormessage('');
+      history.push("/signup/common");
+      setErrormessage("");
     }
   };
 
@@ -196,30 +196,30 @@ function Signin({ setModalMessage, setModalVisible }: Props) {
     password: string,
   ) => {
     if (name === null || role === null || phone === null) {
-      setErrormessage('모든 항목은 필수입니다');
+      setErrormessage("모든 항목은 필수입니다");
     } else if (inputs.permission.length === 0) {
-      setErrormessage('가입 유형을 확인해주세요');
+      setErrormessage("가입 유형을 확인해주세요");
     } else if (!isNameCHeck(name)) {
-      setErrormessage('이름을 확인해주세요');
+      setErrormessage("이름을 확인해주세요");
     } else if (!isPhoneCheck(phone)) {
-      setErrormessage('올바른 전화번호를 입력해주세요.');
+      setErrormessage("올바른 전화번호를 입력해주세요.");
     } else {
-      setErrormessage('');
-      inputs.permission === 'institution'
-        ? (setInstitution(true), history.push('/signup/institution'))
+      setErrormessage("");
+      inputs.permission === "institution"
+        ? (setInstitution(true), history.push("/signup/institution"))
         : postSignup(name, role, phone, permission, email, password);
     }
   };
   const handleInstitution = (institutionName: string, master: string) => {
     institutionName === null || master === null
-      ? setErrormessage('모든 항목은 필수입니다')
-      : (setErrormessage(''), setInstitution(false), setInstiSelection(true));
+      ? setErrormessage("모든 항목은 필수입니다")
+      : (setErrormessage(""), setInstitution(false), setInstiSelection(true));
   };
 
   const handleInstiSelection = (info: string) => {
     info.length === 0
-      ? setErrormessage('기관 유형을 선택해주세요')
-      : (history.push('/'), setErrormessage(''));
+      ? setErrormessage("기관 유형을 선택해주세요")
+      : (history.push("/"), setErrormessage(""));
   };
 
   const postSignup = (
@@ -231,7 +231,7 @@ function Signin({ setModalMessage, setModalVisible }: Props) {
     password: string,
   ) => {
     axios
-      .post('https://datda.link/auth/signup', {
+      .post("https://datda.link/auth/signup", {
         userName: name,
         role: role,
         mobile: Number(phone),
@@ -242,10 +242,10 @@ function Signin({ setModalMessage, setModalVisible }: Props) {
       .then((res) => {
         if (res.status === 200) {
           setIsLoading(false);
-          history.push('/login');
+          history.push("/login");
         } else {
           setIsLoading(false);
-          alert('이미 아이디가 있습니다.');
+          alert("이미 아이디가 있습니다.");
         }
       });
   };
@@ -363,14 +363,14 @@ function Signin({ setModalMessage, setModalVisible }: Props) {
 export default Signin;
 
 const SignupGlobal = styled.div`
-  background-image: url('../images/signbackground.png');
+  background-image: url("../images/signbackground.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   @font-face {
-    font-family: 'NanumSquareWeb';
-    src: url('../fonts/NanumSquareOTFLight.otf');
+    font-family: "NanumSquareWeb";
+    src: url("../fonts/NanumSquareOTFLight.otf");
   }
-  font-family: 'NanumSquareWeb';
+  font-family: "NanumSquareWeb";
   .signGlobalFrame {
     display: flex;
     flex-direction: column;

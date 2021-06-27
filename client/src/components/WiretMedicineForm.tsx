@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 interface propType {
   handleInputValue: any;
   type: string;
@@ -17,7 +17,7 @@ export default function WriteMedicineForm({
     <Wrap>
       <Container>
         <SubText>
-          {`금일 본 자녀의 투약을 ${'밀알어린이집'} 선생님께 의뢰합니다.`}
+          {`금일 본 자녀의 투약을 ${"밀알어린이집"} 선생님께 의뢰합니다.`}
         </SubText>
         <InputForm required defaultValue="증상 : " name="symtom"></InputForm>
         <InputForm
@@ -44,7 +44,7 @@ export default function WriteMedicineForm({
           <Warning>{`*투약으로 인한 책임은 의뢰자가 집니다.`}</Warning>
           <DateWrapper>
             <div>{`${year}.${month}.${day}`}</div>
-            <div>보호자 : {'김엄마'}</div>
+            <div>보호자 : {"김엄마"}</div>
           </DateWrapper>
         </WriterWrapper>
       </Container>

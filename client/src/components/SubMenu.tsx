@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link, RouteComponentProps } from 'react-router-dom';
-import styled from 'styled-components';
+import React from "react";
+import { Link, RouteComponentProps } from "react-router-dom";
+import styled from "styled-components";
 interface propsType {
   permission: string;
   handleLogout: any;
@@ -21,7 +21,7 @@ export default function SubMenu({ permission, handleLogout }: propsType) {
           <img className="home" src="../images/home.png" />
         </div>
       </Home>
-      {permission === 'institution' ? (
+      {permission === "institution" ? (
         <>
           <SubMenuButton to="/main/director">기관설정</SubMenuButton>
           <MobileSubMenu to="/main/director">
@@ -31,7 +31,7 @@ export default function SubMenu({ permission, handleLogout }: propsType) {
           </MobileSubMenu>
         </>
       ) : null}
-      {permission === 'teacher' ? (
+      {permission === "teacher" ? (
         <>
           <SubMenuButton to="/main/management">원아 상태관리</SubMenuButton>
           <SubMenuButton to="/main/approve">원아승인</SubMenuButton>
