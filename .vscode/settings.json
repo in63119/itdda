@@ -33,5 +33,5 @@
 	"vim.vimrc.enable": true,
 	"editor.formatOnSave": true,
 	"typescript.updateImportsOnFileMove.enabled": "always",
-	"typescript.tsdk": "/Users/kjw/Desktop/itdda/node_modules/typescript/lib"
+	"typescript.tsdk": "/Users/kjw/Desktop/itdda/client/node_modules/typescript/lib"
 }

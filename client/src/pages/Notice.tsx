@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { ReadForm, ListForm, WriteForm } from "../components/Index";
@@ -29,7 +29,8 @@ function Notice({
     category: "",
   });
   // 카테고리에 대한 상태
-  const [radioButton, setRadioButton] = useState("");
+  const [radioButton, isetRadioButton] = useState("");
+
   //카테고리 상태변환
   const handleClickRadioButton = (category: string) => {
     setInputValue({
@@ -50,6 +51,15 @@ function Notice({
       type: type,
     });
   };
+  useEffect(() => {
+    return () => {
+      setList({
+        ...list,
+        currentCategory: "",
+        currentList: [],
+      });
+    };
+  }, []);
   return (
     <Wrap>
       <Switch>
@@ -66,6 +76,7 @@ function Notice({
             secondCategory="행사"
           ></ListForm>
         </Route>
+
         <Route exact path={`${urlMatch.path}/write`}>
           <WriteForm
             radioButton={radioButton}
@@ -82,9 +93,13 @@ function Notice({
         </Route>
         <Route
           exact
-          path={`${urlMatch.path}/post/:no`}
+          path={`${urlMatch.path}/:no`}
           render={() => (
-            <ReadForm contents={list.currentList} title="공지사항"></ReadForm>
+            <ReadForm
+              contents={list}
+              title="공지사항"
+              userInfo={userInfo}
+            ></ReadForm>
           )}
         ></Route>
       </Switch>

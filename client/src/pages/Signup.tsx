@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route, Link } from "react-router-dom";
-import { SignupCommon, SignupInstitution } from "../pages/Index";
+import { SignupCommon, SignupInstitution } from "./Index";
 import {
   Signup,
   SignupDetail,

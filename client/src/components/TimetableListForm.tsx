@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { TimeTableCard } from "../components/Index";
+import { TimeTableCard } from "./Index";
 import { requestUploadTimetable } from "../common/axios";
 import { ChangeToArray } from "../common/utils/findCurrentEducation";
 import { Route, Switch, useRouteMatch, Link } from "react-router-dom";

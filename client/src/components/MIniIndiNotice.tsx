@@ -20,7 +20,7 @@ export default function MiniIndiNotice({ userInfo, list }: propsType) {
                     content={element}
                     key={element.indiNoticeId}
                     title={"알림장"}
-                    type={"mainIndiNotice"}
+                    type={"message"}
                   ></ListInnerCard>
                 );
               })
@@ -30,7 +30,7 @@ export default function MiniIndiNotice({ userInfo, list }: propsType) {
                     content={element}
                     key={element.indiNoticeId}
                     title={"알림장"}
-                    type={"mainIndiNotice"}
+                    type={"message"}
                   ></ListInnerCard>
                 );
               })}
