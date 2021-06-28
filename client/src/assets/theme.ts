@@ -66,7 +66,7 @@ const common = {
   unclickedButtonStyle: `
 	background:#d8d8d8;
 		color:white;
-		padding: 5px 20px 5px 20px;
+		padding: 4px 15px 4px 15px;
     border: none;
 		border-radius: 20px;
 		outline:0px;
