@@ -148,7 +148,6 @@ export default CreateClass;
 
 const ManageContainer = styled.div`
   width: 100%;
-  height: 75%;
 `;
 const Wrap = styled.div`
   width: 100%;
@@ -192,11 +191,11 @@ const Wrap = styled.div`
 `;
 
 const ButtonArea = styled.div`
-  height: 10%;
+  margin-top: 5%;
   text-align: center;
 `;
 
 const Button = styled.button`
+  height: 25%;
   ${({ theme }) => theme.common.defaultButton}
-  margin : 2% 0 2% 0;
 `;
