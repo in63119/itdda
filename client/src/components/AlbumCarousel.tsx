@@ -43,7 +43,7 @@ const CarouseAlbum = styled(Carousel)`
   margin: 0 auto;
 `;
 const AlbumDiv = styled.div`
-  width: 50%;
+  width: 250px;
   height: 218px;
   margin: 0 auto;
 `;
