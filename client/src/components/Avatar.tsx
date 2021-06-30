@@ -90,18 +90,16 @@ const Wrap = styled.div`
   width: 100%;
   height: 100%;
   @media ${({ theme }) => theme.device.mobileL} {
-    width: auto;
-    height: 80%;
+    height: 90%;
+    width: 80%;
   }
 `;
 const AvatarFrame = styled.div`
   overflow: hidden;
   width: 100%;
   height: 100%;
-  border-radius: 12px 12px 60px 12px;
+  border-radius: 8px 8px 35px 8px;
   @media ${({ theme }) => theme.device.mobileL} {
-    width: 80%;
-    margin-left: 10%;
   }
 `;
 const AvatarCard = styled.img`
