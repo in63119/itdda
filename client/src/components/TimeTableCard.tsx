@@ -58,22 +58,15 @@ export default function TimetableCard({
   );
 }
 const Container = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 20% 40% 40%;
   width: 100%;
-  // text-align: center;
 `;
 const NumberWrapper = styled.span`
-  display: flex;
-  flex: 0.2 auto;
   font-size: 1rem;
 `;
-const TimeWrapper = styled.span`
-  display: flex;
-  flex: 1 auto;
-`;
+const TimeWrapper = styled.span``;
 const ContentsWrapper = styled.span`
-  display: flex;
-  flex: 2 auto;
   @font-face {
     font-family: "NanumSquareWeb";
     src: url("../fonts/NanumSquareOTFLight.otf");
@@ -82,38 +75,18 @@ const ContentsWrapper = styled.span`
 `;
 const Number = styled.span`
   font-size: 10px;
-  flex: 1 auto;
 `;
-const InputNumber = styled.input`
-  ${({ theme }) => theme.common.defaultInput}
-  flex: 1 auto;
-`;
-const Time = styled.span`
-  text-align: end;
-  align-self: center;
-  width: 3rem;
-  padding-right: 3%;
-  flex: 1.3 auto;
-`;
+const Time = styled.span``;
 const InputTime = styled.input`
   width: 7rem;
   ${({ theme }) => theme.common.defaultInput}
 `;
-const Contents = styled.span`
-  flex: 1 auto;
-  width: 5rem;
-  align-self: center;
-
-  text-align: end;
-  padding-right: 3%;
-`;
+const Contents = styled.span``;
 const InputContents = styled.input`
   ${({ theme }) => theme.common.defaultInput}
   width: 100%;
-
   flex: 1 auto;
 `;
-
 const CardWrapper = styled.div`
   ${({ theme }) => theme.common.defaultCardDiv}
   width:95%;
