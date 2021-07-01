@@ -15,7 +15,8 @@ function CreateClass({ setModalMessage, setModalVisible }: Props) {
   const [isClass, setIsClass] = useState<boolean>(false);
   const [isTeacher, setIsTeacher] = useState<boolean>(true);
   const [isStudent, setIsStudent] = useState<boolean>(false);
-
+  //클래스 추가 창
+  const [classInputs, setClassInputs] = useState({ className: "" });
   const [message, setMessage] = useState<number>();
   //useEffect를 위한 인자
   const [classCheck, setClassCheck] = useState<string>("");
@@ -85,6 +86,7 @@ function CreateClass({ setModalMessage, setModalVisible }: Props) {
   const toggleTeacher = () => {
     setIsClass(false);
     setIsTeacher(true);
+    setClassInputs({ className: "" });
     // setIsStudent(false);
   };
 
@@ -93,6 +95,7 @@ function CreateClass({ setModalMessage, setModalVisible }: Props) {
     setIsTeacher(false);
     // setIsStudent(true);
   };
+
   return (
     <Wrap>
       <h3>{isClass ? "반 구성" : isTeacher ? "선생님 관리" : "원아 관리"}</h3>
@@ -129,6 +132,8 @@ function CreateClass({ setModalMessage, setModalVisible }: Props) {
       /> */}
         <ClassManage
           isClass={isClass}
+          classInputs={classInputs}
+          setClassInputs={setClassInputs}
           classInfo={classInfo}
           setModalMessage={setModalMessage}
           setModalVisible={setModalVisible}
