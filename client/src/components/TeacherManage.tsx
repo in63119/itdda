@@ -159,11 +159,7 @@ export default TeacherManage;
 const TeacherName = styled.span``;
 const CreatedAt = styled.span``;
 const TeacherWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  text-align: center;
-  align-items: center;
-  margin-top: 3px;
+  ${({ theme }) => theme.common.itemInListDiv};
 `;
 const TeacherManageWrap = styled.div`
   #teacherWaitingTitle {
