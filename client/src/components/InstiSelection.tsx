@@ -10,7 +10,7 @@ interface Props {
   inputInstiInfo: any;
   postInsti: any;
 }
-function InstiSelection({
+function instiSelection({
   inputs,
   instiInputs,
   instiSelection,
@@ -85,7 +85,7 @@ function InstiSelection({
   );
 }
 
-export default InstiSelection;
+export default instiSelection;
 
 const InstSelect = styled.div`
   width: 600px;

@@ -21,7 +21,6 @@ function TeacherManage({
   changeClassButton,
 }: Props) {
   const [checkedClass, setCheckedClass] = useState({ classId: "" });
-
   const [checkedTeacher, setCheckedTeacher] = useState({ teacherId: "" });
 
   const onModal = (value: any) => {
@@ -33,14 +32,11 @@ function TeacherManage({
     const { value } = e.target;
     setCheckedClass({ ...checkedClass, classId: value });
   };
-
   const onCheckedTeacher = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setCheckedTeacher({ ...checkedTeacher, teacherId: value });
   };
-
   //곧 승인 요청을 내려줄 함수;
-
   return isTeacher ? (
     <TeacherManageWrap id="teacher">
       <UnapprovedArea>
@@ -53,11 +49,13 @@ function TeacherManage({
           </div>
           <div id="teacherWaitingList">
             {teachers.unapproved.map((teacher: any) => (
-              <div className="waitingEl">
-                <span className="nameResults">{teacher.teacherName}</span>
-                <span className="timeResults">
+              <TeacherWrapper className="waitingEl">
+                <TeacherName className="nameResults">
+                  {teacher.teacherName}
+                </TeacherName>
+                <CreatedAt className="timeResults">
                   {changeTimeStamp(teacher.createdAt)}
-                </span>
+                </CreatedAt>
                 <UnclickedButton
                   className="approvedButton"
                   onClick={() => {
@@ -68,7 +66,7 @@ function TeacherManage({
                 </UnclickedButton>
                 {/* <button>보류</button>
                 <button>거절</button> */}
-              </div>
+              </TeacherWrapper>
             ))}
           </div>
         </div>
@@ -158,24 +156,19 @@ function TeacherManage({
 
 export default TeacherManage;
 
+const TeacherName = styled.span``;
+const CreatedAt = styled.span``;
+const TeacherWrapper = styled.div`
+  ${({ theme }) => theme.common.itemInListDiv};
+`;
 const TeacherManageWrap = styled.div`
   #teacherWaitingTitle {
-    border-bottom: 1px solid lightgray;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
     font-size: 1.2rem;
+    border-bottom: 1px solid lightgray;
     padding: 1%;
-    .titleTeacher {
-      text-align: center;
-      flex: 2 auto;
-      padding-left: 20px;
-    }
-    .titleTime {
-      text-align: center;
-      flex: 1 auto;
-    }
-    .titleBlank {
-      flex: 9 auto;
-    }
   }
   .subTitle {
     color: #6f6eff;
@@ -184,30 +177,16 @@ const TeacherManageWrap = styled.div`
   #teacherWaiting {
     border-radius: 5px;
     height: 15vh;
-
     overflow: auto;
     border: 1px solid lightgray;
     border-radius: 7px;
   }
-
   #teacherWaitingList {
-    margin-left: 20px;
-    .waitingEl {
-      display: flex;
-      align-items: center;
-
-      margin: 1% 0 1% 0;
-    }
-    .nameResults {
-      flex: 1 auto;
-      text-align: center;
-    }
     .timeResults {
       color: ${({ theme }) => theme.colors.gray};
-      flex: 4 auto;
     }
     .approvedButton {
-      flex: 2 auto;
+      justify-self: center;
       max-width: fit-content;
     }
   }
@@ -222,11 +201,15 @@ const TeacherManageWrap = styled.div`
       overflow: auto;
       #manageListArea {
         max-height: 57vh;
+        padding: 1%;
       }
     }
     #teacherManageTitle {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      text-align: center;
+      font-size: 1.2rem;
       border-bottom: 1px solid lightgray;
-      display: flex;
       padding: 1%;
       .titleSelect {
         text-align: center;
@@ -234,9 +217,6 @@ const TeacherManageWrap = styled.div`
         width: 100%;
       }
       .titleTeacherr {
-        text-align: center;
-        flex: 1 auto;
-        width: 100%;
       }
       .titleClass {
         text-align: center;
@@ -251,39 +231,30 @@ const TeacherManageWrap = styled.div`
   }
 
   .managingEl {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    text-align: center;
     align-items: center;
-
-    margin: 1% 0 1% 0;
+    margin-top: 3px;
     .manageRadio {
-      flex: 1 auto;
-      width: 85%;
+      justify-self: center;
     }
     .manageTeacher {
       text-align: center;
-      flex: 1 auto;
-      width: 71%;
-      padding-right: 9px;
     }
     .manageClass {
       text-align: center;
-      width: 90%;
-      flex: 1 auto;
-      padding-right: 49px;
       @media ${({ theme }) => theme.device.mobileL} {
         padding-right: 0px;
       }
     }
     .unapprovedButton {
-      max-width: fit-content;
-      flex: 1 auto;
-      width: 80%;
+      place-self: center;
     }
   }
 
   #teacherButtonArea2 {
     text-align: end;
-    border-top: 1px solid lightgray;
     margin-top: 2%;
     padding-top: 2%;
     width: 90%;

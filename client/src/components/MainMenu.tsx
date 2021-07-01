@@ -18,7 +18,7 @@ export default function MainMenu() {
           <IconImage src="../images/meal-list.png" alt="공지사항"></IconImage>
           <Describe>급식표</Describe>
         </IconWrap>
-        <IconWrap to="/main/indi_notice">
+        <IconWrap to="/main/message">
           <IconImage src="../images/indi-notice.png" alt="공지사항"></IconImage>
           <Describe>알림장</Describe>
         </IconWrap>
@@ -36,7 +36,7 @@ export default function MainMenu() {
 }
 const Wrap = styled.div`
   width: 100%;
-  height: 20%;
+  height: 10%;
   border-top: 1px solid #eeeeee;
   border-bottom: 1px solid #eeeeee;
 `;

@@ -148,7 +148,6 @@ export default CreateClass;
 
 const ManageContainer = styled.div`
   width: 100%;
-  height: 75%;
 `;
 const Wrap = styled.div`
   width: 100%;
@@ -156,14 +155,6 @@ const Wrap = styled.div`
   padding: 5%;
   .teacherArea {
     background-color: pink;
-  }
-  .classList {
-    display: inline-block;
-    border: solid 1px;
-    border-radius: 5px;
-    width: 60%;
-    height: 5%;
-    padding-left: 2%;
   }
   #student {
     #studentListArea {
@@ -192,11 +183,11 @@ const Wrap = styled.div`
 `;
 
 const ButtonArea = styled.div`
-  height: 10%;
+  margin-top: 5%;
   text-align: center;
 `;
 
 const Button = styled.button`
+  height: 25%;
   ${({ theme }) => theme.common.defaultButton}
-  margin : 2% 0 2% 0;
 `;

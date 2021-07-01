@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { TimeTableCard } from "../components/Index";
+import { TimeTableCard } from "./Index";
 import { requestUploadTimetable } from "../common/axios";
 import { ChangeToArray } from "../common/utils/findCurrentEducation";
 import { Route, Switch, useRouteMatch, Link } from "react-router-dom";
@@ -98,7 +98,6 @@ const Title = styled.div`
   justify-content: start;
   margin-left: 15px;
   font-size: 35px;
-  width: 100%;
   height: 10%;
   color: black;
   padding-top: 30px;

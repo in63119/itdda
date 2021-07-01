@@ -10,9 +10,11 @@ import { ListInnerCard } from "./Index";
 interface propsType {
   title: string;
   list: any;
-  setList: ({}) => void;
+  setList: ({}: any) => void;
   fristCategory?: string;
   secondCategory?: string;
+  selectedCategory?: string;
+  setSelectedCategory?: any;
   contents: any;
   handleUpdateList: any;
   handleChangeNotice?: any;
@@ -22,16 +24,16 @@ interface propsType {
   match: RouteComponentProps["match"];
 }
 function ListForm({
+  list,
+  match,
+  title,
+  setList,
   contents,
   permission,
-  list,
-  setList,
-  title,
   fristCategory,
   secondCategory,
   handleUpdateList,
   handleChangeNotice,
-  match,
 }: propsType) {
   const history = useHistory();
   //탭 메뉴 상태
@@ -41,6 +43,8 @@ function ListForm({
     fristCategory: fristCategory,
     secondCategory: secondCategory,
   });
+  const [selectedCategory, setSelectedCategory] = useState("");
+
   // 탭 메뉴 변경 핸들러에 따른 리스트 데이터 변경
   const handleChangeMenu = (menu: number, category?: string) => {
     setClickedMenu(menu);
@@ -49,13 +53,11 @@ function ListForm({
   // 유저가 현재 있는 리스트 페이지의 내용을 랜더링 하기 위해 리스트를 업데이트 함.
   useEffect(() => {
     handleUpdateList(title, category.fristCategory);
-    return () => {
-      setList({
-        ...list,
-        currentList: [],
-      });
-    };
+    setSelectedCategory(list.currentCategory);
   }, []);
+  useEffect(() => {
+    setSelectedCategory(list.currentCategory);
+  }, [list]);
   return (
     <Wrap>
       <Title>{title}</Title>

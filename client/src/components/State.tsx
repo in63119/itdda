@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
-import { JsxEmit } from "typescript";
 import { updateChildState } from "../common/utils/firebaseFunction";
 interface propsType {
   type: string;
@@ -10,7 +8,9 @@ interface propsType {
   isSleep: boolean;
   isEat: boolean;
   please: boolean;
-  childInfo: any;
+  childInfo?: any;
+  userInfo?: any;
+  isTeacher: boolean;
 }
 export default function State({
   type,
@@ -19,7 +19,7 @@ export default function State({
   isOk,
   isSleep,
   isEat,
-  please,
+  isTeacher,
 }: propsType) {
   const handelUpdataChildState = (
     e: any,
@@ -27,6 +27,9 @@ export default function State({
     state: boolean,
   ) => {
     const selectedChildId = e.target.id;
+    if (!isTeacher) {
+      return;
+    }
     updateChildState(
       childInfo.institutionId,
       selectedChildId,
@@ -34,44 +37,44 @@ export default function State({
       state,
     );
   };
-  // console.log(isCheck, ' =출석', isOk, '=완료', isSleep, '=낮잠');
   return (
     <Wrap>
       <Container type={type}>
-        <StateWrap nowState={isCheck}>
-          {childInfo ? (
-            <StateText
-              id={childInfo.childId}
-              isTeacher={true}
-              onClick={(e: any) =>
-                handelUpdataChildState(e, "isCheck", isCheck)
-              }
-            >
+        <StateWrap
+          nowState={isCheck}
+          isTeacher={isTeacher}
+          onClick={(e: any) => handelUpdataChildState(e, "isCheck", isCheck)}
+        >
+          {isTeacher ? (
+            <StateText id={childInfo.childId} isTeacher={isTeacher}>
               출석
             </StateText>
           ) : (
             <StateText>출석</StateText>
           )}
           <StateIcons
+            id={isTeacher ? childInfo.childId : undefined}
             src={
               isCheck ? "../images/check-white.png" : "../images/check-gray.png"
             }
             alt="출석"
           ></StateIcons>
         </StateWrap>
-        <StateWrap nowState={!isOk}>
+
+        <StateWrap
+          nowState={!isOk}
+          isTeacher={isTeacher}
+          onClick={(e: any) => handelUpdataChildState(e, "isOk", isOk)}
+        >
           {childInfo ? (
-            <StateText
-              id={childInfo.childId}
-              isTeacher={true}
-              onClick={(e: any) => handelUpdataChildState(e, "isOk", isOk)}
-            >
+            <StateText id={childInfo.childId} isTeacher={true}>
               투약
             </StateText>
           ) : (
             <StateText>투약</StateText>
           )}
           <StateIcons
+            id={isTeacher ? childInfo.childId : undefined}
             src={
               isOk
                 ? "../images/medicine-gray.png"
@@ -79,48 +82,41 @@ export default function State({
             }
             alt="투약"
           ></StateIcons>
-          {/* {childInfo.permission === 'parent' ? (
-            <>
-              <StateWrap nowState={isOk}>
-                <StateText>투약약</StateText>
-              </StateWrap>
-            </>
-          ) : null} */}
         </StateWrap>
-        <StateWrap nowState={isSleep}>
+        <StateWrap
+          nowState={isSleep}
+          isTeacher={isTeacher}
+          onClick={(e: any) => handelUpdataChildState(e, "isSleep", isSleep)}
+        >
           {childInfo ? (
-            <StateText
-              id={childInfo.childId}
-              isTeacher={true}
-              onClick={(e: any) =>
-                handelUpdataChildState(e, "isSleep", isSleep)
-              }
-            >
+            <StateText id={childInfo.childId} isTeacher={true}>
               낮잠
             </StateText>
           ) : (
             <StateText>낮잠</StateText>
           )}
           <StateIcons
+            id={isTeacher ? childInfo.childId : undefined}
             src={
               isSleep ? "../images/nap-white.png" : "../images/sleep-gray.png"
             }
             alt="낮잠"
           ></StateIcons>
         </StateWrap>
-        <StateWrap nowState={isEat}>
+        <StateWrap
+          nowState={isEat}
+          isTeacher={isTeacher}
+          onClick={(e: any) => handelUpdataChildState(e, "isEat", isEat)}
+        >
           {childInfo ? (
-            <StateText
-              id={childInfo.childId}
-              isTeacher={true}
-              onClick={(e: any) => handelUpdataChildState(e, "isEat", isEat)}
-            >
+            <StateText id={childInfo.childId} isTeacher={true}>
               식사
             </StateText>
           ) : (
             <StateText>식사</StateText>
           )}
           <StateIcons
+            id={isTeacher ? childInfo.childId : undefined}
             src={isEat ? "../images/meal-white.png" : "../images/meal-gray.png"}
             alt="식사"
           ></StateIcons>
@@ -156,6 +152,11 @@ const StateWrap = styled.div<any>`
   border-radius: 5px;
   box-shadow: 0px 0px 5px #c8c8c8;
   display: flex;
+  ${(props) =>
+    props.isTeacher === true &&
+    css`
+      cursor: pointer;
+    `}
   ${(props) =>
     props.nowState &&
     css`
