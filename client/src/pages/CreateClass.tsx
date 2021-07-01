@@ -156,14 +156,6 @@ const Wrap = styled.div`
   .teacherArea {
     background-color: pink;
   }
-  .classList {
-    display: inline-block;
-    border: solid 1px;
-    border-radius: 5px;
-    width: 60%;
-    height: 5%;
-    padding-left: 2%;
-  }
   #student {
     #studentListArea {
       border: solid 1px;
