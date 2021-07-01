@@ -10,6 +10,8 @@ interface Props {
   setModalVisible: any;
   classCheck: string;
   setClassCheck: any;
+  classInputs: any;
+  setClassInputs: any;
 }
 function ClassManage({
   isClass,
@@ -18,15 +20,12 @@ function ClassManage({
   setModalVisible,
   classCheck,
   setClassCheck,
+  classInputs,
+  setClassInputs,
 }: Props) {
-  //클래스 추가 창
-  const [classInputs, setClassInputs] = useState({ className: "" });
-
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    if (classInputs.className !== "") {
-      setClassInputs({ ...classInputs, className: value });
-    }
+    setClassInputs({ ...classInputs, className: value });
   };
 
   const manageClass = async (className: string, option: string) => {
@@ -34,6 +33,7 @@ function ClassManage({
     if (results) {
       if (classCheck !== classInputs.className) {
         setClassCheck(classInputs.className);
+        setClassInputs({ className: "" });
       } else {
         setClassCheck("반복된 작업 실시");
       }
