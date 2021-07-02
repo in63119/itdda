@@ -7,4 +7,11 @@ assignees: ''
 
 ---
 
-각 작업별 이슈 공유
+### Position :
+- [ ] Front-End
+- [ ] Back-End
+
+### Issue :
+
+
+### 해결과정 :

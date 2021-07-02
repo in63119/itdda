@@ -87,7 +87,7 @@ export default function ProfileList({ userInfo }: Props) {
             <div id="contentsWrap">
               {JSON.parse(localStorage.getItem("loginInfo")!).permission !==
               "institution" ? (
-                <>
+                <ProfileData>
                   <div className="profile name">
                     <span className="blue">
                       {permission === "teacher" ? "이름" : "이름"}
@@ -118,7 +118,7 @@ export default function ProfileList({ userInfo }: Props) {
                       }}
                     ></input>
                   </div>
-                </>
+                </ProfileData>
               ) : (
                 <>
                   <div className="profile name">
@@ -213,6 +213,16 @@ export default function ProfileList({ userInfo }: Props) {
     </Wrap>
   );
 }
+const ProfileData = styled.span`
+  text-align: left;
+  width: fit-content;
+  display: block;
+  margin: 0 auto;
+  margin-top: 3%;
+  div {
+    padding: 2% 0 2% 0;
+  }
+`;
 const Wrap = styled.div`
   width: 100%;
   height: 100%;
@@ -225,14 +235,13 @@ const Wrap = styled.div`
     flex: 1 1 auto;
   }
   #profile {
-    padding-left: 5%;
-    padding-right: 5%;
+    text-align: center;
   }
   .profile {
-    margin-bottom: 13%;
   }
   #profileArea {
     display: flex;
+    flex-wrap: wrap;
   }
   #complete {
     text-align: center;
