@@ -88,72 +88,75 @@ export default function ProfileList({ userInfo }: Props) {
               {JSON.parse(localStorage.getItem("loginInfo")!).permission !==
               "institution" ? (
                 <ProfileData>
-                  <div className="profile name">
-                    <span className="blue">
-                      {permission === "teacher" ? "이름" : "이름"}
-                    </span>
-                    <input
-                      className="textBox username"
-                      type="text"
-                      placeholder={profileInfo.basicInfo.name}
-                      onChange={(e) => {
-                        onChange("name", e);
-                      }}
-                    ></input>
-                  </div>
-                  <div className="profile email">
-                    <span className="blue">이메일 </span>
-                    <span className="emailText">
-                      {profileInfo.basicInfo.email}
-                    </span>
-                  </div>
-                  <div className="profile mobile">
-                    <span className="blue">전화번호 </span>
-                    <input
-                      className="textBox phone"
-                      type="text"
-                      placeholder={profileInfo.basicInfo.mobile}
-                      onChange={(e) => {
-                        onChange("mobile", e);
-                      }}
-                    ></input>
-                  </div>
+                  <ProfileWrapper>
+                    <div className="profile name">
+                      <span className="blue">
+                        {permission === "teacher" ? "이름" : "이름"}
+                      </span>
+                      <input
+                        className="textBox username"
+                        type="text"
+                        placeholder={profileInfo.basicInfo.name}
+                        onChange={(e) => {
+                          onChange("name", e);
+                        }}
+                      ></input>
+                    </div>
+                    <div className="profile email">
+                      <span className="blue">이메일 </span>
+                      <span className="emailText">
+                        {profileInfo.basicInfo.email}
+                      </span>
+                    </div>
+                    <div className="profile mobile">
+                      <span className="blue">전화번호 </span>
+                      <input
+                        className="textBox phone"
+                        type="text"
+                        placeholder={profileInfo.basicInfo.mobile}
+                        onChange={(e) => {
+                          onChange("mobile", e);
+                        }}
+                      ></input>
+                    </div>
+                  </ProfileWrapper>
                 </ProfileData>
               ) : (
                 <>
-                  <div className="profile name">
-                    <span className="blue">기관이름 </span>
-                    <input
-                      className="textBox"
-                      type="text"
-                      placeholder={profileInfo.basicInfo.name}
-                      onChange={(e) => {
-                        onChange("institution", e);
-                      }}
-                    ></input>
-                  </div>
-                  <div className="profile email">
-                    <span className="blue">이메일 </span>
-                    <span className="emailText">
-                      {profileInfo.basicInfo.email}
-                    </span>
-                  </div>
-                  <div className="profile mobile">
-                    <span className="blue">전화번호 </span>
-                    <input
-                      className="textBox phone"
-                      type="text"
-                      placeholder={profileInfo.basicInfo.mobile}
-                      onChange={(e) => {
-                        onChange("mobile", e);
-                      }}
-                    ></input>
-                  </div>
+                  <ProfileWrapper>
+                    <div className="profile name">
+                      <span className="blue">기관이름 </span>
+                      <input
+                        className="textBox"
+                        type="text"
+                        placeholder={profileInfo.basicInfo.name}
+                        onChange={(e) => {
+                          onChange("institution", e);
+                        }}
+                      ></input>
+                    </div>
+                    <div className="profile email">
+                      <span className="blue">이메일 </span>
+                      <span className="emailText">
+                        {profileInfo.basicInfo.email}
+                      </span>
+                    </div>
+                    <div className="profile mobile">
+                      <span className="blue">전화번호 </span>
+                      <input
+                        className="textBox phone"
+                        type="text"
+                        placeholder={profileInfo.basicInfo.mobile}
+                        onChange={(e) => {
+                          onChange("mobile", e);
+                        }}
+                      ></input>
+                    </div>
+                  </ProfileWrapper>
                 </>
               )}
             </div>
           </div>
-
           {JSON.parse(localStorage.getItem("loginInfo")!).permission ===
           "parent" ? (
             <>
@@ -213,6 +216,15 @@ export default function ProfileList({ userInfo }: Props) {
     </Wrap>
   );
 }
+
+const ProfileWrapper = styled.span`
+  display: inline-block;
+  text-align: left;
+  div {
+    margin-top: 2%;
+  }
+`;
+
 const ProfileData = styled.span`
   text-align: left;
   width: fit-content;
@@ -228,7 +240,6 @@ const Wrap = styled.div`
   height: 100%;
 
   #contentsWrap {
-    padding-left: 3%;
     flex: 3 1 auto;
   }
   #flexLeft {
