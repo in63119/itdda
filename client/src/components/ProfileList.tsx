@@ -253,6 +253,7 @@ const Wrap = styled.div`
   #profileArea {
     display: flex;
     flex-wrap: wrap;
+    padding: 0 10% 0 10%;
   }
   #complete {
     text-align: center;
@@ -266,6 +267,7 @@ const Wrap = styled.div`
     font-size: 2rem;
   }
   .textBox {
+    text-align: center;
     border: solid 0px;
     border-bottom: solid 1px;
   }
@@ -399,6 +401,6 @@ const AvatarCard = styled.img`
   overflow: hidden;
   border-radius: 20px;
   resize: both;
-  width: 200px;
-  height: 200px;
+  width: 120px;
+  height: 120px;
 `;
