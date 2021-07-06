@@ -204,7 +204,6 @@ export default function ProfileList({ userInfo }: Props) {
           ) : (
             <div></div>
           )}
-
           <div id="complete">
             <Button>수정</Button>
             <Link to="/main">
@@ -287,7 +286,10 @@ const Wrap = styled.div`
 `;
 
 const Loading = styled.div`
+  height: 100%;
+  width: 100%;
   display: flex;
+  align-items: center;
   justify-content: center;
   #loading {
     text-align: center;
