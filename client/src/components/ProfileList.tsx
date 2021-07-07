@@ -87,73 +87,76 @@ export default function ProfileList({ userInfo }: Props) {
             <div id="contentsWrap">
               {JSON.parse(localStorage.getItem("loginInfo")!).permission !==
               "institution" ? (
-                <>
-                  <div className="profile name">
-                    <span className="blue">
-                      {permission === "teacher" ? "이름" : "이름"}
-                    </span>
-                    <input
-                      className="textBox username"
-                      type="text"
-                      placeholder={profileInfo.basicInfo.name}
-                      onChange={(e) => {
-                        onChange("name", e);
-                      }}
-                    ></input>
-                  </div>
-                  <div className="profile email">
-                    <span className="blue">이메일 </span>
-                    <span className="emailText">
-                      {profileInfo.basicInfo.email}
-                    </span>
-                  </div>
-                  <div className="profile mobile">
-                    <span className="blue">전화번호 </span>
-                    <input
-                      className="textBox phone"
-                      type="text"
-                      placeholder={profileInfo.basicInfo.mobile}
-                      onChange={(e) => {
-                        onChange("mobile", e);
-                      }}
-                    ></input>
-                  </div>
-                </>
+                <ProfileData>
+                  <ProfileWrapper>
+                    <div className="profile name">
+                      <span className="blue">
+                        {permission === "teacher" ? "이름" : "이름"}
+                      </span>
+                      <input
+                        className="textBox username"
+                        type="text"
+                        placeholder={profileInfo.basicInfo.name}
+                        onChange={(e) => {
+                          onChange("name", e);
+                        }}
+                      ></input>
+                    </div>
+                    <div className="profile email">
+                      <span className="blue">이메일 </span>
+                      <span className="emailText">
+                        {profileInfo.basicInfo.email}
+                      </span>
+                    </div>
+                    <div className="profile mobile">
+                      <span className="blue">전화번호 </span>
+                      <input
+                        className="textBox phone"
+                        type="text"
+                        placeholder={profileInfo.basicInfo.mobile}
+                        onChange={(e) => {
+                          onChange("mobile", e);
+                        }}
+                      ></input>
+                    </div>
+                  </ProfileWrapper>
+                </ProfileData>
               ) : (
                 <>
-                  <div className="profile name">
-                    <span className="blue">기관이름 </span>
-                    <input
-                      className="textBox"
-                      type="text"
-                      placeholder={profileInfo.basicInfo.name}
-                      onChange={(e) => {
-                        onChange("institution", e);
-                      }}
-                    ></input>
-                  </div>
-                  <div className="profile email">
-                    <span className="blue">이메일 </span>
-                    <span className="emailText">
-                      {profileInfo.basicInfo.email}
-                    </span>
-                  </div>
-                  <div className="profile mobile">
-                    <span className="blue">전화번호 </span>
-                    <input
-                      className="textBox phone"
-                      type="text"
-                      placeholder={profileInfo.basicInfo.mobile}
-                      onChange={(e) => {
-                        onChange("mobile", e);
-                      }}
-                    ></input>
-                  </div>
+                  <ProfileWrapper>
+                    <div className="profile name">
+                      <span className="blue">기관이름 </span>
+                      <input
+                        className="textBox"
+                        type="text"
+                        placeholder={profileInfo.basicInfo.name}
+                        onChange={(e) => {
+                          onChange("institution", e);
+                        }}
+                      ></input>
+                    </div>
+                    <div className="profile email">
+                      <span className="blue">이메일 </span>
+                      <span className="emailText">
+                        {profileInfo.basicInfo.email}
+                      </span>
+                    </div>
+                    <div className="profile mobile">
+                      <span className="blue">전화번호 </span>
+                      <input
+                        className="textBox phone"
+                        type="text"
+                        placeholder={profileInfo.basicInfo.mobile}
+                        onChange={(e) => {
+                          onChange("mobile", e);
+                        }}
+                      ></input>
+                    </div>
+                  </ProfileWrapper>
                 </>
               )}
             </div>
           </div>
-
           {JSON.parse(localStorage.getItem("loginInfo")!).permission ===
           "parent" ? (
             <>
@@ -201,7 +204,6 @@ export default function ProfileList({ userInfo }: Props) {
           ) : (
             <div></div>
           )}
-
           <div id="complete">
             <Button>수정</Button>
             <Link to="/main">
@@ -213,26 +215,44 @@ export default function ProfileList({ userInfo }: Props) {
     </Wrap>
   );
 }
+
+const ProfileWrapper = styled.span`
+  display: inline-block;
+  text-align: left;
+  div {
+    margin-top: 2%;
+  }
+`;
+
+const ProfileData = styled.span`
+  text-align: left;
+  width: fit-content;
+  display: block;
+  margin: 0 auto;
+  margin-top: 3%;
+  div {
+    padding: 2% 0 2% 0;
+  }
+`;
 const Wrap = styled.div`
   width: 100%;
   height: 100%;
 
   #contentsWrap {
-    padding-left: 3%;
     flex: 3 1 auto;
   }
   #flexLeft {
     flex: 1 1 auto;
   }
   #profile {
-    padding-left: 5%;
-    padding-right: 5%;
+    text-align: center;
   }
   .profile {
-    margin-bottom: 13%;
   }
   #profileArea {
     display: flex;
+    flex-wrap: wrap;
+    padding: 0 10% 0 10%;
   }
   #complete {
     text-align: center;
@@ -246,6 +266,7 @@ const Wrap = styled.div`
     font-size: 2rem;
   }
   .textBox {
+    text-align: center;
     border: solid 0px;
     border-bottom: solid 1px;
   }
@@ -265,7 +286,10 @@ const Wrap = styled.div`
 `;
 
 const Loading = styled.div`
+  height: 100%;
+  width: 100%;
   display: flex;
+  align-items: center;
   justify-content: center;
   #loading {
     text-align: center;
@@ -290,7 +314,7 @@ const Button = styled.button`
 const ApprovedTitle = styled.div`
   width: 100%;
   display: flex;
-  border-bottom: solid 1px;
+  border-bottom: solid 1px lightgray;
   .approvedName {
     width: 100%;
     flex: 1 auto;
@@ -309,8 +333,10 @@ const ApprovedTitle = styled.div`
 `;
 
 const ProfileApprovedList = styled.div`
-  border: solid 1px;
+  border: solid 1px lightgray;
   border-radius: 10px;
+  width: 80%;
+  margin: 0 auto;
   .indiApprovedResults {
     width: 100%;
     display: flex;
@@ -334,8 +360,10 @@ const ProfileApprovedList = styled.div`
 `;
 
 const ProfileUnapprovedList = styled.div`
-  border: solid 1px;
-  border-radius: 10px;
+border: solid 1px lightgray;
+border-radius: 10px;
+width: 80%;
+margin: 0 auto;
   .indiUnapprovedResults {
     width: 100%;
     display: flex;
@@ -354,7 +382,6 @@ const ProfileUnapprovedList = styled.div`
 const UnapprovedTitle = styled.div`
   width: 100%;
   display: flex;
-  border-bottom: solid 1px;
   .unapprovedName {
     width: 100%;
     flex: 1 auto;
@@ -379,6 +406,6 @@ const AvatarCard = styled.img`
   overflow: hidden;
   border-radius: 20px;
   resize: both;
-  width: 200px;
-  height: 200px;
+  width: 120px;
+  height: 120px;
 `;
