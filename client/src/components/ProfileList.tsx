@@ -314,7 +314,7 @@ const Button = styled.button`
 const ApprovedTitle = styled.div`
   width: 100%;
   display: flex;
-  border-bottom: solid 1px;
+  border-bottom: solid 1px lightgray;
   .approvedName {
     width: 100%;
     flex: 1 auto;
@@ -333,8 +333,10 @@ const ApprovedTitle = styled.div`
 `;
 
 const ProfileApprovedList = styled.div`
-  border: solid 1px;
+  border: solid 1px lightgray;
   border-radius: 10px;
+  width: 80%;
+  margin: 0 auto;
   .indiApprovedResults {
     width: 100%;
     display: flex;
@@ -358,8 +360,10 @@ const ProfileApprovedList = styled.div`
 `;
 
 const ProfileUnapprovedList = styled.div`
-  border: solid 1px;
-  border-radius: 10px;
+border: solid 1px lightgray;
+border-radius: 10px;
+width: 80%;
+margin: 0 auto;
   .indiUnapprovedResults {
     width: 100%;
     display: flex;
@@ -378,7 +382,6 @@ const ProfileUnapprovedList = styled.div`
 const UnapprovedTitle = styled.div`
   width: 100%;
   display: flex;
-  border-bottom: solid 1px;
   .unapprovedName {
     width: 100%;
     flex: 1 auto;
