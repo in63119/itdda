@@ -314,6 +314,7 @@ const Button = styled.button`
 const ApprovedTitle = styled.div`
   width: 100%;
   display: flex;
+  padding: 1%;
   border-bottom: solid 1px lightgray;
   .approvedName {
     width: 100%;
