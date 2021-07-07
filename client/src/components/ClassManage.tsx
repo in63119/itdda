@@ -74,18 +74,14 @@ function ClassManage({
               />
               <span className="classList">{classs.className}</span>
               <span>
-                {classs.className !== "사슴반" ? (
-                  <Button
-                    isActive={classs.className === classInputs.className}
-                    onClick={() => {
-                      manageClass(classInputs.className, "delete");
-                    }}
-                  >
-                    삭제
-                  </Button>
-                ) : (
-                  <span>삭제불가능</span>
-                )}
+                <Button
+                  isActive={classs.className === classInputs.className}
+                  onClick={() => {
+                    manageClass(classInputs.className, "delete");
+                  }}
+                >
+                  삭제
+                </Button>
               </span>
             </ClassWrapper>
           ))}
