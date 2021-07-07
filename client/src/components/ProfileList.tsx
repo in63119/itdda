@@ -341,6 +341,7 @@ const ProfileApprovedList = styled.div`
   .indiApprovedResults {
     width: 100%;
     display: flex;
+    padding: 1%;
 
     .approvedNameResults {
       width: 100%;
@@ -367,7 +368,7 @@ width: 80%;
 margin: 0 auto;
   .indiUnapprovedResults {
     width: 100%;
-    display: flex;
+		display: flex;
     .unapprovedNameResults {
       width: 100%;
       flex: 1 auto;
