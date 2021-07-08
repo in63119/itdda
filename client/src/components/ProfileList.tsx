@@ -384,6 +384,7 @@ margin: 0 auto;
 const UnapprovedTitle = styled.div`
   width: 100%;
   display: flex;
+  padding: 1%;
   .unapprovedName {
     width: 100%;
     flex: 1 auto;
