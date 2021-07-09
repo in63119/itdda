@@ -316,6 +316,7 @@ const ApprovedTitle = styled.div`
   display: flex;
   padding: 1%;
   border-bottom: solid 1px lightgray;
+  font-size: 1.2rem;
   .approvedName {
     width: 100%;
     flex: 1 auto;
@@ -385,6 +386,7 @@ const UnapprovedTitle = styled.div`
   width: 100%;
   display: flex;
   padding: 1%;
+  font-size: 1.2rem;
   .unapprovedName {
     width: 100%;
     flex: 1 auto;
