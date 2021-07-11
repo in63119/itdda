@@ -387,6 +387,8 @@ const UnapprovedTitle = styled.div`
   display: flex;
   padding: 1%;
   font-size: 1.2rem;
+  border-bottom: 1px solid lightgray;
+
   .unapprovedName {
     width: 100%;
     flex: 1 auto;
