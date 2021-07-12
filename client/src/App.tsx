@@ -4,8 +4,6 @@ import {
   Route,
   Switch,
   useHistory,
-  withRouter,
-  RouteComponentProps,
 } from "react-router-dom";
 import {
   Main,
@@ -13,22 +11,17 @@ import {
   Intro,
   Signup,
   UserInfo,
-  SignupCommon,
   GuestWaiting,
   GuestApproving,
 } from "./pages/Index";
 import { Modal } from "./components/Index";
-import styled, {
-  GlobalStyleComponent,
-  ThemeProvider,
-  createGlobalStyle,
-} from "styled-components";
+import { ThemeProvider, createGlobalStyle } from "styled-components";
 import theme from "./assets/theme";
 
 function App() {
   const history = useHistory();
   // modal 상태
-  const [modalMessage, setModalMessage] = useState("^___^  << 한솔님");
+  const [modalMessage, setModalMessage] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
   // loading 상태
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -101,7 +94,6 @@ function App() {
               setModalVisible={setModalVisible}
             />
           </Route>
-          {/* 로그인이 됐을때만 화면 접속 가능 */}
           <>
             <Route
               path={`/main`}
