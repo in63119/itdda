@@ -25,7 +25,6 @@ import {
   SubMenu,
   FooterContents,
   SecondSubMenu,
-  Timetable,
 } from "../components/Index";
 import { firestore } from "../common/utils/firebase";
 import {
@@ -321,26 +320,6 @@ export default function Main({
                     />
                   )}
                 />
-                {/* <Route
-                  exact
-                  path={`/main/notice/:no`}
-                  render={() => (
-                    <ReadForm
-                      contents={list.mainMiniNotice}
-                      title="공지사항"
-                    ></ReadForm>
-                  )}
-                ></Route> */}
-                {/* <Route
-                  exact
-                  path={`/main/mainIndiNotice/:no`}
-                  render={() => (
-                    <ReadForm
-                      contents={list.mainMiniIndiNotice}
-                      title="알림장"
-                    ></ReadForm>
-                  )}
-                ></Route> */}
                 <Route
                   path={`/main/medicine`}
                   render={() => (
@@ -584,16 +563,4 @@ const Loding = styled.div`
     width: 25%;
     height: auto;
   }
-`;
-const Back = styled(Link)`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex: 1 auto;
-`;
-const Home = styled(Link)`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex: 1 auto;
 `;
