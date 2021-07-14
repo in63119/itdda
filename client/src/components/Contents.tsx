@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import styled from "styled-components";
 import {
   AlbumCarousel,
   Timetable,
-  Carousel,
   MiniNotice,
   MIniIndiNotice,
   MainMenu,
