@@ -10,7 +10,6 @@ interface propsType {
 }
 
 export default function ImagePostForm({
-  userInfo,
   handleInsertImageFileInfo,
 }: propsType) {
   const [image, setImage] = useState({
