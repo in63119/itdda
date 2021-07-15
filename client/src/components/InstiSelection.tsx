@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 interface Props {
   inputs: Record<string, unknown>;
@@ -14,7 +13,6 @@ function instiSelection({
   inputs,
   instiInputs,
   instiSelection,
-  handleInstiSelection,
   errormessage,
   inputInstiInfo,
   postInsti,
