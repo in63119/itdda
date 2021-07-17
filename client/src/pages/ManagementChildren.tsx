@@ -1,12 +1,7 @@
-import React, { useState, useEffect, Children } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import {
-  Route,
-  Switch,
-  RouteComponentProps,
-  useRouteMatch,
-} from "react-router-dom";
-import { CardList, StateListForm, WriteForm } from "../components/Index";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
+import { StateListForm } from "../components/Index";
 import { requestApproveChild } from "../common/axios";
 import { addState } from "../common/utils/addState";
 import { handleGetAllChildByInstitution } from "../common/utils/firebaseFunction";
@@ -40,10 +35,6 @@ export default function Management({ userInfo }: propsType) {
       .doc(String(institutionId))
       .collection("children")
       .onSnapshot((doc) => {
-        // querySnapshot.forEach((doc) => {
-        //   console.log(`${doc.id} => ${doc.data()}`);
-        //   children.push(doc.data());
-        // });
         const updateData = doc.docChanges()[0].doc.data();
         if (updateData) {
           childInfo.childrenList.forEach((elelemt: any, index: number) => {
@@ -93,15 +84,6 @@ export default function Management({ userInfo }: propsType) {
             secondCategory="반별"
           ></StateListForm>
         </Route>
-        {/* <Route pasth={`${urlMatch.path}/write`}>
-          <WriteForm
-            handleInputValue={handleInputValue}
-            inputVlaue={inputVlaue}
-            userInfo={userInfo}
-            title="급식표 등록"
-            type="meal"
-          ></WriteForm>
-        </Route> */}
       </Switch>
     </Wrap>
   );
@@ -109,7 +91,4 @@ export default function Management({ userInfo }: propsType) {
 const Wrap = styled.div`
   width: 100%;
   height: 100%;
-`;
-const ContentCard = styled.div`
-  ${({ theme }) => theme.common.contentCardDiv}
 `;
