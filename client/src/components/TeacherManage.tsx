@@ -162,6 +162,7 @@ const TeacherWrapper = styled.div`
   ${({ theme }) => theme.common.itemInListDiv};
 `;
 const TeacherManageWrap = styled.div`
+  height: 100%;
   #teacherWaitingTitle {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -195,7 +196,7 @@ const TeacherManageWrap = styled.div`
     border-radius: 5px;
     border: 1px solid lightgray;
     border-radius: 7px;
-    height: 68vh;
+    height: 85%;
     font-size: 1.2rem;
     #teacherManageList {
       overflow: auto;
@@ -278,6 +279,9 @@ const PostButton = styled.button`
 
 const UnapprovedArea = styled.div`
   margin-bottom: 10%;
+  height: 30%;
 `;
 
-const ApprovedArea = styled.div``;
+const ApprovedArea = styled.div`
+  height: 70%;
+`;

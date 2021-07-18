@@ -44,7 +44,7 @@ export default function ProfileList({ userInfo }: Props) {
 
   const onChange = (key: any, e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    setProfileInfo({ ...profileInfo.basicInfo, [key]: value });
+    setProfileInfo({ ...profileInfo, [key]: value });
   };
 
   return profileInfo.basicInfo.length === 0 ? (
@@ -363,13 +363,13 @@ const ProfileApprovedList = styled.div`
 `;
 
 const ProfileUnapprovedList = styled.div`
-border: solid 1px lightgray;
-border-radius: 10px;
-width: 80%;
-margin: 0 auto;
+  border: solid 1px lightgray;
+  border-radius: 10px;
+  width: 80%;
+  margin: 0 auto;
   .indiUnapprovedResults {
     width: 100%;
-		display: flex;
+    display: flex;
     .unapprovedNameResults {
       width: 100%;
       flex: 1 auto;
@@ -380,6 +380,7 @@ margin: 0 auto;
       flex: 1 auto;
       text-align: center;
     }
+  }
 `;
 
 const UnapprovedTitle = styled.div`

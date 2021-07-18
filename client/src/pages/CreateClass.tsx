@@ -98,7 +98,7 @@ function CreateClass({ setModalMessage, setModalVisible }: Props) {
 
   return (
     <Wrap>
-      <h3>{isClass ? "반 구성" : isTeacher ? "선생님 관리" : "원아 관리"}</h3>
+      <h3>{isClass ? "반 관리" : isTeacher ? "교사 관리" : "원아 관리"}</h3>
       <div>
         <Button
           className="manageType manageTeacher"
@@ -153,6 +153,7 @@ export default CreateClass;
 
 const ManageContainer = styled.div`
   width: 100%;
+  height: 83%;
 `;
 const Wrap = styled.div`
   width: 100%;
