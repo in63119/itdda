@@ -3,7 +3,7 @@
 	"editor.tokenColorCustomizations": {
 		"comments": "#776d6d"
 	},
-	"window.zoomLevel": 1,
+	"window.zoomLevel": 0,
 	"liveServer.settings.donotVerifyTags": true,
 	"json.schemas": [],
 	"editor.tabSize": 2,

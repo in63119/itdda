@@ -25,6 +25,7 @@ import {
   SubMenu,
   FooterContents,
   SecondSubMenu,
+  MainMenu,
 } from "../components/Index";
 import { firestore } from "../common/utils/firebase";
 import {
@@ -311,43 +312,62 @@ export default function Main({
                 <Route
                   path={`/main/notice`}
                   render={() => (
-                    <Notice
-                      userInfo={userInfo}
-                      list={list}
-                      setList={setList}
-                      handleChangeNotice={handleChangeNotice}
-                      handleUpdateList={handleUpdateList}
-                    />
+                    <>
+                      <MainMenu />
+                      <Notice
+                        userInfo={userInfo}
+                        list={list}
+                        setList={setList}
+                        handleChangeNotice={handleChangeNotice}
+                        handleUpdateList={handleUpdateList}
+                      />
+                    </>
                   )}
                 />
                 <Route
                   path={`/main/medicine`}
                   render={() => (
-                    <Medicine
-                      handleUpdateList={handleUpdateList}
-                      userInfo={userInfo}
-                    />
+                    <>
+                      <MainMenu />
+                      <Medicine
+                        handleUpdateList={handleUpdateList}
+                        userInfo={userInfo}
+                      />
+                    </>
                   )}
                 />
                 <Route
                   path={`/main/meal`}
-                  render={() => <Meal userInfo={userInfo} />}
+                  render={() => (
+                    <>
+                      <MainMenu />
+                      <Meal userInfo={userInfo} />
+                    </>
+                  )}
                 />
                 <Route
                   path={`/main/message`}
                   render={() => (
-                    <IndiNotice
-                      handleChangeNotice={handleChangeNotice}
-                      handleUpdateList={handleUpdateList}
-                      userInfo={userInfo}
-                      list={list}
-                      setList={setList}
-                    />
+                    <>
+                      <MainMenu />
+                      <IndiNotice
+                        handleChangeNotice={handleChangeNotice}
+                        handleUpdateList={handleUpdateList}
+                        userInfo={userInfo}
+                        list={list}
+                        setList={setList}
+                      />
+                    </>
                   )}
                 />
                 <Route
                   path={`/main/album`}
-                  render={() => <Album userInfo={userInfo} />}
+                  render={() => (
+                    <>
+                      <MainMenu />
+                      <Album userInfo={userInfo} />
+                    </>
+                  )}
                 />
                 <Route
                   path={`/main/approve`}
@@ -384,7 +404,15 @@ export default function Main({
                   path={"/main/management"}
                   render={() => <Management userInfo={userInfo} />}
                 />
-                <Route path={"/main/bus"} component={Bus} />
+                <Route
+                  path={"/main/bus"}
+                  render={() => (
+                    <>
+                      <MainMenu />
+                      <Bus />
+                    </>
+                  )}
+                />
               </Switch>
             </ContentCard>
           </Section>

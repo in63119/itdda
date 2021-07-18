@@ -72,6 +72,7 @@ export default function Timetable({ userInfo }: props) {
     <Wrap>
       {time ? (
         <>
+          <TimeTable to="/main/timetable">실시간 시간표</TimeTable>
           <Container>
             <ProgerssBarBack>
               <ProgressBar
@@ -106,7 +107,6 @@ export default function Timetable({ userInfo }: props) {
               </ProgressBar>
             </ProgerssBarBack>
           </Container>
-          <TimeTable to="/main/timetable">전체시간표 보기</TimeTable>
         </>
       ) : (
         <LoadingWrapper>
@@ -205,10 +205,12 @@ const Container = styled.div`
   width: 77%;
   height: 80%;
   margin: 0 auto;
-  padding-top: 3%;
+  padding-top: 6%;
 `;
 const TimeTable = styled(Link)`
   float: right;
+  margin-right: 238px;
+  margin-top: 10px;
 `;
 
 const Loader = styled.img`
