@@ -18,6 +18,7 @@ function Intro({ hadleSetMainData }: props) {
   const handleLogin = async (email: string) => {
     const password = "asdf123!";
     const mainData = await requestLogin(email, String(password));
+    console.log(mainData);
     if (typeof mainData !== "boolean") {
       if (mainData !== undefined) {
         hadleSetMainData(mainData);
