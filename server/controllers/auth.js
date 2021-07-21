@@ -20,15 +20,15 @@ module.exports = {
 
 	login: async (req, res) => {
 		const { email, password } = req.body;
+		console.log(email, '= eamil, ', password, ' = 비번')
 		const saltedPassword = email + password;
 		const hashedPassword = SHA256(saltedPassword);
-
 		const findEmail = await user
 			.findOne({
 				where: { email },
 			})
 			.catch((err) => {
-				console.log(err);
+				console.log(err, '= 로그인 실패!!!');
 			});
 		if (!findEmail) {
 			user
@@ -59,7 +59,7 @@ module.exports = {
 					sendAccessToken(res, accessToken, permission);
 				})
 				.catch((err) => {
-					console.log(err);
+					console.log(err, ' = 로그인실패');
 				});
 		} else {
 			return res.status(201).json({ message: 'email does not exist' });
