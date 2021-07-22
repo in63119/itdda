@@ -9,7 +9,6 @@ const {
 const { SHA256 } = require('../modules/SHA256');
 
 module.exports = {
-	//TODO : test용
 	hashTest: async (req, res) => {
 		const asdf = req.body.asdf;
 		const zxcv = req.body.zxcv;
@@ -20,9 +19,12 @@ module.exports = {
 
 	login: async (req, res) => {
 		const { email, password } = req.body;
-		console.log(email, '= eamil, ', password, ' = 비번')
+
+		// ! changed ======================================
 		const saltedPassword = email + password;
 		const hashedPassword = SHA256(saltedPassword);
+		// ! ==============================================
+
 		const findEmail = await user
 			.findOne({
 				where: { email },
@@ -31,6 +33,8 @@ module.exports = {
 				console.log(err);
 			});
 		if (!findEmail) {
+			return res.status(201).json({ message: 'email does not exist' });
+		} else {
 			user
 				.findOne({
 					where: {
@@ -39,10 +43,10 @@ module.exports = {
 					},
 				})
 				.then((data) => {
-					console.log(data, '결과값')
 					if (!data) {
 						return res.status(202).json({ message: 'wrong password' });
 					}
+					console.log('로그인성공')
 					// delete data.dataValues.password;
 					// delete data.dataValues.passwordChange;
 					// delete data.dataValues.salt;
@@ -53,18 +57,17 @@ module.exports = {
 					const { id, permission, guest } = data.dataValues;
 					const userInfo = { userId: id, permission, guest };
 					// ! =====================================================
+
 					// const accessToken = generateAccessToken(data.dataValues);
 					const accessToken = generateAccessToken(userInfo);
 					const refreshToken = generateRefreshToken(userInfo);
+
 					sendRefreshToken(res, refreshToken);
 					sendAccessToken(res, accessToken, permission);
 				})
 				.catch((err) => {
-					console.log(err, ' = 로그인실패');
+					console.log(err);
 				});
-		} else {
-			console.log('asd')
-			return res.status(201).json({ message: 'email does not exist' });
 		}
 	},
 
@@ -80,10 +83,12 @@ module.exports = {
 			});
 		}
 		res.status(200).json({ message: 'datda logout succeded' });
+
 		// ! aws 쿠키 관련 이슈 코드 ===========
 		// res.send({ asdf: req.cookies });
 		// =================================
 	},
+
 	signup: async (req, res) => {
 		const { password, permission, userName, email, mobile, role } = req.body;
 		// ! changed ======================================
@@ -118,6 +123,7 @@ module.exports = {
 			});
 		}
 	},
+
 	isEmail: async (req, res) => {
 		const { email } = req.body;
 		const findEmail = await user
@@ -137,6 +143,7 @@ module.exports = {
 			});
 		}
 	},
+
 	institution: async (req, res) => {
 		const { institutionName, master, info } = req.body;
 		const { password, permission, userName, email, mobile, role } = req.body;

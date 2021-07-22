@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+
 /**
  * @swagger
  * tags:
@@ -26,8 +27,7 @@ const authController = require('../controllers/auth');
  *     parameters : 
  *       - in: body
  *         name: user
- *         description: 회원 로그인 입니다. 
- *         required : true
+ *         description: The user to create.
  *         schema:
  *           type: object
  *           required:
@@ -68,6 +68,39 @@ const authController = require('../controllers/auth');
  *               type: string
  *               description : wrong password
  */
+// /**
+//  * @swagger
+//  * /auth:
+//  *   get:
+//  *     summary: 
+//  *     - 회원 로그인 
+//  *     tags: [User]
+//  *     parameters : 
+//  *       - in: body
+//  *         name: user
+//  *         description: The user to create.
+//  *         schema:
+//  *           type: object
+//  *           required:
+//  *             - userName
+//  *           properties:
+//  *             userName:
+//  *               type: string
+//  *             firstName:
+//  *               type: string
+//  *             lastName:
+// 	*              type: string    
+//  *     responses:
+//  *       200:
+//  *         description: login infomation 
+//  *         schema:
+//  *           type: object
+//  *           properties:
+//  *             auth:
+//  *               type: object
+//  *               items:
+//  */
+
 router.post('/login', authController.login);
 router.post('/logout', authController.logout);
 router.post('/signup', authController.signup);

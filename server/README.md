@@ -15,6 +15,3 @@
    https://www.npmjs.com/package/multer-s3
    https://gngsn.tistory.com/37
    https://morningbird.tistory.com/62
-
-4. MySQL Workbench DATABASE 연결하기
-   https://m.blog.naver.com/nieah914/221815212859

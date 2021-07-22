@@ -5,7 +5,7 @@ const logger = require('morgan');
 const { sequelize } = require('./models');
 const cookieParser = require('cookie-parser');
 const { swaggerUi, specs } = require('./modules/swagger/swagger')
-const { checkApiKey } = require('./modules/swagger/checkApiKey')
+
 const app = express();
 app.use(logger('dev'));
 
@@ -62,6 +62,7 @@ app.use(cookieParser());
 // ! routing ======================================
 // (1) https://expressjs.com/ko/4x/api.html#express.router
 // (2) https://expressjs.com/ko/4x/api.html#router
+
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const kakaoRouter = require('./routes/kakao');
@@ -76,9 +77,20 @@ const imageRouter = require('./routes/image');
 const noticeRouter = require('./routes/notice');
 const indiNoticeRouter = require('./routes/indiNotice');
 
-
-
-
+app.use('/', indexRouter);
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(specs));
+app.use('/auth', authRouter);
+app.use('/kakao', kakaoRouter);
+app.use('/refreshtoken', refreshTokenRouter);
+app.use('/director', directorRouter);
+app.use('/main', mainRouter);
+app.use('/teacher', teacherRouter);
+app.use('/institution', institutionRouter);
+app.use('/profile', profileRouter);
+app.use('/guest', guestRouter);
+app.use('/image', imageRouter);
+app.use('/notice', noticeRouter);
+app.use('/indinotice', indiNoticeRouter);
 
 // cf> 첫 배포용
 // app.use('/', (req, res) => {
@@ -93,21 +105,5 @@ const indiNoticeRouter = require('./routes/indiNotice');
 app.listen(5000, () => {
 	console.log('server on 5000');
 });
-console.log('요청이 뭐지?')
-app.use('/', indexRouter);
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(specs));
-// app.use(checkApiKey);
-app.use('/auth', authRouter);
-app.use('/kakao', kakaoRouter);
-app.use('/refreshtoken', refreshTokenRouter);
-app.use('/director', directorRouter);
-app.use('/main', mainRouter);
-app.use('/teacher', teacherRouter);
-app.use('/institution', institutionRouter);
-app.use('/profile', profileRouter);
-app.use('/guest', guestRouter);
-app.use('/image', imageRouter);
-app.use('/notice', noticeRouter);
-app.use('/indinotice', indiNoticeRouter);
 
 // app.timeout = 600000;
