@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+
 /**
  * @swagger
  * tags:
@@ -99,6 +100,7 @@ const authController = require('../controllers/auth');
 //  *               type: object
 //  *               items:
 //  */
+
 router.post('/login', authController.login);
 router.post('/logout', authController.logout);
 router.post('/signup', authController.signup);
