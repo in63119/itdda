@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # datda-server
 
 1. typescript, eslint, prettier 초기설정 관련 참고자료
@@ -16,7 +15,3 @@
    https://www.npmjs.com/package/multer-s3
    https://gngsn.tistory.com/37
    https://morningbird.tistory.com/62
-=======
-# itdda
-team itdda's 
->>>>>>> 55dc9aceac6ff1be51daae80bfe575f6e02e9772
