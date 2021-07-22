@@ -28,7 +28,7 @@ module.exports = {
 				where: { email },
 			})
 			.catch((err) => {
-				console.log(err, '= 로그인 실패!!!');
+				console.log(err);
 			});
 		if (!findEmail) {
 			user
@@ -39,6 +39,7 @@ module.exports = {
 					},
 				})
 				.then((data) => {
+					console.log(data, '결과값')
 					if (!data) {
 						return res.status(202).json({ message: 'wrong password' });
 					}
@@ -62,6 +63,7 @@ module.exports = {
 					console.log(err, ' = 로그인실패');
 				});
 		} else {
+			console.log('asd')
 			return res.status(201).json({ message: 'email does not exist' });
 		}
 	},
