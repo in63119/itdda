@@ -54,7 +54,11 @@ export default function IndiNotice({
             setList={setList}
             handleUpdateList={handleUpdateList}
             handleChangeNotice={handleChangeNotice}
-            contents={list.currentList}
+            contents={
+              userInfo.permission === "parent"
+                ? userInfo.mainData[userInfo.currentChild].indiNotice
+                : list.currentList
+            }
             fristCategory="수신"
             secondCategory="발송"
             permission={userInfo.permission}
@@ -76,11 +80,12 @@ export default function IndiNotice({
         </Route>
         <Route
           exact
-          path={`${urlMatch.path}/post/:no`}
+          path={`${urlMatch.path}/:no`}
           render={() => (
             <ReadForm
-              contents={list.indiNotice.indiNoticeInfo}
+              contents={list}
               title="알림장"
+              userInfo={userInfo}
             ></ReadForm>
           )}
         ></Route>
