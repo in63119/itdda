@@ -1,2 +1,0 @@
-# itdda
-team itdda's 
