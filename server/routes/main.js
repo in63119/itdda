@@ -19,22 +19,6 @@ const router = express.Router();
  *       photo:
  *         type: string
  *         description: 해당기관의 사진 url
- *   IndiNotice:
- *     type: object
- *     required:
- *       - noticeId 
- *       - contents
- *       - createdAt
- *     properties:
- *       noticeId: 
- *         type: number
- *         description: 알림장 id
- *       contents: 
- *         type: string
- *         description: 알림장 제목
- *       createdAt: 
- *         type: string
- *         description: 생성일
  *   Children:
  *     type: object
  *     required:

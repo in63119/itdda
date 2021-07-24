@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+const authController = require('../controllers/auth');
 /**
  * @swagger
  * tags:
@@ -8,15 +9,6 @@ const router = express.Router();
  *   description: 회원가입, 로그인, Oauth 관련 
  */
 
-const authController = require('../controllers/auth');
-
-//  *     parameters :
-//  *        - in : query
-//  *          name : category
-//  *          required : false
-//  *          schema : 
-//  *            type : integer
-//  *            description : 카테고리
 /**
  * @swagger
  * /auth/login:
@@ -26,12 +18,13 @@ const authController = require('../controllers/auth');
  *     tags: [Authentication]
  *     parameters : 
  *       - in: body
- *         name: user
- *         description: The user to create.
+ *         name: login
+ *         required : true
+ *         description: 회원 로그인시 body에 email, password 작성 필
  *         schema:
  *           type: object
  *           required:
- *             - email
+ *             - emai인
  *             - password
  *           properties:
  *             email:

@@ -102,19 +102,21 @@ module.exports = {
 		}
 	},
 	//선택 된 notice 삭제
-	notice: async (req, res, next) => {
+	deleteNotice: async (req, res) => {
 		const accessTokenData = checkAccessToken(req, res);
 		if (!accessTokenData || accessTokenData === 'invalid token') {
 			return
 		}
-		const noticeId = req.query.noticeId;
+		const noticeId = req.query.id;
 		if (!noticeId) return;
 		let isExistNotice = false;
 		await notice.findOne({
 			where: { id: Number(noticeId) }
 		})
 			.then(result => {
-				isExistNotice = true
+				if (result) {
+					isExistNotice = true
+				}
 			})
 			.catch(err => {
 				console.log(err)
@@ -125,13 +127,37 @@ module.exports = {
 				where: { id: Number(noticeId) }
 			})
 				.then(result => {
+					console.log(result, '삭제성공')
 					res.status(200).json({
-						message: 'successful deleted'
+						message: 'successfully deleted'
 					})
 				})
 				.catch(err => {
 					console.log(err, ' 삭제 실패')
 				})
 		}
+	},
+	updateNotice: async (req, res) => {
+		const accessTokenData = checkAccessToken(req, res);
+		if (!accessTokenData || accessTokenData === 'invalid token') {
+			return
+		}
+		const noticeId = req.query.id;
+		if (!noticeId) return;
+		if (!req.body) return;
+		await notice.update({
+			...req.body
+		}, {
+			where: { id: noticeId }
+		})
+			.then(result => {
+				console.log(result)
+				res.status(200).json({
+					message: 'successfully updated'
+				})
+			})
+			.catch(err => {
+				console.log(err)
+			})
 	}
 };
