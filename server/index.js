@@ -78,7 +78,7 @@ const noticeRouter = require('./routes/notice');
 const indiNoticeRouter = require('./routes/indiNotice');
 
 app.use('/', indexRouter);
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(specs));
+app.use('/datda_docs', swaggerUi.serve, swaggerUi.setup(specs));
 app.use('/auth', authRouter);
 app.use('/kakao', kakaoRouter);
 app.use('/refreshtoken', refreshTokenRouter);
