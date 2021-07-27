@@ -72,7 +72,7 @@ router.post('/', profileController.index);
  *           required:
  *             - image 
  *           properties:
- *             profileImage:
+ *             profileImg:
  *               type: string
  *     responses:
  *       200:

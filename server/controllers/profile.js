@@ -151,7 +151,94 @@ module.exports = {
 		}
 	},
 	//프로필 수정
-	modifyProfile: async () => {
+	modifyProfile: async (req, res) => {
+		const accessTokenData = checkAccessToken(req, res);
+		if (!accessTokenData || accessTokenData === 'invalid token') {
+			return;
+		}
+		const { userId, permission } = accessTokenData;
+		if (permission === 'institution') {
+			const userInfo = await user.findOne({
+				where: { id: userId },
+				attributes: ['institutionId', 'email', 'mobile'],
+			});
+			const institutionId = userInfo.dataValues.institutionId;
+			await institution.update({
+				...req.body
+			}, {
+				where: { id: institutionId }
+			});
+			const institutionInfo = await institution.findOne({
+				where: { id: institutionId },
+				attributes: ['name', 'profileImg'],
+			});
+			const basicInfo = {
+				profileImg: institutionInfo.dataValues.profileImg,
+				name: institutionInfo.dataValues.name,
+				email: userInfo.dataValues.email,
+				mobile: userInfo.dataValues.mobile,
+			};
+			res.status(200).json({ message: 'institution profile', basicInfo });
+		} else if (permission === 'teacher') {
+			const userInfo = await user.findOne({
+				where: { id: userId },
+				attributes: ['institutionId', 'name', 'email', 'mobile'],
+			});
+			const institutionId = userInfo.dataValues.institutionId;
 
+			const institutionInfo = await institution.findOne({
+				where: { id: institutionId },
+				attributes: ['profileImg'],
+			});
+			const basicInfo = {
+				profileImg: institutionInfo.dataValues.profileImg,
+				name: userInfo.dataValues.name,
+				email: userInfo.dataValues.email,
+				mobile: userInfo.dataValues.mobile,
+			};
+			res.status(200).json(basicInfo);
+		} else if (permission === 'parent') {
+			const userInfo = await user.findOne({
+				where: { id: userId },
+				attributes: ['email', 'mobile'],
+			});
+			const childId = req.body.childId;
+			const childrenInfo = await children.findAll({
+				where: { userId },
+				attributes: [['id', 'childId'], 'profileImg', 'name', 'isMember'],
+				include: [
+					{ model: institution, attributes: [['name', 'institutionName']] },
+					{ model: classs, attributes: [['name', 'className']] },
+				],
+			});
+			const childInfo = childrenInfo.filter((child) => {
+				return child.dataValues.childId === childId;
+			})[0]; // ! [0] 주의
+
+			const approved = childrenInfo.filter(
+				(child) => child.dataValues.isMember,
+			);
+			const unapproved = childrenInfo.filter(
+				(child) => !child.dataValues.isMember,
+			);
+
+			const basicInfo = {
+				profileImg: childInfo.dataValues.profileImg,
+				name: childInfo.dataValues.name,
+				email: userInfo.dataValues.email,
+				mobile: userInfo.dataValues.mobile,
+			};
+
+			res.status(200).json({
+				message: 'parent/child profile',
+				basicInfo,
+				approved,
+				unapproved,
+			});
+		} else {
+			res.json({
+				message: 'this do not happen in real cases. ask server for help!',
+			});
+		}
 	}
 };
