@@ -156,6 +156,9 @@ module.exports = {
 		if (!accessTokenData || accessTokenData === 'invalid token') {
 			return;
 		}
+		console.log(req.body)
+		console.log(req.file.location)
+
 		const { userId, permission } = accessTokenData;
 		if (permission === 'institution') {
 			const userInfo = await user.findOne({
