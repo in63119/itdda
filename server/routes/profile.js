@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const upload = require('../multer/config')
 
 const profileController = require('../controllers/profile');
 /**
@@ -89,7 +90,7 @@ router.post('/', profileController.index);
  *             mobile:
  *               type : string
  */
-router.put('/', profileController.modifyProfile);
+router.put('/', upload.single('image'), profileController.modifyProfile);
 router.post('/searchinstitution', profileController.searchInstitution);
 router.post('/parentregister', profileController.parentRegister);
 
