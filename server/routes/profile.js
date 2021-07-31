@@ -2,6 +2,13 @@ const express = require('express');
 const router = express.Router();
 const upload = require('../multer/config')
 
+/**
+ * @swagger
+ * tags:
+ *   name: Profile 
+ *   description: Profile 이미지 관련
+ */
+
 const profileController = require('../controllers/profile');
 /**
  * @swagger
@@ -9,7 +16,7 @@ const profileController = require('../controllers/profile');
  *   get:
  *     summary: 
  *       - 프로필 
- *     tags: [Institution]
+ *     tags: [Profile]
  *     parameters : 
  *       - in: header
  *         name: authorization
@@ -53,7 +60,7 @@ router.post('/', profileController.index);
  *   put:
  *     summary: 
  *       - 프로필 사진 수정 
- *     tags: [Institution]
+ *     tags: [Profile]
  *     parameters : 
  *       - in: header
  *         name: authorization
