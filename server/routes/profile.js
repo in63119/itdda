@@ -13,7 +13,7 @@ const profileController = require('../controllers/profile');
 /**
  * @swagger
  * /profile:
- *   get:
+ *   post:
  *     summary: 
  *       - 프로필 
  *     tags: [Profile]
@@ -28,16 +28,16 @@ const profileController = require('../controllers/profile');
  *             authorization:
  *               type: string
  *       - in: body
- *         name: profileImage
- *         required : true
- *         description: 프로필 사진 변경시 body에 이미지를 제공해주세요
+ *         name: childId
+ *         required : false
+ *         description: 기관 또는 선생님일 경우 body 필요 없으나, 부모일 경우 childId 필수
  *         schema:
  *           type: object
  *           required:
  *             - image 
  *           properties:
- *             profileImage:
- *               type: string
+ *             childId:
+ *               type: number
  *     responses:
  *       200:
  *         description: successfully response
