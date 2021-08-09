@@ -4,9 +4,7 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 module.exports = {
-	//get profile
 	index: async (req, res) => {
-		console.log('get 프로필')
 		const accessTokenData = checkAccessToken(req, res);
 		if (!accessTokenData || accessTokenData === 'invalid token') {
 			return;
@@ -29,7 +27,8 @@ module.exports = {
 				mobile: userInfo.dataValues.mobile,
 			};
 			res.status(200).json({ message: 'institution profile', basicInfo });
-		} else if (permission === 'teacher') {
+		}
+		if (permission === 'teacher') {
 			const userInfo = await user.findOne({
 				where: { id: userId },
 				attributes: ['institutionId', 'name', 'email', 'mobile'],
@@ -46,7 +45,8 @@ module.exports = {
 				mobile: userInfo.dataValues.mobile,
 			};
 			res.status(200).json({ message: 'teacher profile', basicInfo });
-		} else if (permission === 'parent') {
+		}
+		if (permission === 'parent') {
 			const userInfo = await user.findOne({
 				where: { id: userId },
 				attributes: ['email', 'mobile'],
@@ -61,13 +61,14 @@ module.exports = {
 				attributes: [['id', 'childId'], 'profileImg', 'name', 'isMember'],
 				include: [
 					//기관에 대한 정보
-					// name이란 특성을 찾지만 결과를 institution으로 변경해서 출력
+					//name이란 특성을 찾지만 결과를 institution으로 변경해서 출력
 					{ model: institution, attributes: [['name', 'institutionName']] },
 					//반에 대한 정보
 					//name이란 특성을 찾지만 결과를 className으로 변경해서 출력
 					{ model: classs, attributes: [['name', 'className']] },
 				],
 			});
+			// 하부모는 기관장, 선생님과 달리 승인된 아이와 승인되지 않은 아이의 리스트가 필요함.
 			const childInfo = childrenInfo.filter((child) => {
 				return child.dataValues.childId === childId;
 			})[0]; // ! [0] 주의
@@ -97,15 +98,11 @@ module.exports = {
 			});
 		}
 	},
-	//프로필 수정
 	modifyProfile: async (req, res) => {
 		const accessTokenData = checkAccessToken(req, res);
 		if (!accessTokenData || accessTokenData === 'invalid token') {
 			return;
 		}
-		console.log(req.body)
-		console.log(req.file.location)
-
 		const { userId, permission } = accessTokenData;
 		if (permission === 'institution') {
 			const userInfo = await user.findOne({
@@ -118,7 +115,7 @@ module.exports = {
 			}, {
 				where: { id: institutionId }
 			});
-			//select name, profileImg
+			//select name, profileImg from institution 
 			const institutionInfo = await institution.findOne({
 				where: { id: institutionId },
 				attributes: ['name', 'profileImg'],
@@ -130,7 +127,8 @@ module.exports = {
 				mobile: userInfo.dataValues.mobile,
 			};
 			res.status(200).json({ message: 'institution profile', basicInfo });
-		} else if (permission === 'teacher') {
+		}
+		if (permission === 'teacher') {
 			const userInfo = await user.findOne({
 				where: { id: userId },
 				attributes: ['institutionId', 'name', 'email', 'mobile'],
@@ -148,7 +146,8 @@ module.exports = {
 				mobile: userInfo.dataValues.mobile,
 			};
 			res.status(200).json(basicInfo);
-		} else if (permission === 'parent') {
+		}
+		if (permission === 'parent') {
 			const userInfo = await user.findOne({
 				where: { id: userId },
 				attributes: ['email', 'mobile'],
