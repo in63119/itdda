@@ -9,6 +9,7 @@ const options = {
 			description: 'datda API 문서',
 		},
 		//TODO : 배포링크로 전환 필요함.
+		//test url : http://localhost:5000/datda_docs/
 		host: 'localhost:5000',
 		basePath: '/',
 		contact: {
