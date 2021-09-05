@@ -24,7 +24,7 @@ const authController = require('../controllers/auth');
  *         schema:
  *           type: object
  *           required:
- *             - emai인
+ *             - email
  *             - password
  *           properties:
  *             email:
