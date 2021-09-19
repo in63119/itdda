@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import { Switch, Route, useRouteMatch } from 'react-router-dom';
-import { ListForm, WriteForm, ReadForm } from '../components/Index';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import { Switch, Route, useRouteMatch } from "react-router-dom";
+import { ListForm, WriteForm, ReadForm } from "../components/Index";
 interface propsType {
   userInfo: any;
   handleUpdateList: any;
@@ -17,14 +17,14 @@ export default function IndiNotice({
   handleUpdateList,
 }: propsType) {
   const urlMatch = useRouteMatch();
-  const [inputVlaue, setInputValue] = useState({
-    title: '',
-    content: '',
-    type: '',
-    category: '',
+  const [inputValue, setInputValue] = useState({
+    title: "",
+    content: "",
+    type: "",
+    category: "",
   });
   // 카테고리에 대한 상태
-  const [radioButton, setRadioButton] = useState('');
+  const [radioButton, setRadioButton] = useState("");
   //카테고리 상태변환
   const handleClickRadioButton = (category: string) => {
     setRadioButton(category);
@@ -33,10 +33,10 @@ export default function IndiNotice({
   const handleInputValue = (
     name: string,
     content: string,
-    category: string,
+    category: string
   ) => {
     setInputValue({
-      ...inputVlaue,
+      ...inputValue,
       [name]: content,
       category: category,
     });
@@ -66,7 +66,7 @@ export default function IndiNotice({
             radioButton={radioButton}
             handleClickRadioButton={handleClickRadioButton}
             handleInputValue={handleInputValue}
-            inputVlaue={inputVlaue}
+            inputValue={inputValue}
             userInfo={userInfo}
             fristCategory="수신"
             secondCategory="발송"

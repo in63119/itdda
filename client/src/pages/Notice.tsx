@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { Route, Switch, useRouteMatch } from 'react-router-dom';
-import { ReadForm, ListForm, WriteForm } from '../components/Index';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
+import { ReadForm, ListForm, WriteForm, UpdateForm } from "../components/Index";
 interface propsType {
   list: any;
   setList: ({}: any) => void;
@@ -22,18 +22,18 @@ function Notice({
   handleChangeNotice,
 }: propsType) {
   const urlMatch = useRouteMatch();
-  const [inputVlaue, setInputValue] = useState({
-    title: '',
-    content: '',
-    type: '',
-    category: '',
+  const [inputValue, setInputValue] = useState({
+    title: "",
+    content: "",
+    type: "",
+    category: "",
   });
   // 카테고리에 대한 상태
-  const [radioButton, setRadioButton] = useState('');
+  const [radioButton, setRadioButton] = useState("");
   //카테고리 상태변환
   const handleClickRadioButton = (category: string) => {
     setInputValue({
-      ...inputVlaue,
+      ...inputValue,
       category: category,
     });
   };
@@ -42,14 +42,15 @@ function Notice({
     name: string,
     content: string,
     type: string,
-    category: string,
+    category: string
   ) => {
     setInputValue({
-      ...inputVlaue,
+      ...inputValue,
       [name]: content,
       type: type,
     });
   };
+
   return (
     <Wrap>
       <Switch>
@@ -69,7 +70,7 @@ function Notice({
         <Route exact path={`${urlMatch.path}/write`}>
           <WriteForm
             radioButton={radioButton}
-            inputVlaue={inputVlaue}
+            inputValue={inputValue}
             handleInputValue={handleInputValue}
             userInfo={userInfo}
             fristCategory="공지사항"
@@ -87,6 +88,26 @@ function Notice({
             <ReadForm contents={list.currentList} title="공지사항"></ReadForm>
           )}
         ></Route>
+        <Route
+          exact
+          path={`${urlMatch.path}/update/:no`}
+          render={() => (
+            <UpdateForm
+              inputValue={inputValue}
+              handleInputValue={handleInputValue}
+              currentCategory={list.currentCategory}
+              list={list.currentList}
+            />
+          )}
+        />
+
+        <Route
+          exact
+          path={`${urlMatch.path}/delete/:no`}
+          render={() => (
+            <ReadForm contents={list.currentList} title="공지사항"></ReadForm>
+          )}
+        />
       </Switch>
     </Wrap>
   );
