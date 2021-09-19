@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
-import styled from 'styled-components';
-import { changeTimeStamp } from '../common/utils/changeTimeStamp';
+import React from "react";
+import { Link, useRouteMatch } from "react-router-dom";
+import styled from "styled-components";
+import { changeTimeStamp } from "../common/utils/changeTimeStamp";
 
 interface propsType {
   userId?: string;
@@ -16,38 +16,39 @@ interface propsType {
 }
 export default function ListInnerCard(props: propsType) {
   const urlMatch = useRouteMatch();
-  const destination = '';
-  // console.log(urlMatch, '현재 위치');
+  const destination = "";
+  // console.log(urlMatch, "현재 위치");
   // if (urlMatch.path === '/main') {
   //   destination = '/main/notice';
   //   console.log(destination, '도착지 위치');
   // }
   // 공지사항 리스트 상태
   const { content, title, type, category, createdAt } = props;
+
   // 투약의뢰서 리스트 상태
   const { userId, userName, classId, className } = props;
-  let writer = '';
-  if (content.user !== undefined && title === '알림장') {
+  let writer = "";
+  if (content.user !== undefined && title === "알림장") {
     writer = content.user.writterName;
   }
-  if (content.category === 'notice') {
+  if (content.category === "notice") {
     writer = content.writer;
   }
-  if (content.category === 'event') {
+  if (content.category === "event") {
     writer = content.writer;
   }
   return (
     <>
       <NoticeCard
         id={content.contentId}
-        to={`${destination || urlMatch.path}/${type === '' ? '' : type + '/'}${
+        to={`${destination || urlMatch.path}/${type === "" ? "" : type + "/"}${
           content.noticeId || content.indiNoticeId
         }`}
       >
         <Point>
           <img className="pointer" src="../images/point.png" />
         </Point>
-        {title === '알림장' ? (
+        {title === "알림장" ? (
           <Content>{content.contents || content.content}</Content>
         ) : (
           <Content>{title}</Content>

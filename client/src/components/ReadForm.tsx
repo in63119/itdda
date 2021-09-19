@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link, useParams, useHistory } from "react-router-dom";
+import { defaultCipherList } from "constants";
 
 interface propsType {
   title: string;
@@ -10,6 +11,7 @@ export default function ReadForm({ title, contents }: propsType) {
   const { no }: any = useParams();
   const history = useHistory();
   let clickedArticle = [];
+
   if (title === "알림장") {
     clickedArticle = contents.filter((element: any, index: number) => {
       if (element.indiNoticeId === Number(no)) {
@@ -17,6 +19,7 @@ export default function ReadForm({ title, contents }: propsType) {
       }
     });
   }
+
   if (title === "공지사항") {
     clickedArticle = contents.filter((element: any, index: number) => {
       if (element.noticeId === Number(no)) {
@@ -24,6 +27,7 @@ export default function ReadForm({ title, contents }: propsType) {
       }
     });
   }
+
   return (
     <Wrap>
       <ContentCard>
@@ -53,8 +57,8 @@ export default function ReadForm({ title, contents }: propsType) {
         )}
       </ContentCard>
       <ButtonWrapper>
-        <PostButton to="/main/notice">수정</PostButton>
-        <PostButton to="/main/notice">삭제</PostButton>
+        <PostButton to={`/main/notice/update/${no}`}>수정</PostButton>
+        <PostButton to={`/main/notice/delete/${no}`}>삭제</PostButton>
         <GoListButton onClick={() => history.goBack()}>목록</GoListButton>
       </ButtonWrapper>
     </Wrap>

@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 interface propsType {
   title: string;
   type: string;
-  inputVlaue: any;
+  inputValue: any;
   currentCategory?: string;
   handleInputValue: any;
   fristCategory?: string;
@@ -37,7 +37,7 @@ function WriteForm({
   handleClickRadioButton,
   handleInsertImageFileInfo,
   handleInputValue,
-  inputVlaue,
+  inputValue,
 }: propsType) {
   const history = useHistory();
   const PREVIOUS_PAGE = -1;
@@ -70,7 +70,7 @@ function WriteForm({
   };
   //작성 글 등록 요청
   const handleRequestPost = async (category: string) => {
-    const { title, content } = inputVlaue;
+    const { title, content } = inputValue;
 
     if (title.length === 0) {
       alert("제목을 입력해주세요");
@@ -124,14 +124,14 @@ function WriteForm({
                   <RadioBtn
                     type="radio"
                     id="fristCategory"
-                    checked={inputVlaue.category === fristCategory}
+                    checked={inputValue.category === fristCategory}
                     onChange={() => handleClickRadioButton(fristCategory)}
                   />
                   <label htmlFor="fristCategory">{fristCategory}</label>
                   <RadioBtn
                     type="radio"
                     id="secondCategory"
-                    checked={inputVlaue.category === secondCategory}
+                    checked={inputValue.category === secondCategory}
                     onChange={() => handleClickRadioButton(secondCategory)}
                   />
                   <label htmlFor="secondCategory">{secondCategory}</label>
