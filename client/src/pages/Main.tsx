@@ -143,6 +143,7 @@ export default function Main({
   useEffect(() => {
     handleInitializeList();
   }, []);
+
   const handleChangeNotice = (category?: string) => {
     //공지사항
     if (category === "공지사항") {
@@ -404,15 +405,7 @@ export default function Main({
                   path={"/main/management"}
                   render={() => <Management userInfo={userInfo} />}
                 />
-                <Route
-                  path={"/main/bus"}
-                  render={() => (
-                    <>
-                      <MainMenu />
-                      <Bus />
-                    </>
-                  )}
-                />
+                <Route path={"/main/bus"} component={Bus} />
               </Switch>
             </ContentCard>
           </Section>

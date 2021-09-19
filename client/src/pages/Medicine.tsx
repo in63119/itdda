@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link, Route, Switch, useRouteMatch } from "react-router-dom";
 import { ListForm, TextAreaForm, WriteForm } from "../components/Index";
-
+import { useHistory } from "react-router-dom";
 interface propsType {
   userInfo: any;
   handleUpdateList: any;
 }
 export default function Medicine({ userInfo, handleUpdateList }: propsType) {
+  const history = useHistory();
   const urlMatch = useRouteMatch();
   //투약 의뢰서, 보고서 상태
   const [medicineList, setMedicinList] = useState({

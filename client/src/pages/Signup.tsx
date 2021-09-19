@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route, Link } from "react-router-dom";
-import { SignupCommon, SignupInstitution } from "./Index";
+import { SignupCommon, SignupInstitution } from "../pages/Index";
 import {
   Signup,
   SignupDetail,
@@ -205,21 +205,21 @@ function Signin({ setModalMessage, setModalVisible }: Props) {
       setErrormessage("올바른 전화번호를 입력해주세요.");
     } else {
       setErrormessage("");
-      inputs.permission === "institution"
-        ? (setInstitution(true), history.push("/signup/institution"))
-        : postSignup(name, role, phone, permission, email, password);
+      // inputs.permission === 'institution'
+      //   ? (setInstitution(true), history.push('/signup/institution'))
+      //   : postSignup(name, role, phone, permission, email, password);
     }
   };
   const handleInstitution = (institutionName: string, master: string) => {
-    institutionName === null || master === null
-      ? setErrormessage("모든 항목은 필수입니다")
-      : (setErrormessage(""), setInstitution(false), setInstiSelection(true));
+    // institutionName === null || master === null
+    //   ? setErrormessage('모든 항목은 필수입니다')
+    //   : (setErrormessage(''), setInstitution(false), setInstiSelection(true));
   };
 
   const handleInstiSelection = (info: string) => {
-    info.length === 0
-      ? setErrormessage("기관 유형을 선택해주세요")
-      : (history.push("/"), setErrormessage(""));
+    // info.length === 0
+    //   ? setErrormessage('기관 유형을 선택해주세요')
+    //   : (history.push('/'), setErrormessage(''));
   };
 
   const postSignup = (

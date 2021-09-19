@@ -42,6 +42,7 @@ import TimtableListForm from "./TimetableListForm";
 import WriteMedicineForm from "./WiretMedicineForm";
 import MedicineReport from "./MedicineReport";
 import AlbumCarousel from "./AlbumCarousel";
+import UpdateForm from "./UpdateForm";
 
 export {
   AlbumCarousel,
@@ -88,4 +89,5 @@ export {
   ClassManage,
   TeacherManage,
   StudentManage,
+  UpdateForm,
 };

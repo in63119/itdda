@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Route, Switch, useRouteMatch, withRouter } from "react-router-dom";
+import {
+  Route,
+  Switch,
+  useRouteMatch,
+  withRouter,
+  useHistory,
+} from "react-router-dom";
 import { CardList, WriteForm } from "../components/Index";
 import { requestImageAlbum } from "../common/axios";
 
@@ -8,9 +14,10 @@ interface propsType {
   userInfo: any;
 }
 export default function Album({ userInfo }: propsType) {
+  const history = useHistory();
   const urlMatch = useRouteMatch();
   const PREVIOUS_PAGE = -1;
-  const [inputVlaue, setInputValue] = useState({
+  const [inputValue, setInputValue] = useState({
     title: "",
     childId: null,
     formData: "",
@@ -30,13 +37,13 @@ export default function Album({ userInfo }: propsType) {
   const handleInputValue = (name: string, content: string) => {
     console.log(name, " 제목은?", content, "내용은?");
     setInputValue({
-      ...inputVlaue,
+      ...inputValue,
       [name]: content,
     });
   };
   // 이미지 등록 요청
   const handleRequestUpload = async () => {
-    const { title, childId, formData } = inputVlaue;
+    const { title, childId, formData } = inputValue;
     const result = await requestImageAlbum(childId, formData, title, null);
     if (result) {
       history.go(PREVIOUS_PAGE);
@@ -52,7 +59,7 @@ export default function Album({ userInfo }: propsType) {
   //이미지 파일 정보 업데이트
   const handleInsertImageFileInfo = (imageFile: any) => {
     setInputValue({
-      ...inputVlaue,
+      ...inputValue,
       formData: imageFile,
     });
   };
@@ -86,7 +93,7 @@ export default function Album({ userInfo }: propsType) {
               radioButton={radioButton}
               handleClickRadioButton={handleClickRadioButton}
               handleInputValue={handleInputValue}
-              inputVlaue={inputVlaue}
+              inputValue={inputValue}
               userInfo={userInfo}
               title="앨범 등록"
               type="album"

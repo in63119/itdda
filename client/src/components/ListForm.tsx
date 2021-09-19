@@ -24,16 +24,16 @@ interface propsType {
   match: RouteComponentProps["match"];
 }
 function ListForm({
-  list,
-  match,
+  permission,
   title,
+  list,
   setList,
   contents,
-  permission,
   fristCategory,
   secondCategory,
   handleUpdateList,
   handleChangeNotice,
+  match,
 }: propsType) {
   const history = useHistory();
   //탭 메뉴 상태
@@ -53,7 +53,12 @@ function ListForm({
   // 유저가 현재 있는 리스트 페이지의 내용을 랜더링 하기 위해 리스트를 업데이트 함.
   useEffect(() => {
     handleUpdateList(title, category.fristCategory);
-    setSelectedCategory(list.currentCategory);
+    // return () => {
+    //   setList({
+    //     ...list,
+    //     currentList: [],
+    //   });
+    // };
   }, []);
   useEffect(() => {
     setSelectedCategory(list.currentCategory);
@@ -118,7 +123,6 @@ function ListForm({
                 <ButtonWrapper>
                   <WireButton to={`${match.path}/write`}>작성</WireButton>
                   <GoListButton onClick={() => history.replace("/main")}>
-                    {" "}
                     홈
                   </GoListButton>
                 </ButtonWrapper>
