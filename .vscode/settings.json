@@ -1,37 +1,39 @@
 {
-	"editor.fontSize": 14,
-	"editor.tokenColorCustomizations": {
-		"comments": "#776d6d"
-	},
-	"window.zoomLevel": 1,
-	"liveServer.settings.donotVerifyTags": true,
-	"json.schemas": [],
-	"editor.tabSize": 2,
-	"editor.insertSpaces": false,
-	"editor.detectIndentation": false,
-	"diffEditor.ignoreTrimWhitespace": true,
-	"workbench.iconTheme": "material-icon-theme",
-	"workbench.colorTheme": "Dracula Soft",
-	"editor.find.cursorMoveOnType": false,
-	"terminal.integrated.fontFamily": "monospace",
-	"editor.fontFamily": "Consolas, Menlo, Monaco, 'Courier New', monospace",
-	"terminal.integrated.fontSize": 15,
-	"workbench.colorCustomizations": {},
-	"files.autoSave": "onFocusChange",
-	"materialTheme.accent": "Remove accents",
-	"terminal.integrated.automationShell.linux": "/bin/zsh",
-	"terminal.integrated.automationShell.osx": "/bin/zsh",
-	"mssql.connections": [{
-		"server": "{{put-server-name-here}}",
-		"database": "{{put-database-name-here}}",
-		"user": "{{put-username-here}}",
-		"password": "{{put-password-here}}"
-	}],
-	"[javascript]": {
-		"editor.defaultFormatter": "vscode.typescript-language-features"
-	},
-	"vim.vimrc.enable": true,
-	"editor.formatOnSave": true,
-	"typescript.updateImportsOnFileMove.enabled": "always",
-	"typescript.tsdk": "/Users/kjw/Desktop/itdda/client/node_modules/typescript/lib"
+  "editor.fontSize": 14,
+  "editor.tokenColorCustomizations": {
+    "comments": "#776d6d"
+  },
+  "window.zoomLevel": 1,
+  "liveServer.settings.donotVerifyTags": true,
+  "json.schemas": [],
+  "editor.tabSize": 2,
+  "editor.insertSpaces": false,
+  "editor.detectIndentation": false,
+  "diffEditor.ignoreTrimWhitespace": true,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "Dracula Soft",
+  "editor.find.cursorMoveOnType": false,
+  "terminal.integrated.fontFamily": "monospace",
+  "editor.fontFamily": "Consolas, Menlo, Monaco, 'Courier New', monospace",
+  "terminal.integrated.fontSize": 15,
+  "workbench.colorCustomizations": {},
+  "files.autoSave": "onFocusChange",
+  "materialTheme.accent": "Remove accents",
+  "terminal.integrated.automationShell.linux": "/bin/zsh",
+  "terminal.integrated.automationShell.osx": "/bin/zsh",
+  "mssql.connections": [
+    {
+      "server": "{{put-server-name-here}}",
+      "database": "{{put-database-name-here}}",
+      "user": "{{put-username-here}}",
+      "password": "{{put-password-here}}"
+    }
+  ],
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "vim.vimrc.enable": true,
+  "editor.formatOnSave": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.tsdk": "/Users/kjw/Desktop/itdda/client/node_modules/typescript/lib"
 }

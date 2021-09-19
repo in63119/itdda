@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 interface Props {
   inputs: Record<string, unknown>;
   handleSignup: any;
@@ -7,7 +8,6 @@ interface Props {
   onChange: any;
   handleIsEmail: any;
 }
-import styled from "styled-components";
 
 function Signup({
   signup,

@@ -1,6 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { Link, RouteComponentProps, useParams } from "react-router-dom";
+import { defaultCipherList } from "constants";
+import {
+  Link,
+  RouteComponentProps,
+  useParams,
+  useHistory,
+} from "react-router-dom";
 
 interface propsType {
   title: string;
@@ -10,65 +16,40 @@ interface propsType {
 }
 export default function ReadForm({ title, contents, userInfo }: propsType) {
   const { no }: any = useParams();
+  const history = useHistory();
   let clickedArticle = [];
+
   if (title === "알림장") {
-    if (userInfo.permission === "parent") {
-      clickedArticle = userInfo.mainData[
-        userInfo.currentChild
-      ].indiNotice.filter((element: any) => {
-        if (element.noticeId === Number(no)) {
-          return element;
-        }
-      });
-    } else {
-      clickedArticle = contents.indiNotice.indiNoticeInfo.filter(
-        (element: any) => {
-          if (element.indiNoticeId === Number(no)) {
-            return element;
-          }
-        },
-      );
-    }
+    clickedArticle = contents.filter((element: any, index: number) => {
+      if (element.indiNoticeId === Number(no)) {
+        return element;
+      }
+    });
   }
+
   if (title === "공지사항") {
-    clickedArticle = contents.currentList.filter((element: any) => {
+    clickedArticle = contents.filter((element: any, index: number) => {
       if (element.noticeId === Number(no)) {
         return element;
       }
     });
   }
+
   return (
     <Wrap>
       <ContentCard>
         <Title>{title}</Title>
         {title === "알림장" ? (
-          <>
-            {userInfo.permission === "parent" ? (
-              <Container>
-                <TitleWrapper>
-                  <SubTitle>제목 : {clickedArticle[0].contents}</SubTitle>
-                  <Writer>
-                    작성자 : {userInfo.mainData[userInfo.currentChild].userName}
-                  </Writer>
-                </TitleWrapper>
-                <TextBox
-                  readOnly
-                  defaultValue={clickedArticle[0].contents}
-                ></TextBox>
-              </Container>
-            ) : (
-              <Container>
-                <TitleWrapper>
-                  <SubTitle>제목 : {clickedArticle[0].content}</SubTitle>
-                  <Writer>작성자 : {clickedArticle[0].user.writterName}</Writer>
-                </TitleWrapper>
-                <TextBox
-                  readOnly
-                  defaultValue={clickedArticle[0].content}
-                ></TextBox>
-              </Container>
-            )}
-          </>
+          <Container>
+            <TitleWrapper>
+              <SubTitle>제목 : {clickedArticle[0].content}</SubTitle>
+              <Writer>작성자 : {clickedArticle[0].user.writterName}</Writer>
+            </TitleWrapper>
+            <TextBox
+              readOnly
+              defaultValue={clickedArticle[0].content}
+            ></TextBox>
+          </Container>
         ) : (
           <Container>
             <TitleWrapper>
@@ -83,15 +64,9 @@ export default function ReadForm({ title, contents, userInfo }: propsType) {
         )}
       </ContentCard>
       <ButtonWrapper>
-        {userInfo.permission === "parent" ? (
-          <GoListButton onClick={() => history.back()}>목록</GoListButton>
-        ) : (
-          <>
-            <PostButton to="/main/notice">수정</PostButton>
-            <PostButton to="/main/notice">삭제</PostButton>
-            <GoListButton onClick={() => history.back()}>목록</GoListButton>
-          </>
-        )}
+        <PostButton to={`/main/notice/update/${no}`}>수정</PostButton>
+        <PostButton to={`/main/notice/delete/${no}`}>삭제</PostButton>
+        <GoListButton onClick={() => history.goBack()}>목록</GoListButton>
       </ButtonWrapper>
     </Wrap>
   );

@@ -349,6 +349,7 @@ export function requestManageClass(className: string, option: string) {
 
 // 공지사항 요청
 // childId: 2, // ! optional. 부모의 경우 required
+// 부모가 로그인 -> childId (1 or 2) => DB를 조회해서 어떤 기관인지 확인
 // category: 'notice', // ! optional 이긴 하나 글 업로드 시에는 required
 // ! => category 는 notice / event 둘 중 하나
 // title: '제목이다.', // ! optional 이긴 하나 글 업로드 시에는 required
@@ -380,6 +381,22 @@ export async function requestNotice(
     });
   return result;
 }
+
+export async function updateNotice(
+  title: string,
+  content: string,
+  category: string,
+) {
+  axios.defaults.headers.common["authorization"] = JSON.parse(
+    localStorage.getItem("loginInfo")!,
+  ).accessToken;
+  const permission = JSON.parse(localStorage.getItem("loginInfo")!).permission;
+  const result = await axios
+    .post("https://datda.link/notice", { title, content, category })
+    .catch((err) => console.log("update notice err:", err));
+  return result;
+}
+
 //이미지 등록 요청
 export const handleReqeustUploadImage = async (
   imageFile: any,

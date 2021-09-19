@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { TimeTableCard } from "./Index";
+import { TimeTableCard } from "../components/Index";
 import { requestUploadTimetable } from "../common/axios";
 import { ChangeToArray } from "../common/utils/findCurrentEducation";
 import { Route, Switch, useRouteMatch, Link } from "react-router-dom";
 import { time } from "console";
+import { useHistory } from "react-router-dom";
 interface propType {
   userInfo: any;
   timetable: any;
@@ -29,6 +30,7 @@ export default function TimtableListForm({
 }: propType) {
   const urlMatch = useRouteMatch();
   const PREVIOUS_PAGE = -1;
+  const history = useHistory();
   return (
     <Wrap>
       <Title>시간표</Title>

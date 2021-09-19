@@ -17,7 +17,7 @@ export default function IndiNotice({
   handleUpdateList,
 }: propsType) {
   const urlMatch = useRouteMatch();
-  const [inputVlaue, setInputValue] = useState({
+  const [inputValue, setInputValue] = useState({
     title: "",
     content: "",
     type: "",
@@ -36,7 +36,7 @@ export default function IndiNotice({
     category: string,
   ) => {
     setInputValue({
-      ...inputVlaue,
+      ...inputValue,
       [name]: content,
       category: category,
     });
@@ -70,7 +70,7 @@ export default function IndiNotice({
             radioButton={radioButton}
             handleClickRadioButton={handleClickRadioButton}
             handleInputValue={handleInputValue}
-            inputVlaue={inputVlaue}
+            inputValue={inputValue}
             userInfo={userInfo}
             fristCategory="수신"
             secondCategory="발송"

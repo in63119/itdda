@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 interface Props {
   inputs: Record<string, unknown>;
@@ -9,7 +10,7 @@ interface Props {
   inputInstiInfo: any;
   postInsti: any;
 }
-function instiSelection({
+function InstiSelection({
   inputs,
   instiInputs,
   instiSelection,
@@ -83,7 +84,7 @@ function instiSelection({
   );
 }
 
-export default instiSelection;
+export default InstiSelection;
 
 const InstSelect = styled.div`
   width: 600px;

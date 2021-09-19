@@ -1,6 +1,8 @@
 import react from "react";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 export default function Bus() {
+  const history = useHistory();
   const PREVIOUS_PAGE = -1;
   return (
     <Wrap>

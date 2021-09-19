@@ -8,7 +8,7 @@ interface propsType {
 }
 export default function Meal({ userInfo }: propsType) {
   const urlMatch = useRouteMatch();
-  const [inputVlaue, setInputValue] = useState({
+  const [inputValue, setInputValue] = useState({
     title: "",
     content: "",
     type: "",
@@ -30,7 +30,7 @@ export default function Meal({ userInfo }: propsType) {
     category: string,
   ) => {
     setInputValue({
-      ...inputVlaue,
+      ...inputValue,
       [name]: content,
       category: category,
     });
@@ -66,7 +66,7 @@ export default function Meal({ userInfo }: propsType) {
             radioButton={radioButton}
             handleClickRadioButton={handleClickRadioButton}
             handleInputValue={handleInputValue}
-            inputVlaue={inputVlaue}
+            inputValue={inputValue}
             userInfo={userInfo}
             title="급식표 등록"
             type="meal"
