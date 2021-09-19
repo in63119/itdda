@@ -14,7 +14,6 @@ function InstiSelection({
   inputs,
   instiInputs,
   instiSelection,
-  handleInstiSelection,
   errormessage,
   inputInstiInfo,
   postInsti,
@@ -71,7 +70,7 @@ function InstiSelection({
                 inputs.password,
                 instiInputs.info,
                 instiInputs.master,
-                instiInputs.institutionName
+                instiInputs.institutionName,
               );
             }}
           >
@@ -97,7 +96,7 @@ const InstSelect = styled.div`
     background: #ffffff;
     border: 1px solid #e4e4e4;
     color: #595959;
-    width: 100px;
+    width: 102px;
     margin-top: 70px;
   }
   .instInfoFrame {

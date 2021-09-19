@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
   requestApproveTeacher,
   requestGetClassList,
   requestChangeTeacherClass,
-} from '../common/axios';
-import styled from 'styled-components';
-import { ClassManage, TeacherManage, StudentManage } from '../components/Index';
+} from "../common/axios";
+import styled from "styled-components";
+import { ClassManage, TeacherManage, StudentManage } from "../components/Index";
 interface Props {
   setModalMessage: any;
   setModalVisible: any;
@@ -15,16 +15,17 @@ function CreateClass({ setModalMessage, setModalVisible }: Props) {
   const [isClass, setIsClass] = useState<boolean>(false);
   const [isTeacher, setIsTeacher] = useState<boolean>(true);
   const [isStudent, setIsStudent] = useState<boolean>(false);
-
+  //클래스 추가 창
+  const [classInputs, setClassInputs] = useState({ className: "" });
   const [message, setMessage] = useState<number>();
   //useEffect를 위한 인자
-  const [classCheck, setClassCheck] = useState<string>('');
+  const [classCheck, setClassCheck] = useState<string>("");
 
   const [classInfo, setClassInfo] = useState([]);
 
   const [teachers, setTeachers] = useState({
     approved: [],
-    changedTeacherId: '',
+    changedTeacherId: "",
     unapproved: [],
   });
 
@@ -85,6 +86,7 @@ function CreateClass({ setModalMessage, setModalVisible }: Props) {
   const toggleTeacher = () => {
     setIsClass(false);
     setIsTeacher(true);
+    setClassInputs({ className: "" });
     // setIsStudent(false);
   };
 
@@ -93,9 +95,10 @@ function CreateClass({ setModalMessage, setModalVisible }: Props) {
     setIsTeacher(false);
     // setIsStudent(true);
   };
+
   return (
     <Wrap>
-      <h3>{isClass ? '반 구성' : isTeacher ? '선생님 관리' : '원아 관리'}</h3>
+      <h3>{isClass ? "반 관리" : isTeacher ? "교사 관리" : "원아 관리"}</h3>
       <div>
         <Button
           className="manageType manageTeacher"
@@ -129,6 +132,8 @@ function CreateClass({ setModalMessage, setModalVisible }: Props) {
       /> */}
         <ClassManage
           isClass={isClass}
+          classInputs={classInputs}
+          setClassInputs={setClassInputs}
           classInfo={classInfo}
           setModalMessage={setModalMessage}
           setModalVisible={setModalVisible}
@@ -148,7 +153,7 @@ export default CreateClass;
 
 const ManageContainer = styled.div`
   width: 100%;
-  height: 75%;
+  height: 83%;
 `;
 const Wrap = styled.div`
   width: 100%;
@@ -156,14 +161,6 @@ const Wrap = styled.div`
   padding: 5%;
   .teacherArea {
     background-color: pink;
-  }
-  .classList {
-    display: inline-block;
-    border: solid 1px;
-    border-radius: 5px;
-    width: 60%;
-    height: 5%;
-    padding-left: 2%;
   }
   #student {
     #studentListArea {
@@ -192,11 +189,11 @@ const Wrap = styled.div`
 `;
 
 const ButtonArea = styled.div`
-  height: 10%;
+  margin-top: 5%;
   text-align: center;
 `;
 
 const Button = styled.button`
+  height: 25%;
   ${({ theme }) => theme.common.defaultButton}
-  margin : 2% 0 2% 0;
 `;

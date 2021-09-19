@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 interface propType {
   handleInputValue: any;
   type: string;
@@ -11,7 +11,7 @@ export default function TextAreaForm({ handleInputValue, type }: propType) {
   };
   return (
     <>
-      {' '}
+      {" "}
       <TextBox
         placeholder="내용작성"
         name="content"

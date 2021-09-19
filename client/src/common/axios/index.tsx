@@ -8,7 +8,7 @@ const serverLoginUrl = "https://datda.link/kakao/login"; //! datda 카카오로�
 
 if (localStorage.getItem("loginInfo")) {
   axios.defaults.headers.common["authorization"] = JSON.parse(
-    localStorage.getItem("loginInfo")!
+    localStorage.getItem("loginInfo")!,
   ).accessToken;
 }
 export async function requestLogin(email: string, password: string) {
@@ -28,7 +28,7 @@ export async function requestLogin(email: string, password: string) {
             isLogin: true,
             accessToken: accessToken,
             permission: res.data.permission,
-          })
+          }),
         );
         return requestMainData(accessToken);
       } else {
@@ -56,7 +56,7 @@ export async function requestKakaoLogin(authorizationCode: string) {
             isLogin: true,
             accessToken: res.data.accessToken,
             permission: res.data.permission,
-          })
+          }),
         );
       }
       return requestMainData(res.data.accessToken);
@@ -110,7 +110,7 @@ export function requestMainData(token?: string) {
 // 승인, 미승인 원아 리스트 요청
 export function requestApproveChild(childId?: number | null) {
   axios.defaults.headers.common["authorization"] = JSON.parse(
-    localStorage.getItem("loginInfo")!
+    localStorage.getItem("loginInfo")!,
   ).accessToken;
   const id = childId || null;
   const childrenList = axios
@@ -131,7 +131,7 @@ export function requestApproveChild(childId?: number | null) {
 
 export function requestApproveTeacher(teacherId?: number | null) {
   axios.defaults.headers.common["authorization"] = JSON.parse(
-    localStorage.getItem("loginInfo")!
+    localStorage.getItem("loginInfo")!,
   ).accessToken;
   const id = teacherId || null;
   const teacherList = axios
@@ -150,7 +150,7 @@ export function requestApproveTeacher(teacherId?: number | null) {
 
 export function requestGetClassList() {
   axios.defaults.headers.common["authorization"] = JSON.parse(
-    localStorage.getItem("loginInfo")!
+    localStorage.getItem("loginInfo")!,
   ).accessToken;
   const classList = axios
     .get("https://datda.link/institution/classList")
@@ -169,7 +169,7 @@ export function requestGetClassList() {
 
 export function requestChangeTeacherClass(teacherId: number, classId: number) {
   axios.defaults.headers.common["authorization"] = JSON.parse(
-    localStorage.getItem("loginInfo")!
+    localStorage.getItem("loginInfo")!,
   ).accessToken;
   const changeClass = axios
     .post("https://datda.link/institution/changeteacherclass", {
@@ -190,7 +190,7 @@ export function requestChangeTeacherClass(teacherId: number, classId: number) {
 
 export function requestSearchInsti(value: string) {
   axios.defaults.headers.common["authorization"] = JSON.parse(
-    localStorage.getItem("loginInfo")!
+    localStorage.getItem("loginInfo")!,
   ).accessToken;
 
   const instiData = axios
@@ -209,7 +209,7 @@ export function requestSearchInsti(value: string) {
 
 export function requestGetProfile(childId?: string | null) {
   axios.defaults.headers.common["authorization"] = JSON.parse(
-    localStorage.getItem("loginInfo")!
+    localStorage.getItem("loginInfo")!,
   ).accessToken;
   const profile = axios
     .post("https://datda.link/profile", { childId: Number(childId) })
@@ -228,10 +228,10 @@ export function requestGetProfile(childId?: string | null) {
 
 export function requestProfileParentRegister(
   institutionId: string,
-  childName: string
+  childName: string,
 ) {
   axios.defaults.headers.common["authorization"] = JSON.parse(
-    localStorage.getItem("loginInfo")!
+    localStorage.getItem("loginInfo")!,
   ).accessToken;
 
   const results = axios
@@ -253,7 +253,7 @@ export function requestProfileParentRegister(
 
 export function requestGuestTeacherRegister(institutionId: string) {
   axios.defaults.headers.common["authorization"] = JSON.parse(
-    localStorage.getItem("loginInfo")!
+    localStorage.getItem("loginInfo")!,
   ).accessToken;
   const result = axios
     .post("https://datda.link/guest/teacherregister", {
@@ -274,10 +274,10 @@ export function requestGuestTeacherRegister(institutionId: string) {
 //parent 아이 추가
 export function requestGuestParentRegister(
   childName: string,
-  institutionId: string
+  institutionId: string,
 ) {
   axios.defaults.headers.common["authorization"] = JSON.parse(
-    localStorage.getItem("loginInfo")!
+    localStorage.getItem("loginInfo")!,
   ).accessToken;
   const result = axios
     .post("https://datda.link/guest/parentregister", {
@@ -309,7 +309,7 @@ export const getProfile = (): void => {
 //시간표 등록(원장)
 export const requestUploadTimetable = async (timetable: any) => {
   axios.defaults.headers.common["authorization"] = JSON.parse(
-    localStorage.getItem("loginInfo")!
+    localStorage.getItem("loginInfo")!,
   ).accessToken;
   const result = await axios
     .post("https://datda.link/institution/timetable", {
@@ -327,7 +327,7 @@ export const requestUploadTimetable = async (timetable: any) => {
 //반 추가 삭제;
 export function requestManageClass(className: string, option: string) {
   axios.defaults.headers.common["authorization"] = JSON.parse(
-    localStorage.getItem("loginInfo")!
+    localStorage.getItem("loginInfo")!,
   ).accessToken;
   const results = axios
     .post("https://datda.link/institution/manageclass", {
@@ -360,10 +360,10 @@ export async function requestNotice(
   chlidId?: number,
   title?: string,
   content?: string,
-  category?: string
+  category?: string,
 ) {
   axios.defaults.headers.common["authorization"] = JSON.parse(
-    localStorage.getItem("loginInfo")!
+    localStorage.getItem("loginInfo")!,
   ).accessToken;
   const permission = JSON.parse(localStorage.getItem("loginInfo")!).permission;
   const result = await axios
@@ -385,10 +385,10 @@ export async function requestNotice(
 export async function updateNotice(
   title: string,
   content: string,
-  category: string
+  category: string,
 ) {
   axios.defaults.headers.common["authorization"] = JSON.parse(
-    localStorage.getItem("loginInfo")!
+    localStorage.getItem("loginInfo")!,
   ).accessToken;
   const permission = JSON.parse(localStorage.getItem("loginInfo")!).permission;
   const result = await axios
@@ -401,10 +401,10 @@ export async function updateNotice(
 export const handleReqeustUploadImage = async (
   imageFile: any,
   title: string,
-  content: string
+  content: string,
 ) => {
   axios.defaults.headers.common["authorization"] = JSON.parse(
-    localStorage.getItem("loginInfo")!
+    localStorage.getItem("loginInfo")!,
   ).accessToken;
   const formData = new FormData();
   formData.append("image", imageFile);
@@ -422,7 +422,7 @@ export const handleReqeustUploadImage = async (
         content: content,
         imageInfo: formData,
       },
-      config
+      config,
     )
     .then((res) => {
       const { avatarUrl } = res.data;
@@ -438,7 +438,7 @@ export const handleReqeustUploadImage = async (
 // content: '선생님이 쓴 알림장의 내용입니다.123123' // ! optional. 글 작성 시에는 required
 export const requestIndiNotice = async (childId?: number, content?: string) => {
   axios.defaults.headers.common["authorization"] = JSON.parse(
-    localStorage.getItem("loginInfo")!
+    localStorage.getItem("loginInfo")!,
   ).accessToken;
   const result = await axios
     .post("https://datda.link/indinotice", {
@@ -470,10 +470,10 @@ export const requestImageAlbum = async (
   childId?: number | null,
   formData?: any | null,
   title?: string | null,
-  content?: string | null
+  content?: string | null,
 ) => {
   axios.defaults.headers.common["authorization"] = JSON.parse(
-    localStorage.getItem("loginInfo")!
+    localStorage.getItem("loginInfo")!,
   ).accessToken;
 
   const result = await axios
@@ -533,10 +533,10 @@ export const requestImageAlbum = async (
 export const requestMealListAndUpload = async (
   childId?: number | null,
   title?: string | null,
-  content?: string | null
+  content?: string | null,
 ) => {
   axios.defaults.headers.common["authorization"] = JSON.parse(
-    localStorage.getItem("loginInfo")!
+    localStorage.getItem("loginInfo")!,
   ).accessToken;
 
   const result = await axios

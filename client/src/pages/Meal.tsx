@@ -27,7 +27,7 @@ export default function Meal({ userInfo }: propsType) {
   const handleInputValue = (
     name: string,
     content: string,
-    category: string
+    category: string,
   ) => {
     setInputValue({
       ...inputValue,

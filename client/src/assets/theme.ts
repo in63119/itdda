@@ -13,11 +13,11 @@ const fontSizes = {
 
 //디바이스 사이즈
 const deviceSizes = {
-  mobileS: '320px',
-  mobileM: '375px',
-  mobileL: '700px',
-  tablet: '820px',
-  tabletL: '1024px',
+  mobileS: "320px",
+  mobileM: "375px",
+  mobileL: "700px",
+  tablet: "820px",
+  tabletL: "1024px",
 };
 
 // 디바이스별 미디어쿼리
@@ -31,10 +31,10 @@ const device = {
 
 // 자주 사용하는 색
 const colors = {
-  black: '#000000',
-  gray: '#bcbcbc',
-  green: '#3cb46e',
-  blue: '#8c80ff',
+  black: "#000000",
+  gray: "#bcbcbc",
+  green: "#3cb46e",
+  blue: "#8c80ff",
 };
 
 // element의 base 디자인
@@ -55,7 +55,7 @@ const common = {
 		background:#6f6eff;
 		font-size:1rem;
 		color:white;
-		padding: 5px 20px 5px 20px;
+		padding: 4px 15px 4px 15px; 
     border: none;
 		border-radius: 20px;
 		outline:0px;
@@ -66,7 +66,7 @@ const common = {
   unclickedButtonStyle: `
 	background:#d8d8d8;
 		color:white;
-		padding: 5px 20px 5px 20px;
+		padding: 4px 15px 4px 15px;
     border: none;
 		border-radius: 20px;
 		outline:0px;
@@ -119,6 +119,23 @@ const common = {
     color: #6f6eff;;
 	}
 	`,
+  // 기관설정 리스트
+  listDiv: `
+	width: 100%;
+  height: 45%;
+  margin: 0 auto;
+  margin-bottom: 3%;
+  border: 1px solid lightgray;
+	border-radius: 12px;`,
+
+  //기관설정 리스트 내 아이템
+  itemInListDiv: `
+	display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+  align-items: center;
+	margin-top: 3px;`,
+
   stateCardDiv: `
 	border-radius: 15px 15px 15px 15px;
   box-shadow: 0px 0px 5px #c8c8c8;	

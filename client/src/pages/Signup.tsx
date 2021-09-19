@@ -166,7 +166,7 @@ function Signin({ setModalMessage, setModalVisible }: Props) {
   const handleSignup = (
     email: string,
     password: string,
-    passwordCheck: string
+    passwordCheck: string,
   ) => {
     if (email === null) {
       setErrormessage("정보를 입력하서야 합니다");
@@ -176,7 +176,7 @@ function Signin({ setModalMessage, setModalVisible }: Props) {
       setErrormessage("이메일 중복을 확인해주세요");
     } else if (!isPasswordCheck(password)) {
       setErrormessage(
-        "최소 8자 이상의, 특수문자와 숫자, 문자를 포함한 비밀번호를 입력하셔야 합니다"
+        "최소 8자 이상의, 특수문자와 숫자, 문자를 포함한 비밀번호를 입력하셔야 합니다",
       );
     } else if (!isPasswordCorrect(password, passwordCheck)) {
       setErrormessage("비밀번호가 일치하지 않습니다.");
@@ -193,7 +193,7 @@ function Signin({ setModalMessage, setModalVisible }: Props) {
     phone: string,
     permission: string,
     email: string,
-    password: string
+    password: string,
   ) => {
     if (name === null || role === null || phone === null) {
       setErrormessage("모든 항목은 필수입니다");
@@ -228,7 +228,7 @@ function Signin({ setModalMessage, setModalVisible }: Props) {
     phone: string,
     permission: string,
     email: string,
-    password: string
+    password: string,
   ) => {
     axios
       .post("https://datda.link/auth/signup", {
@@ -258,7 +258,7 @@ function Signin({ setModalMessage, setModalVisible }: Props) {
 
   const onChangeInsti = (
     key: string,
-    e: React.ChangeEvent<HTMLInputElement>
+    e: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const { value } = e.target;
     setInstiInputs({ ...instiInputs, [key]: value });

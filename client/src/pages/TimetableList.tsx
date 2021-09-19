@@ -81,8 +81,8 @@ export default function Timetable({
       ChangeToArray(
         userInfo.permission === "parent"
           ? userInfo.mainData[userInfo.currentChild].timetable!
-          : userInfo.mainData.timetable
-      )
+          : userInfo.mainData.timetable,
+      ),
     );
   }, []);
   // useEffect(() => {

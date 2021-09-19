@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { ImagePostForm } from '../components/Index';
-import { requestLogin } from '../common/axios';
-import { Link, useHistory, Redirect } from 'react-router-dom';
-import 'dotenv/config';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { ImagePostForm } from "../components/Index";
+import { requestLogin } from "../common/axios";
+import { Link, useHistory, Redirect } from "react-router-dom";
+import "dotenv/config";
 interface props {
   hadleSetMainData: (mainData: any) => void;
 }
@@ -11,17 +11,18 @@ interface props {
 function Intro({ hadleSetMainData }: props) {
   const history = useHistory();
   const [guest, setGuest] = useState({
-    institution: 'institution1@datda.net',
-    teacher: 'teacher1@datda.net',
-    parent: 'parent1@datda.net',
+    institution: "institution1@datda.net",
+    teacher: "teacher1@datda.net",
+    parent: "parent1@datda.net",
   });
   const handleLogin = async (email: string) => {
-    const password = 'asdf123!';
+    const password = "asdf123!";
     const mainData = await requestLogin(email, String(password));
-    if (typeof mainData !== 'boolean') {
+    console.log(mainData);
+    if (typeof mainData !== "boolean") {
       if (mainData !== undefined) {
         hadleSetMainData(mainData);
-        history.push('/main');
+        history.push("/main");
       }
     }
   };
@@ -327,7 +328,7 @@ const IntroGlobal = styled.div`
 `;
 
 const SectionIntro = styled.div`
-  background-image: url('../images/web/intro1_crop_dark.png');
+  background-image: url("../images/web/intro1_crop_dark.png");
   background-repeat: no-repeat;
   text-align: center;
   display: flex;
@@ -344,7 +345,7 @@ const SectionIntro = styled.div`
     }
   }
   @media ${({ theme }) => theme.device.mobileL} {
-    background-image: url('../images/mobile/intro1_crop_dark.png');
+    background-image: url("../images/mobile/intro1_crop_dark.png");
     background-size: cover;
     background-repeat: no-repeat;
   }

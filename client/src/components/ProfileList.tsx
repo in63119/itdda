@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { requestGetProfile } from '../common/axios';
-import { GuestWaiting } from '../pages/Index';
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { requestGetProfile } from "../common/axios";
+import { GuestWaiting } from "../pages/Index";
 
 interface Props {
   userInfo: {
@@ -14,16 +14,16 @@ interface Props {
 }
 
 export default function ProfileList({ userInfo }: Props) {
-  const permission = JSON.parse(localStorage.getItem('loginInfo')!).permission;
+  const permission = JSON.parse(localStorage.getItem("loginInfo")!).permission;
 
   const [profileInfo, setProfileInfo] = useState<any>({
-    basicInfo: '',
-    approved: '',
-    unapproved: '',
+    basicInfo: "",
+    approved: "",
+    unapproved: "",
   });
 
   useEffect(() => {
-    if (permission === 'teacher' || permission === 'institution') {
+    if (permission === "teacher" || permission === "institution") {
       getProfile();
     } else {
       getProfile(userInfo.mainData[userInfo.currentChild].childId);
@@ -44,7 +44,7 @@ export default function ProfileList({ userInfo }: Props) {
 
   const onChange = (key: any, e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    setProfileInfo({ ...profileInfo.basicInfo, [key]: value });
+    setProfileInfo({ ...profileInfo, [key]: value });
   };
 
   return profileInfo.basicInfo.length === 0 ? (
@@ -64,17 +64,17 @@ export default function ProfileList({ userInfo }: Props) {
             <div id="flexLeft">
               <AvatarCard
                 src={
-                  permission !== 'parent'
+                  permission !== "parent"
                     ? userInfo.mainData.profileImg
                     : userInfo.mainData[userInfo.currentChild].profileImg
                 }
                 alt="avatar"
               ></AvatarCard>
-              {JSON.parse(localStorage.getItem('loginInfo')!).permission ===
-              'teacher' ? (
+              {JSON.parse(localStorage.getItem("loginInfo")!).permission ===
+              "teacher" ? (
                 <div id="profileButton"></div>
-              ) : JSON.parse(localStorage.getItem('loginInfo')!).permission ===
-                'parent' ? (
+              ) : JSON.parse(localStorage.getItem("loginInfo")!).permission ===
+                "parent" ? (
                 <div id="profileButton">
                   <Link to="/main/profile/institution">
                     <Button>아이등록</Button>
@@ -85,77 +85,80 @@ export default function ProfileList({ userInfo }: Props) {
               )}
             </div>
             <div id="contentsWrap">
-              {JSON.parse(localStorage.getItem('loginInfo')!).permission !==
-              'institution' ? (
-                <>
-                  <div className="profile name">
-                    <span className="blue">
-                      {permission === 'teacher' ? '이름' : '이름'}
-                    </span>
-                    <input
-                      className="textBox username"
-                      type="text"
-                      placeholder={profileInfo.basicInfo.name}
-                      onChange={(e) => {
-                        onChange('name', e);
-                      }}
-                    ></input>
-                  </div>
-                  <div className="profile email">
-                    <span className="blue">이메일 </span>
-                    <span className="emailText">
-                      {profileInfo.basicInfo.email}
-                    </span>
-                  </div>
-                  <div className="profile mobile">
-                    <span className="blue">전화번호 </span>
-                    <input
-                      className="textBox phone"
-                      type="text"
-                      placeholder={profileInfo.basicInfo.mobile}
-                      onChange={(e) => {
-                        onChange('mobile', e);
-                      }}
-                    ></input>
-                  </div>
-                </>
+              {JSON.parse(localStorage.getItem("loginInfo")!).permission !==
+              "institution" ? (
+                <ProfileData>
+                  <ProfileWrapper>
+                    <div className="profile name">
+                      <span className="blue">
+                        {permission === "teacher" ? "이름" : "이름"}
+                      </span>
+                      <input
+                        className="textBox username"
+                        type="text"
+                        placeholder={profileInfo.basicInfo.name}
+                        onChange={(e) => {
+                          onChange("name", e);
+                        }}
+                      ></input>
+                    </div>
+                    <div className="profile email">
+                      <span className="blue">이메일 </span>
+                      <span className="emailText">
+                        {profileInfo.basicInfo.email}
+                      </span>
+                    </div>
+                    <div className="profile mobile">
+                      <span className="blue">전화번호 </span>
+                      <input
+                        className="textBox phone"
+                        type="text"
+                        placeholder={profileInfo.basicInfo.mobile}
+                        onChange={(e) => {
+                          onChange("mobile", e);
+                        }}
+                      ></input>
+                    </div>
+                  </ProfileWrapper>
+                </ProfileData>
               ) : (
                 <>
-                  <div className="profile name">
-                    <span className="blue">기관이름 </span>
-                    <input
-                      className="textBox"
-                      type="text"
-                      placeholder={profileInfo.basicInfo.name}
-                      onChange={(e) => {
-                        onChange('institution', e);
-                      }}
-                    ></input>
-                  </div>
-                  <div className="profile email">
-                    <span className="blue">이메일 </span>
-                    <span className="emailText">
-                      {profileInfo.basicInfo.email}
-                    </span>
-                  </div>
-                  <div className="profile mobile">
-                    <span className="blue">전화번호 </span>
-                    <input
-                      className="textBox phone"
-                      type="text"
-                      placeholder={profileInfo.basicInfo.mobile}
-                      onChange={(e) => {
-                        onChange('mobile', e);
-                      }}
-                    ></input>
-                  </div>
+                  <ProfileWrapper>
+                    <div className="profile name">
+                      <span className="blue">기관이름 </span>
+                      <input
+                        className="textBox"
+                        type="text"
+                        placeholder={profileInfo.basicInfo.name}
+                        onChange={(e) => {
+                          onChange("institution", e);
+                        }}
+                      ></input>
+                    </div>
+                    <div className="profile email">
+                      <span className="blue">이메일 </span>
+                      <span className="emailText">
+                        {profileInfo.basicInfo.email}
+                      </span>
+                    </div>
+                    <div className="profile mobile">
+                      <span className="blue">전화번호 </span>
+                      <input
+                        className="textBox phone"
+                        type="text"
+                        placeholder={profileInfo.basicInfo.mobile}
+                        onChange={(e) => {
+                          onChange("mobile", e);
+                        }}
+                      ></input>
+                    </div>
+                  </ProfileWrapper>
                 </>
               )}
             </div>
           </div>
-
-          {JSON.parse(localStorage.getItem('loginInfo')!).permission ===
-          'parent' ? (
+          {JSON.parse(localStorage.getItem("loginInfo")!).permission ===
+          "parent" ? (
             <>
               <ProfileApprovedWrap>
                 <div className="blue bigText">승인된 내 아이들</div>
@@ -201,7 +204,6 @@ export default function ProfileList({ userInfo }: Props) {
           ) : (
             <div></div>
           )}
-
           <div id="complete">
             <Button>수정</Button>
             <Link to="/main">
@@ -213,26 +215,44 @@ export default function ProfileList({ userInfo }: Props) {
     </Wrap>
   );
 }
+
+const ProfileWrapper = styled.span`
+  display: inline-block;
+  text-align: left;
+  div {
+    margin-top: 2%;
+  }
+`;
+
+const ProfileData = styled.span`
+  text-align: left;
+  width: fit-content;
+  display: block;
+  margin: 0 auto;
+  margin-top: 3%;
+  div {
+    padding: 2% 0 2% 0;
+  }
+`;
 const Wrap = styled.div`
   width: 100%;
   height: 100%;
 
   #contentsWrap {
-    padding-left: 3%;
     flex: 3 1 auto;
   }
   #flexLeft {
     flex: 1 1 auto;
   }
   #profile {
-    padding-left: 5%;
-    padding-right: 5%;
+    text-align: center;
   }
   .profile {
-    margin-bottom: 13%;
   }
   #profileArea {
     display: flex;
+    flex-wrap: wrap;
+    padding: 0 10% 0 10%;
   }
   #complete {
     text-align: center;
@@ -246,6 +266,7 @@ const Wrap = styled.div`
     font-size: 2rem;
   }
   .textBox {
+    text-align: center;
     border: solid 0px;
     border-bottom: solid 1px;
   }
@@ -265,7 +286,10 @@ const Wrap = styled.div`
 `;
 
 const Loading = styled.div`
+  height: 100%;
+  width: 100%;
   display: flex;
+  align-items: center;
   justify-content: center;
   #loading {
     text-align: center;
@@ -290,7 +314,9 @@ const Button = styled.button`
 const ApprovedTitle = styled.div`
   width: 100%;
   display: flex;
-  border-bottom: solid 1px;
+  padding: 1%;
+  border-bottom: solid 1px lightgray;
+  font-size: 1.2rem;
   .approvedName {
     width: 100%;
     flex: 1 auto;
@@ -309,11 +335,14 @@ const ApprovedTitle = styled.div`
 `;
 
 const ProfileApprovedList = styled.div`
-  border: solid 1px;
+  border: solid 1px lightgray;
   border-radius: 10px;
+  width: 80%;
+  margin: 0 auto;
   .indiApprovedResults {
     width: 100%;
     display: flex;
+    padding: 1%;
 
     .approvedNameResults {
       width: 100%;
@@ -334,8 +363,10 @@ const ProfileApprovedList = styled.div`
 `;
 
 const ProfileUnapprovedList = styled.div`
-  border: solid 1px;
+  border: solid 1px lightgray;
   border-radius: 10px;
+  width: 80%;
+  margin: 0 auto;
   .indiUnapprovedResults {
     width: 100%;
     display: flex;
@@ -349,12 +380,16 @@ const ProfileUnapprovedList = styled.div`
       flex: 1 auto;
       text-align: center;
     }
+  }
 `;
 
 const UnapprovedTitle = styled.div`
   width: 100%;
   display: flex;
-  border-bottom: solid 1px;
+  padding: 1%;
+  font-size: 1.2rem;
+  border-bottom: 1px solid lightgray;
+
   .unapprovedName {
     width: 100%;
     flex: 1 auto;
@@ -379,6 +414,6 @@ const AvatarCard = styled.img`
   overflow: hidden;
   border-radius: 20px;
   resize: both;
-  width: 200px;
-  height: 200px;
+  width: 120px;
+  height: 120px;
 `;

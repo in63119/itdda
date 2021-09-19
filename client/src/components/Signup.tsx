@@ -64,7 +64,7 @@ function Signup({
                 handleSignup(
                   inputs.email,
                   inputs.password,
-                  inputs.passwordCheck
+                  inputs.passwordCheck,
                 );
               }}
             >

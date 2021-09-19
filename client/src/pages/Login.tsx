@@ -1,16 +1,16 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import { Link, useHistory, Redirect } from 'react-router-dom';
-import styled from 'styled-components';
-import { requestLogin, requestKakaoLogin } from '../common/axios';
-import 'dotenv/config';
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { Link, useHistory, Redirect } from "react-router-dom";
+import styled from "styled-components";
+import { requestLogin, requestKakaoLogin } from "../common/axios";
+import "dotenv/config";
 
 axios.defaults.withCredentials = true;
 
 //!카카오톡 REST api key 리액트는 환경변수(.env)에서 'REACT_APP_'을 붙여줘야 함
 const kakaoKey = process.env.REACT_APP_KAKAO_RESTAPI_KEY;
 //!카카오 로그인&회원가입 관련 url
-const redirectUri = 'https://datda.net/login'; //! 후에 datda 주소로 변경
+const redirectUri = "https://datda.net/login"; //! 후에 datda 주소로 변경
 // const redirectUri = 'http://localhost:3000/login'; //! 후에 datda 주소로 변경
 const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${kakaoKey}&redirect_uri=${redirectUri}&response_type=code`;
 
@@ -20,8 +20,8 @@ interface propType {
 function Login({ hadleSetMainData }: propType) {
   console.log(hadleSetMainData);
   const history = useHistory();
-  const [inputs, setInputs] = useState({ email: '', password: '' });
-  const [errormessage, setErrormessage] = useState<string>('');
+  const [inputs, setInputs] = useState({ email: "", password: "" });
+  const [errormessage, setErrormessage] = useState<string>("");
   //! 카카오 관련 상태
   const [isKakao, setIsKakao] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -33,26 +33,27 @@ function Login({ hadleSetMainData }: propType) {
 
   const handleLogin = async (email: string, password: string) => {
     if (email.length === 0 || password.length === 0) {
-      setErrormessage('이메일이나 비밀번호를 입력해주세요.');
+      setErrormessage("이메일이나 비밀번호를 입력해주세요.");
     } else {
       setIsLoading(true);
       // axios 로그인 요청
       //!await로 동기적 실행 필요함.
       const mainData = await requestLogin(email, password);
-      if (typeof mainData !== 'boolean') {
+
+      if (typeof mainData !== "boolean") {
         if (mainData !== undefined) {
-          console.log('핸들러작동');
+          console.log("핸들러작동");
           hadleSetMainData(mainData);
-          history.push('/main');
+          history.push("/main");
         } else {
-          setErrormessage('잘못된 요청입니다');
+          setErrormessage("잘못된 요청입니다");
         }
       } else if (mainData === true) {
-        history.push('/waiting');
+        history.push("/waiting");
       } else if (mainData === false) {
-        history.push('/waiting/approving');
+        history.push("/waiting/approving");
       }
-      setErrormessage('');
+      setErrormessage("");
     }
   };
 
@@ -65,25 +66,25 @@ function Login({ hadleSetMainData }: propType) {
   useEffect(() => {
     if (!isKakao) {
       const url = new URL(window.location.href);
-      const authorizationCode = url.searchParams.get('code');
+      const authorizationCode = url.searchParams.get("code");
       if (authorizationCode) {
         setIsLoading(true);
         requestKakaoLogin(authorizationCode).then((mainData) => {
-          if (typeof mainData !== 'boolean') {
+          if (typeof mainData !== "boolean") {
             if (mainData !== undefined) {
               hadleSetMainData(mainData);
               setIsLoading(false);
-              history.push('/main');
+              history.push("/main");
             } else {
-              setErrormessage('잘못된 요청입니다');
+              setErrormessage("잘못된 요청입니다");
               setIsLoading(false);
             }
           } else if (mainData === true) {
             setIsLoading(false);
-            history.push('/waiting');
+            history.push("/waiting");
           } else if (mainData === false) {
             setIsLoading(false);
-            history.push('/waiting/approving');
+            history.push("/waiting/approving");
             // if (mainData) {
             //   // handleLoading();
             //   hadleSetMainData(mainData);
@@ -113,7 +114,7 @@ function Login({ hadleSetMainData }: propType) {
             className="inputBox"
             type="text"
             placeholder="이메일"
-            onChange={(e) => onChange('email', e)}
+            onChange={(e) => onChange("email", e)}
           ></input>
         </InputBox>
         <InputBox>
@@ -121,7 +122,7 @@ function Login({ hadleSetMainData }: propType) {
             className="inputBox"
             type="password"
             placeholder="비밀번호"
-            onChange={(e) => onChange('password', e)}
+            onChange={(e) => onChange("password", e)}
           ></input>
         </InputBox>
         <div className="error">{errormessage}</div>
@@ -162,10 +163,10 @@ export default Login;
 
 const LoginGlobal = styled.div`
   @font-face {
-    font-family: 'NanumSquareWeb';
-    src: url('../fonts/NanumSquareOTFLight.otf');
+    font-family: "NanumSquareWeb";
+    src: url("../fonts/NanumSquareOTFLight.otf");
   }
-  font-family: 'NanumSquareWeb';
+  font-family: "NanumSquareWeb";
   .LoginGlobalFrame {
     display: flex;
     flex-direction: column;
@@ -186,10 +187,10 @@ const LoginGlobal = styled.div`
     font-size: 30px;
     font-weight: bold;
     @font-face {
-      font-family: 'NanumSquareWeb';
-      src: url('../fonts/NanumSquareOTFLight.otf');
+      font-family: "NanumSquareWeb";
+      src: url("../fonts/NanumSquareOTFLight.otf");
     }
-    font-family: 'NanumSquareWeb';
+    font-family: "NanumSquareWeb";
   }
   #loadingImage {
     width: 100px;
@@ -205,10 +206,10 @@ const LoginGlobal = styled.div`
   }
 
   @font-face {
-    font-family: 'NanumSquareWeb';
-    src: url('../fonts/NanumSquareOTFLight.otf');
+    font-family: "NanumSquareWeb";
+    src: url("../fonts/NanumSquareOTFLight.otf");
   }
-  font-family: 'NanumSquareWeb';
+  font-family: "NanumSquareWeb";
 
   .buttonSession {
     margin-top: 30px;
@@ -244,10 +245,10 @@ const InputBox = styled.div`
   }
   margin: 5px 0px 5px 0px;
   @font-face {
-    font-family: 'NanumSquareWeb';
-    src: url('../fonts/NanumSquareOTFLight.otf');
+    font-family: "NanumSquareWeb";
+    src: url("../fonts/NanumSquareOTFLight.otf");
   }
-  font-family: 'NanumSquareWeb';
+  font-family: "NanumSquareWeb";
   @media ${({ theme }) => theme.device.mobileL} {
     .inputBox {
       width: 216px;

@@ -1,13 +1,20 @@
 import React from "react";
 import styled from "styled-components";
-import { Link, useParams, useHistory } from "react-router-dom";
 import { defaultCipherList } from "constants";
+import {
+  Link,
+  RouteComponentProps,
+  useParams,
+  useHistory,
+} from "react-router-dom";
 
 interface propsType {
   title: string;
   contents: any;
+  userInfo?: any;
+  match?: RouteComponentProps["match"];
 }
-export default function ReadForm({ title, contents }: propsType) {
+export default function ReadForm({ title, contents, userInfo }: propsType) {
   const { no }: any = useParams();
   const history = useHistory();
   let clickedArticle = [];

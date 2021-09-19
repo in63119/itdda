@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
 
 interface Props {
   isStudent: boolean;
@@ -15,7 +15,7 @@ function StudentManage({
   setModalMessage,
   classInfo,
 }: Props) {
-  const [inputs, setInputs] = useState('');
+  const [inputs, setInputs] = useState("");
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;

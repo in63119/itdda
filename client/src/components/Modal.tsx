@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import Portal from './Potal';
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import Portal from "./Potal";
 
 interface Props {
   onClose: any;
@@ -35,7 +35,7 @@ export default function Modal({
       const scrollY = document.body.style.top;
       document.body.style.cssText = `position: ""; top: "";`;
       // eslint-disable-next-line radix
-      window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      window.scrollTo(0, parseInt(scrollY || "0") * -1);
     };
   }, []);
   return (
@@ -86,7 +86,7 @@ const CloseButton = styled.button`
 
 const ModalWrapper = styled.div`
   box-sizing: border-box;
-  display: ${(props: myStyle) => (props.visible ? 'block' : 'none')};
+  display: ${(props: myStyle) => (props.visible ? "block" : "none")};
   position: fixed;
   top: 0;
   right: 0;
@@ -99,7 +99,7 @@ const ModalWrapper = styled.div`
 
 const ModalOverlay = styled.div`
   box-sizing: border-box;
-  display: ${(props: myStyle) => (props.visible ? 'block' : 'none')};
+  display: ${(props: myStyle) => (props.visible ? "block" : "none")};
   position: fixed;
   top: 0;
   left: 0;

@@ -1,4 +1,4 @@
-import { handleCheckData, InsertChildStat } from './firebaseFunction';
+import { handleCheckData, InsertChildStat } from "./firebaseFunction";
 
 export async function addState(childrenList: any) {
   const childrenArray = childrenList.approved;

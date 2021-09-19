@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { Route, Switch } from 'react-router-dom';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { Route, Switch } from "react-router-dom";
 import {
   ProfileList,
   SelectInstitution,
   AddChildren,
-} from '../components/Index';
+} from "../components/Index";
 
 interface Props {
   userInfo: {
@@ -19,11 +19,11 @@ interface Props {
 function Profile({ userInfo }: Props) {
   const [instiInfo, setInsti] = useState([]);
 
-  const [instiSelect, setInstiSelect] = useState<string>('');
+  const [instiSelect, setInstiSelect] = useState<string>("");
 
-  const [children, setChildren] = useState<string>('');
+  const [children, setChildren] = useState<string>("");
 
-  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>("");
   return (
     <Wrap>
       <Switch>

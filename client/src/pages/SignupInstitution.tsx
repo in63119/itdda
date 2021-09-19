@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
-import { Institution, InstiSelection } from '../components/Index';
-import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
+import { Institution, InstiSelection } from "../components/Index";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 axios.defaults.withCredentials = true;
 
@@ -43,10 +43,10 @@ function SignupInstitution({
     institutionName: string,
   ) => {
     if (info.length === 0) {
-      setErrormessage('기관유형 중 하나를 선택해주세요');
+      setErrormessage("기관유형 중 하나를 선택해주세요");
     } else {
       axios
-        .post('https://datda.link/auth/institution', {
+        .post("https://datda.link/auth/institution", {
           userName: name,
           role: role,
           mobile: Number(phone),
@@ -59,9 +59,9 @@ function SignupInstitution({
         })
         .then((res) => {
           if (res.status === 200) {
-            history.push('/login');
+            history.push("/login");
           } else {
-            alert('다시 시도해주세요');
+            alert("다시 시도해주세요");
           }
         });
     }

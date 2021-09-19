@@ -14,8 +14,9 @@ export function isPasswordCheck(value: string) {
 }
 
 export function isPhoneCheck(value: string) {
-  const check = /^\d{3}\d{3,4}\d{4}$/;
-  return check.test(value);
+  const check = /^[0-9]{3}[0-9]{4}[0-9]{4}/;
+  const check2 = /^[0-9]{3}-[0-9]{4}-[0-9]{4}/;
+  return check.test(value) || check2.test(value);
 }
 
 export function isNameCHeck(value: string) {

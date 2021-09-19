@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import React, { useRef, useEffect, useState } from 'react';
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import React, { useRef, useEffect, useState } from "react";
 interface propType {
   userInfo: any;
 }
@@ -29,7 +29,7 @@ export default function Carousel({ userInfo }: propType) {
   useEffect(() => {
     const { current } = slideRef;
     if (current !== null) {
-      current.style.transition = 'all 0.3s ease-in-out';
+      current.style.transition = "all 0.3s ease-in-out";
       current.style.transform = `translateX(-${currentSlide}00%)`;
     }
   }, [currentSlide]);
@@ -39,7 +39,7 @@ export default function Carousel({ userInfo }: propType) {
         <Title>앨범</Title>
         {userInfo.mainData ? (
           <SliderContainer ref={slideRef}>
-            {userInfo.permission === 'parent'
+            {userInfo.permission === "parent"
               ? userInfo.mainData[userInfo.currentChild].album.map(
                   (element: any, index: number) => {
                     return (
@@ -63,10 +63,10 @@ export default function Carousel({ userInfo }: propType) {
         {/* {userInfo.mainData.album.length >= 1 ? ( */}
         <SlideButtonWrap>
           <SlideButton onClick={prevSlide}>
-            <Arrow>{'<'}</Arrow>
+            <Arrow>{"<"}</Arrow>
           </SlideButton>
           <SlideButton onClick={nextSlide}>
-            <Arrow>{'>'}</Arrow>
+            <Arrow>{">"}</Arrow>
           </SlideButton>
         </SlideButtonWrap>
       </CarouselContainer>
@@ -106,10 +106,10 @@ const CarouselContainer = styled.div`
   margin: 5%;
   margin-top: 2%;
   @font-face {
-    font-family: 'NanumSquareWeb';
-    src: url('../fonts/NanumSquareOTFLight.otf');
+    font-family: "NanumSquareWeb";
+    src: url("../fonts/NanumSquareOTFLight.otf");
   }
-  font-family: 'NanumSquareWeb';
+  font-family: "NanumSquareWeb";
 `;
 const SliderContainer = styled.div`
   display: flex;

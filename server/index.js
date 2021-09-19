@@ -4,6 +4,7 @@ const cors = require('cors');
 const logger = require('morgan');
 const { sequelize } = require('./models');
 const cookieParser = require('cookie-parser');
+const { swaggerUi, specs } = require('./modules/swagger/swagger')
 
 const app = express();
 app.use(logger('dev'));
@@ -32,17 +33,17 @@ app.use(express.json());
 // );
 // ex2>
 app.use(
-  cors({
-    origin: [
-      'https://datda.net',
-      'https://www.datda.net',
-      'http://localhost:3000',
-      'http://localhost:3001',
-      'https://localhost:3000',
-    ],
-    method: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // ! HEAD?
-    credentials: true,
-  }),
+	cors({
+		origin: [
+			'https://datda.net',
+			'https://www.datda.net',
+			'http://localhost:3000',
+			'http://localhost:3001',
+			'https://localhost:3000',
+		],
+		method: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // ! HEAD?
+		credentials: true,
+	}),
 );
 // ================================================
 
@@ -77,6 +78,7 @@ const noticeRouter = require('./routes/notice');
 const indiNoticeRouter = require('./routes/indiNotice');
 
 app.use('/', indexRouter);
+app.use('/datda_docs', swaggerUi.serve, swaggerUi.setup(specs));
 app.use('/auth', authRouter);
 app.use('/kakao', kakaoRouter);
 app.use('/refreshtoken', refreshTokenRouter);
@@ -101,7 +103,7 @@ app.use('/indinotice', indiNoticeRouter);
 // ================================================
 
 app.listen(5000, () => {
-  console.log('server on 5000');
+	console.log('server on 5000');
 });
 
 // app.timeout = 600000;

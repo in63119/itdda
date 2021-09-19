@@ -1,5 +1,5 @@
-import react from 'react';
-import styled from 'styled-components';
+import react from "react";
+import styled from "styled-components";
 interface propType {
   timetable: any;
   type: string;
@@ -24,7 +24,7 @@ export default function TimetableCard({
           </NumberWrapper>
           <TimeWrapper id={timetable.step}>
             <Time>시간 :</Time>
-            {type === 'read' ? (
+            {type === "read" ? (
               <span>{timetable.time}</span>
             ) : (
               <>
@@ -40,7 +40,7 @@ export default function TimetableCard({
           </TimeWrapper>
           <ContentsWrapper>
             <Contents>내용 :</Contents>
-            {type === 'read' ? (
+            {type === "read" ? (
               <ContentsText>{timetable.contents}</ContentsText>
             ) : (
               <InputContents
@@ -58,62 +58,35 @@ export default function TimetableCard({
   );
 }
 const Container = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 20% 40% 40%;
   width: 100%;
-  // text-align: center;
 `;
 const NumberWrapper = styled.span`
-  display: flex;
-  flex: 0.2 auto;
   font-size: 1rem;
 `;
-const TimeWrapper = styled.span`
-  display: flex;
-  flex: 1 auto;
-`;
+const TimeWrapper = styled.span``;
 const ContentsWrapper = styled.span`
-  display: flex;
-  flex: 2 auto;
   @font-face {
-    font-family: 'NanumSquareWeb';
-    src: url('../fonts/NanumSquareOTFLight.otf');
+    font-family: "NanumSquareWeb";
+    src: url("../fonts/NanumSquareOTFLight.otf");
   }
-  font-family: 'NanumSquareWeb';
+  font-family: "NanumSquareWeb";
 `;
 const Number = styled.span`
   font-size: 10px;
-  flex: 1 auto;
 `;
-const InputNumber = styled.input`
-  ${({ theme }) => theme.common.defaultInput}
-  flex: 1 auto;
-`;
-const Time = styled.span`
-  text-align: end;
-  align-self: center;
-  width: 3rem;
-  padding-right: 3%;
-  flex: 1.3 auto;
-`;
+const Time = styled.span``;
 const InputTime = styled.input`
   width: 7rem;
   ${({ theme }) => theme.common.defaultInput}
 `;
-const Contents = styled.span`
-  flex: 1 auto;
-  width: 5rem;
-  align-self: center;
-
-  text-align: end;
-  padding-right: 3%;
-`;
+const Contents = styled.span``;
 const InputContents = styled.input`
   ${({ theme }) => theme.common.defaultInput}
   width: 100%;
-
   flex: 1 auto;
 `;
-
 const CardWrapper = styled.div`
   ${({ theme }) => theme.common.defaultCardDiv}
   width:95%;

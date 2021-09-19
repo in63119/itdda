@@ -100,7 +100,6 @@ const Title = styled.div`
   justify-content: start;
   margin-left: 15px;
   font-size: 35px;
-  width: 100%;
   height: 10%;
   color: black;
   padding-top: 30px;

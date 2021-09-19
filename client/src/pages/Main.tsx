@@ -25,7 +25,7 @@ import {
   SubMenu,
   FooterContents,
   SecondSubMenu,
-  Timetable,
+  MainMenu,
 } from "../components/Index";
 import { firestore } from "../common/utils/firebase";
 import {
@@ -167,6 +167,7 @@ export default function Main({
       setList({
         ...list,
         currentList: list.indiNotice.teacherRead,
+        currentCategory: "receive",
       });
       return;
     }
@@ -174,6 +175,7 @@ export default function Main({
       setList({
         ...list,
         currentList: list.indiNotice.teacherWrite,
+        currentCategory: "send",
       });
       return;
     }
@@ -227,7 +229,7 @@ export default function Main({
     if (userInfo.permission === "parent") {
       handleCheckData(
         userInfo.mainData[userInfo.currentChild].institutionId,
-        userInfo.mainData[userInfo.currentChild].childId
+        userInfo.mainData[userInfo.currentChild].childId,
       );
     }
   }, [userInfo.currentChild]);
@@ -247,13 +249,13 @@ export default function Main({
     if (userInfo.permission === "parent") {
       setChildId({
         institutionId: String(
-          userInfo.mainData[userInfo.currentChild].institutionId
+          userInfo.mainData[userInfo.currentChild].institutionId,
         ),
         id: String(userInfo.mainData[userInfo.currentChild].childId),
       });
       handleCheckData(
         userInfo.mainData[userInfo.currentChild].institutionId,
-        userInfo.mainData[userInfo.currentChild].childId
+        userInfo.mainData[userInfo.currentChild].childId,
       );
     }
   }, [userInfo.permission]);
@@ -274,12 +276,13 @@ export default function Main({
                 <>
                   <State
                     type="현재상태"
-                    childInfo={userInfo}
+                    userInfo={userInfo}
                     isCheck={isCheck}
                     isOk={isOk}
                     isSleep={isSleep}
                     isEat={isEat}
                     please={please}
+                    isTeacher={false}
                   ></State>
                 </>
               ) : null}
@@ -306,66 +309,66 @@ export default function Main({
                     handleChangeChild={handleChangeChild}
                   ></Contents>
                 </Route>
-                <Route
-                  exact
-                  path={`/main/notice/:no`}
-                  render={() => (
-                    <ReadForm
-                      contents={list.mainMiniNotice}
-                      title="공지사항"
-                    ></ReadForm>
-                  )}
-                ></Route>
-                <Route
-                  exact
-                  path={`/main/mainIndiNotice/:no`}
-                  render={() => (
-                    <ReadForm
-                      contents={list.mainMiniIndiNotice}
-                      title="알림장"
-                    ></ReadForm>
-                  )}
-                ></Route>
+
                 <Route
                   path={`/main/notice`}
                   render={() => (
-                    <Notice
-                      userInfo={userInfo}
-                      list={list}
-                      setList={setList}
-                      handleChangeNotice={handleChangeNotice}
-                      handleUpdateList={handleUpdateList}
-                    />
+                    <>
+                      <MainMenu />
+                      <Notice
+                        userInfo={userInfo}
+                        list={list}
+                        setList={setList}
+                        handleChangeNotice={handleChangeNotice}
+                        handleUpdateList={handleUpdateList}
+                      />
+                    </>
                   )}
                 />
                 <Route
                   path={`/main/medicine`}
                   render={() => (
-                    <Medicine
-                      handleUpdateList={handleUpdateList}
-                      userInfo={userInfo}
-                    />
+                    <>
+                      <MainMenu />
+                      <Medicine
+                        handleUpdateList={handleUpdateList}
+                        userInfo={userInfo}
+                      />
+                    </>
                   )}
                 />
                 <Route
                   path={`/main/meal`}
-                  render={() => <Meal userInfo={userInfo} />}
+                  render={() => (
+                    <>
+                      <MainMenu />
+                      <Meal userInfo={userInfo} />
+                    </>
+                  )}
                 />
                 <Route
-                  path={`/main/indi_notice`}
+                  path={`/main/message`}
                   render={() => (
-                    <IndiNotice
-                      handleChangeNotice={handleChangeNotice}
-                      handleUpdateList={handleUpdateList}
-                      userInfo={userInfo}
-                      list={list}
-                      setList={setList}
-                    />
+                    <>
+                      <MainMenu />
+                      <IndiNotice
+                        handleChangeNotice={handleChangeNotice}
+                        handleUpdateList={handleUpdateList}
+                        userInfo={userInfo}
+                        list={list}
+                        setList={setList}
+                      />
+                    </>
                   )}
                 />
                 <Route
                   path={`/main/album`}
-                  render={() => <Album userInfo={userInfo} />}
+                  render={() => (
+                    <>
+                      <MainMenu />
+                      <Album userInfo={userInfo} />
+                    </>
+                  )}
                 />
                 <Route
                   path={`/main/approve`}
@@ -507,7 +510,7 @@ const Aside = styled.div`
 `;
 const Section = styled.div`
   width: 75%;
-  height: 1300px;
+  height: 1000px;
   float: left;
   padding: 1%;
 `;
@@ -581,16 +584,4 @@ const Loding = styled.div`
     width: 25%;
     height: auto;
   }
-`;
-const Back = styled(Link)`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex: 1 auto;
-`;
-const Home = styled(Link)`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex: 1 auto;
 `;

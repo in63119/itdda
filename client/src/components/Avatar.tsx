@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import React from "react";
+import { Link } from "react-router-dom";
+import styled, { css } from "styled-components";
 interface propsType {
   userInfo: any;
 }
@@ -10,7 +10,7 @@ export default function Avatar({ userInfo }: propsType) {
     <WrapFrame>
       <Wrap>
         {(() => {
-          if (userInfo.permission === 'parent') {
+          if (userInfo.permission === "parent") {
             if (userInfo.mainData[userInfo.currentChild].profileImg) {
               return (
                 <AvatarFrame>
@@ -51,7 +51,7 @@ export default function Avatar({ userInfo }: propsType) {
         })()}
         <NameTagWrap>
           {(() => {
-            if (userInfo.permission === 'parent') {
+            if (userInfo.permission === "parent") {
               return (
                 <>
                   <ClassWrap>
@@ -90,18 +90,16 @@ const Wrap = styled.div`
   width: 100%;
   height: 100%;
   @media ${({ theme }) => theme.device.mobileL} {
-    width: auto;
-    height: 80%;
+    height: 90%;
+    width: 80%;
   }
 `;
 const AvatarFrame = styled.div`
   overflow: hidden;
   width: 100%;
   height: 100%;
-  border-radius: 12px 12px 60px 12px;
+  border-radius: 8px 8px 35px 8px;
   @media ${({ theme }) => theme.device.mobileL} {
-    width: 80%;
-    margin-left: 10%;
   }
 `;
 const AvatarCard = styled.img`
@@ -119,10 +117,10 @@ const NameTagWrap = styled.div`
   box-shadow: 0px 0px 5px #c8c8c8;
   top: -69px;
   @font-face {
-    font-family: 'NanumSquareWeb';
-    src: url('../fonts/NanumSquareOTFLight.otf');
+    font-family: "NanumSquareWeb";
+    src: url("../fonts/NanumSquareOTFLight.otf");
   }
-  font-family: 'NanumSquareWeb';
+  font-family: "NanumSquareWeb";
   #institution {
     font-size: 1.3rem;
     align-self: center;

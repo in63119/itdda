@@ -42,7 +42,7 @@ function Notice({
     name: string,
     content: string,
     type: string,
-    category: string
+    category: string,
   ) => {
     setInputValue({
       ...inputValue,
@@ -50,7 +50,6 @@ function Notice({
       type: type,
     });
   };
-
   return (
     <Wrap>
       <Switch>
@@ -67,6 +66,7 @@ function Notice({
             secondCategory="행사"
           ></ListForm>
         </Route>
+
         <Route exact path={`${urlMatch.path}/write`}>
           <WriteForm
             radioButton={radioButton}
@@ -83,9 +83,13 @@ function Notice({
         </Route>
         <Route
           exact
-          path={`${urlMatch.path}/post/:no`}
+          path={`${urlMatch.path}/:no`}
           render={() => (
-            <ReadForm contents={list.currentList} title="공지사항"></ReadForm>
+            <ReadForm
+              contents={list}
+              title="공지사항"
+              userInfo={userInfo}
+            ></ReadForm>
           )}
         ></Route>
         <Route
