@@ -1,19 +1,19 @@
-import axios from 'axios';
-import 'dotenv/config';
+import axios from "axios";
+import "dotenv/config";
 axios.defaults.withCredentials = true;
 
 //! 서버 카카오 로그인 url
-const serverLoginUrl = 'https://datda.link/kakao/login'; //! datda 카카오로그인 주소
+const serverLoginUrl = "https://datda.link/kakao/login"; //! datda 카카오로그인 주소
 // const serverLoginUrl = 'http://localhost:5000/kakao/login'; //! 로컬서버의 카카오로그인 주소
 
-if (localStorage.getItem('loginInfo')) {
-  axios.defaults.headers.common['authorization'] = JSON.parse(
-    localStorage.getItem('loginInfo')!,
+if (localStorage.getItem("loginInfo")) {
+  axios.defaults.headers.common["authorization"] = JSON.parse(
+    localStorage.getItem("loginInfo")!
   ).accessToken;
 }
 export async function requestLogin(email: string, password: string) {
   const mainData = await axios
-    .post('https://datda.link/auth/login', {
+    .post("https://datda.link/auth/login", {
       email: email,
       password: password,
     })
@@ -23,16 +23,16 @@ export async function requestLogin(email: string, password: string) {
         localStorage.clear();
         //유저의 로그인 정보를 localStorage로 저장.
         localStorage.setItem(
-          'loginInfo',
+          "loginInfo",
           JSON.stringify({
             isLogin: true,
             accessToken: accessToken,
             permission: res.data.permission,
-          }),
+          })
         );
         return requestMainData(accessToken);
       } else {
-        alert('회원정보가 없습니다');
+        alert("회원정보가 없습니다");
       }
     })
     .catch((error) => {
@@ -51,12 +51,12 @@ export async function requestKakaoLogin(authorizationCode: string) {
         // console.log('회원가입을 해주세요.');
       } else if (res.status === 200) {
         localStorage.setItem(
-          'loginInfo',
+          "loginInfo",
           JSON.stringify({
             isLogin: true,
             accessToken: res.data.accessToken,
             permission: res.data.permission,
-          }),
+          })
         );
       }
       return requestMainData(res.data.accessToken);
@@ -69,7 +69,7 @@ export async function requestKakaoLogin(authorizationCode: string) {
 
 export const isEmailExist = async (email: string) => {
   const results = await axios
-    .post('https://datda.link/auth/isemail', {
+    .post("https://datda.link/auth/isemail", {
       email: email,
     })
     .then((res) => {
@@ -88,9 +88,9 @@ export const isEmailExist = async (email: string) => {
 };
 // 로그인을 성공한 유저가 main 화면에서 보여질 데이터를 서버에 요청.
 export function requestMainData(token?: string) {
-  axios.defaults.headers.common['authorization'] = token;
+  axios.defaults.headers.common["authorization"] = token;
   const mainData = axios
-    .get('https://datda.link/main')
+    .get("https://datda.link/main")
     .then((res) => {
       if (res.status === 200) {
         return res.data;
@@ -109,19 +109,19 @@ export function requestMainData(token?: string) {
 }
 // 승인, 미승인 원아 리스트 요청
 export function requestApproveChild(childId?: number | null) {
-  axios.defaults.headers.common['authorization'] = JSON.parse(
-    localStorage.getItem('loginInfo')!,
+  axios.defaults.headers.common["authorization"] = JSON.parse(
+    localStorage.getItem("loginInfo")!
   ).accessToken;
   const id = childId || null;
   const childrenList = axios
-    .post('https://datda.link/teacher/approve', {
+    .post("https://datda.link/teacher/approve", {
       childId: id,
     })
     .then((res) => {
       if (res.status === 200) {
         return res.data;
       }
-      alert('아이의 정보가 없습니다.');
+      alert("아이의 정보가 없습니다.");
     })
     .catch((error) => {
       console.log(error);
@@ -130,17 +130,17 @@ export function requestApproveChild(childId?: number | null) {
 }
 
 export function requestApproveTeacher(teacherId?: number | null) {
-  axios.defaults.headers.common['authorization'] = JSON.parse(
-    localStorage.getItem('loginInfo')!,
+  axios.defaults.headers.common["authorization"] = JSON.parse(
+    localStorage.getItem("loginInfo")!
   ).accessToken;
   const id = teacherId || null;
   const teacherList = axios
-    .post('https://datda.link/institution/approve', { teacherId: id })
+    .post("https://datda.link/institution/approve", { teacherId: id })
     .then((res) => {
       if (res.status === 200) {
         return res.data;
       }
-      alert('선생님의 정보가 없습니다');
+      alert("선생님의 정보가 없습니다");
     })
     .catch((err) => {
       console.log(err);
@@ -149,16 +149,16 @@ export function requestApproveTeacher(teacherId?: number | null) {
 }
 
 export function requestGetClassList() {
-  axios.defaults.headers.common['authorization'] = JSON.parse(
-    localStorage.getItem('loginInfo')!,
+  axios.defaults.headers.common["authorization"] = JSON.parse(
+    localStorage.getItem("loginInfo")!
   ).accessToken;
   const classList = axios
-    .get('https://datda.link/institution/classList')
+    .get("https://datda.link/institution/classList")
     .then((res) => {
       if (res.status === 200) {
         return res.data;
       } else {
-        alert('데이터가 없습니다');
+        alert("데이터가 없습니다");
       }
     })
     .catch((err) => {
@@ -168,11 +168,11 @@ export function requestGetClassList() {
 }
 
 export function requestChangeTeacherClass(teacherId: number, classId: number) {
-  axios.defaults.headers.common['authorization'] = JSON.parse(
-    localStorage.getItem('loginInfo')!,
+  axios.defaults.headers.common["authorization"] = JSON.parse(
+    localStorage.getItem("loginInfo")!
   ).accessToken;
   const changeClass = axios
-    .post('https://datda.link/institution/changeteacherclass', {
+    .post("https://datda.link/institution/changeteacherclass", {
       teacherId: teacherId,
       classId: classId,
     })
@@ -180,7 +180,7 @@ export function requestChangeTeacherClass(teacherId: number, classId: number) {
       if (res.status === 200) {
         return res.data.message;
       }
-      alert('반을 변경할 수 업습니다');
+      alert("반을 변경할 수 업습니다");
     })
     .catch((err) => {
       console.log(err);
@@ -189,12 +189,12 @@ export function requestChangeTeacherClass(teacherId: number, classId: number) {
 }
 
 export function requestSearchInsti(value: string) {
-  axios.defaults.headers.common['authorization'] = JSON.parse(
-    localStorage.getItem('loginInfo')!,
+  axios.defaults.headers.common["authorization"] = JSON.parse(
+    localStorage.getItem("loginInfo")!
   ).accessToken;
 
   const instiData = axios
-    .post('https://datda.link/guest/searchinstitution', { inputValue: value })
+    .post("https://datda.link/guest/searchinstitution", { inputValue: value })
     .then((res) => {
       if (res.status === 200) {
         return res.data;
@@ -208,11 +208,11 @@ export function requestSearchInsti(value: string) {
 }
 
 export function requestGetProfile(childId?: string | null) {
-  axios.defaults.headers.common['authorization'] = JSON.parse(
-    localStorage.getItem('loginInfo')!,
+  axios.defaults.headers.common["authorization"] = JSON.parse(
+    localStorage.getItem("loginInfo")!
   ).accessToken;
   const profile = axios
-    .post('https://datda.link/profile', { childId: Number(childId) })
+    .post("https://datda.link/profile", { childId: Number(childId) })
     .then((res) => {
       if (res.status === 200) {
         return res.data;
@@ -228,14 +228,14 @@ export function requestGetProfile(childId?: string | null) {
 
 export function requestProfileParentRegister(
   institutionId: string,
-  childName: string,
+  childName: string
 ) {
-  axios.defaults.headers.common['authorization'] = JSON.parse(
-    localStorage.getItem('loginInfo')!,
+  axios.defaults.headers.common["authorization"] = JSON.parse(
+    localStorage.getItem("loginInfo")!
   ).accessToken;
 
   const results = axios
-    .post('https://datda.link/profile/parentregister', {
+    .post("https://datda.link/profile/parentregister", {
       institutionId: Number(institutionId),
       childName: childName,
     })
@@ -252,11 +252,11 @@ export function requestProfileParentRegister(
 }
 
 export function requestGuestTeacherRegister(institutionId: string) {
-  axios.defaults.headers.common['authorization'] = JSON.parse(
-    localStorage.getItem('loginInfo')!,
+  axios.defaults.headers.common["authorization"] = JSON.parse(
+    localStorage.getItem("loginInfo")!
   ).accessToken;
   const result = axios
-    .post('https://datda.link/guest/teacherregister', {
+    .post("https://datda.link/guest/teacherregister", {
       institutionId: Number(institutionId),
     })
     .then((res) => {
@@ -274,13 +274,13 @@ export function requestGuestTeacherRegister(institutionId: string) {
 //parent 아이 추가
 export function requestGuestParentRegister(
   childName: string,
-  institutionId: string,
+  institutionId: string
 ) {
-  axios.defaults.headers.common['authorization'] = JSON.parse(
-    localStorage.getItem('loginInfo')!,
+  axios.defaults.headers.common["authorization"] = JSON.parse(
+    localStorage.getItem("loginInfo")!
   ).accessToken;
   const result = axios
-    .post('https://datda.link/guest/parentregister', {
+    .post("https://datda.link/guest/parentregister", {
       childName: childName,
       institutionId: Number(institutionId),
     })
@@ -298,21 +298,21 @@ export function requestGuestParentRegister(
 }
 
 export const getProfile = (): void => {
-  axios.get('https://datda.link/userinfo').then((res) => {
+  axios.get("https://datda.link/userinfo").then((res) => {
     if (res.status === 200) {
       return res.data;
     } else {
-      alert('잘못된 요청입니다.');
+      alert("잘못된 요청입니다.");
     }
   });
 };
 //시간표 등록(원장)
 export const requestUploadTimetable = async (timetable: any) => {
-  axios.defaults.headers.common['authorization'] = JSON.parse(
-    localStorage.getItem('loginInfo')!,
+  axios.defaults.headers.common["authorization"] = JSON.parse(
+    localStorage.getItem("loginInfo")!
   ).accessToken;
   const result = await axios
-    .post('https://datda.link/institution/timetable', {
+    .post("https://datda.link/institution/timetable", {
       timetable: `'${JSON.stringify(timetable)}'`,
     })
     .then((res) => {
@@ -326,11 +326,11 @@ export const requestUploadTimetable = async (timetable: any) => {
 
 //반 추가 삭제;
 export function requestManageClass(className: string, option: string) {
-  axios.defaults.headers.common['authorization'] = JSON.parse(
-    localStorage.getItem('loginInfo')!,
+  axios.defaults.headers.common["authorization"] = JSON.parse(
+    localStorage.getItem("loginInfo")!
   ).accessToken;
   const results = axios
-    .post('https://datda.link/institution/manageclass', {
+    .post("https://datda.link/institution/manageclass", {
       className: className,
       clickedButton: option,
     })
@@ -349,6 +349,7 @@ export function requestManageClass(className: string, option: string) {
 
 // 공지사항 요청
 // childId: 2, // ! optional. 부모의 경우 required
+// 부모가 로그인 -> childId (1 or 2) => DB를 조회해서 어떤 기관인지 확인
 // category: 'notice', // ! optional 이긴 하나 글 업로드 시에는 required
 // ! => category 는 notice / event 둘 중 하나
 // title: '제목이다.', // ! optional 이긴 하나 글 업로드 시에는 required
@@ -359,14 +360,14 @@ export async function requestNotice(
   chlidId?: number,
   title?: string,
   content?: string,
-  category?: string,
+  category?: string
 ) {
-  axios.defaults.headers.common['authorization'] = JSON.parse(
-    localStorage.getItem('loginInfo')!,
+  axios.defaults.headers.common["authorization"] = JSON.parse(
+    localStorage.getItem("loginInfo")!
   ).accessToken;
-  const permission = JSON.parse(localStorage.getItem('loginInfo')!).permission;
+  const permission = JSON.parse(localStorage.getItem("loginInfo")!).permission;
   const result = await axios
-    .post('https://datda.link/notice', {
+    .post("https://datda.link/notice", {
       childId: chlidId || null,
       title: title || null,
       content: content || null,
@@ -380,32 +381,48 @@ export async function requestNotice(
     });
   return result;
 }
+
+export async function updateNotice(
+  title: string,
+  content: string,
+  category: string
+) {
+  axios.defaults.headers.common["authorization"] = JSON.parse(
+    localStorage.getItem("loginInfo")!
+  ).accessToken;
+  const permission = JSON.parse(localStorage.getItem("loginInfo")!).permission;
+  const result = await axios
+    .post("https://datda.link/notice", { title, content, category })
+    .catch((err) => console.log("update notice err:", err));
+  return result;
+}
+
 //이미지 등록 요청
 export const handleReqeustUploadImage = async (
   imageFile: any,
   title: string,
-  content: string,
+  content: string
 ) => {
-  axios.defaults.headers.common['authorization'] = JSON.parse(
-    localStorage.getItem('loginInfo')!,
+  axios.defaults.headers.common["authorization"] = JSON.parse(
+    localStorage.getItem("loginInfo")!
   ).accessToken;
   const formData = new FormData();
-  formData.append('image', imageFile);
+  formData.append("image", imageFile);
   const config = {
     headers: {
-      'Content-Type': 'multipart/form-data',
+      "Content-Type": "multipart/form-data",
     },
     withCredentials: true,
   };
   await axios
     .post(
-      'https://homemade2021.ml/avatarimage',
+      "https://homemade2021.ml/avatarimage",
       {
         title: title,
         content: content,
         imageInfo: formData,
       },
-      config,
+      config
     )
     .then((res) => {
       const { avatarUrl } = res.data;
@@ -420,11 +437,11 @@ export const handleReqeustUploadImage = async (
 // ! (2) teacher 가 작성 시에도 required
 // content: '선생님이 쓴 알림장의 내용입니다.123123' // ! optional. 글 작성 시에는 required
 export const requestIndiNotice = async (childId?: number, content?: string) => {
-  axios.defaults.headers.common['authorization'] = JSON.parse(
-    localStorage.getItem('loginInfo')!,
+  axios.defaults.headers.common["authorization"] = JSON.parse(
+    localStorage.getItem("loginInfo")!
   ).accessToken;
   const result = await axios
-    .post('https://datda.link/indinotice', {
+    .post("https://datda.link/indinotice", {
       childId: childId || null,
       content: content || null,
     })
@@ -440,7 +457,7 @@ export const requestIndiNotice = async (childId?: number, content?: string) => {
 };
 export const IndiNoticeChildrenList = () => {
   axios
-    .get('https://datda.link/indinotice/childrenlist', {})
+    .get("https://datda.link/indinotice/childrenlist", {})
     .then((res) => {
       // console.log(res.status, res.data);
     })
@@ -453,14 +470,14 @@ export const requestImageAlbum = async (
   childId?: number | null,
   formData?: any | null,
   title?: string | null,
-  content?: string | null,
+  content?: string | null
 ) => {
-  axios.defaults.headers.common['authorization'] = JSON.parse(
-    localStorage.getItem('loginInfo')!,
+  axios.defaults.headers.common["authorization"] = JSON.parse(
+    localStorage.getItem("loginInfo")!
   ).accessToken;
 
   const result = await axios
-    .post('https://datda.link/image/album', {
+    .post("https://datda.link/image/album", {
       childId: childId || null, // ! optional. 부모의 경우 required(어느 유치원의 사진을 보내줘야 할 지를 알기 위해 사용됩니다.)
       title: title || null, // ! optional 이긴 하나 사진 업로드 시에는 required
       content: content || null, // ! optional
@@ -473,8 +490,8 @@ export const requestImageAlbum = async (
         // ! (1) 사진을 등록한 경우 아래의 조건으로 빠집니다.
         if (childId !== undefined && title !== undefined) {
           axios({
-            method: 'post',
-            url: 'https://datda.link/image/albumpost',
+            method: "post",
+            url: "https://datda.link/image/albumpost",
             data: formData,
           })
             // axios
@@ -489,7 +506,7 @@ export const requestImageAlbum = async (
             //     },
             //   )
             .then((res) => {
-              alert('앨범이 등록 되었습니다.');
+              alert("앨범이 등록 되었습니다.");
 
               // ! => 이 res.data 를 활용하시길 바랍니다!
 
@@ -501,7 +518,7 @@ export const requestImageAlbum = async (
           return;
           // console.log(res.data);
         }
-        console.log(res.data.albumInfo, '서버 응답결과');
+        console.log(res.data.albumInfo, "서버 응답결과");
         return res.data.albumInfo;
       } else {
         return res.data.albumInfo;
@@ -516,14 +533,14 @@ export const requestImageAlbum = async (
 export const requestMealListAndUpload = async (
   childId?: number | null,
   title?: string | null,
-  content?: string | null,
+  content?: string | null
 ) => {
-  axios.defaults.headers.common['authorization'] = JSON.parse(
-    localStorage.getItem('loginInfo')!,
+  axios.defaults.headers.common["authorization"] = JSON.parse(
+    localStorage.getItem("loginInfo")!
   ).accessToken;
 
   const result = await axios
-    .post('https://datda.link/image/food', {
+    .post("https://datda.link/image/food", {
       childId: childId || null, // ! optional. 부모의 경우 required(어느 유치원의 사진을 보내줘야 할 지를 알기 위해 사용됩니다.)
       title: title || null, // ! optional 이긴 하나 사진 업로드 시에는 required
       content: content || null, // ! optional
