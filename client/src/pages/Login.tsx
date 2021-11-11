@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Link, useHistory, Redirect } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { requestLogin, requestKakaoLogin } from "../common/axios";
 import "dotenv/config";
@@ -85,16 +85,7 @@ function Login({ hadleSetMainData }: propType) {
           } else if (mainData === false) {
             setIsLoading(false);
             history.push("/waiting/approving");
-            // if (mainData) {
-            //   // handleLoading();
-            //   hadleSetMainData(mainData);
-            //   setErrormessage('');
-            //   setIsLoading(false);
-            //   history.push('/main'); // 바로 너 때문이야.
           }
-          // setIsLoading(false);
-          // // handleLoading();
-          // return;
         });
       }
       setIsKakao(true);
